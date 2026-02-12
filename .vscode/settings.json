@@ -1,0 +1,10 @@
+{
+    "chat.tools.terminal.autoApprove": {
+        "git clone": true,
+        "bundle": true,
+        "/^cd /Users/cffsmacmini/Documents/pitchmarketingagency\\.code-workspace/goldenoutlook\\.university/netlify-site/public && python3 -m http\\.server 8000 2>&1 \\| head -20$/": {
+            "approve": true,
+            "matchCommandLine": true
+        }
+    }
+}

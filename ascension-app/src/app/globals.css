@@ -1,0 +1,117 @@
+@import "tailwindcss";
+
+/* ═══════════════════════════════════════════════════════════════
+   SV MEDICARE INSTITUTE — Ascension Mode Design Tokens
+   Anti-generic: controlled tension, layered depth, custom timing
+   ═══════════════════════════════════════════════════════════════ */
+
+:root {
+  /* Level 0 — Initiation (cinematic) */
+  --bg-matte: #0c0c0c;
+  --bg-matte-elevated: #121212;
+  --gold-accent: #c9a227;
+  --gold-accent-dim: #8b7220;
+  --gold-glow: rgba(201, 162, 39, 0.15);
+  --text-primary: #f5f5f0;
+  --text-muted: #8a8a85;
+  --border-gold: rgba(201, 162, 39, 0.35);
+  
+  /* Typography — high contrast, cinematic */
+  --font-display: "Bebas Neue", "Oswald", system-ui, sans-serif;
+  --font-body: "DM Sans", system-ui, sans-serif;
+  
+  /* Spacing — break the grid (not 4/8/16 defaults) */
+  --space-7: 1.75rem;
+  --space-11: 2.75rem;
+  --space-13: 3.25rem;
+  --space-18: 4.5rem;
+  --space-23: 5.75rem;
+  
+  /* Animation curves — custom, not linear */
+  --ease-cinematic: cubic-bezier(0.22, 1, 0.36, 1);
+  --ease-snap: cubic-bezier(0.34, 1.56, 0.64, 1);
+  --ease-linger: cubic-bezier(0.33, 0, 0.2, 1);
+  --duration-slow: 1.2s;
+  --duration-mid: 0.6s;
+  --duration-fast: 0.25s;
+  
+  /* Shadows — layered depth */
+  --shadow-glow-gold: 0 0 60px var(--gold-glow);
+  --shadow-deep: 0 24px 48px -12px rgba(0, 0, 0, 0.6);
+  --shadow-layered: 0 4px 6px -1px rgba(0, 0, 0, 0.3),
+    0 2px 4px -2px rgba(0, 0, 0, 0.2),
+    0 0 0 1px rgba(201, 162, 39, 0.08);
+}
+
+@theme inline {
+  --color-background: var(--bg-matte);
+  --color-foreground: var(--text-primary);
+  --color-gold: var(--gold-accent);
+  --color-gold-dim: var(--gold-accent-dim);
+  --font-sans: var(--font-body);
+  --font-display: var(--font-display);
+}
+
+@layer base {
+  * {
+    box-sizing: border-box;
+  }
+  html {
+    scroll-behavior: smooth;
+  }
+  body {
+    background: var(--bg-matte);
+    color: var(--text-primary);
+    font-family: var(--font-body);
+    min-height: 100dvh;
+    overflow-x: hidden;
+  }
+}
+
+@layer utilities {
+  .font-display {
+    font-family: var(--font-display), system-ui, sans-serif;
+  }
+}
+
+/* Light sweep animation for Level 0 */
+@keyframes light-sweep {
+  0% {
+    opacity: 0;
+    transform: translateX(-100%) scaleX(0.3);
+  }
+  20% {
+    opacity: 0.6;
+    transform: translateX(0) scaleX(1);
+  }
+  80% {
+    opacity: 0.6;
+    transform: translateX(0) scaleX(1);
+  }
+  100% {
+    opacity: 0;
+    transform: translateX(100%) scaleX(0.3);
+  }
+}
+
+@keyframes fade-up {
+  from {
+    opacity: 0;
+    transform: translateY(24px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes gold-pulse {
+  0%, 100% {
+    opacity: 1;
+    box-shadow: 0 0 20px var(--gold-glow);
+  }
+  50% {
+    opacity: 0.9;
+    box-shadow: 0 0 40px var(--gold-glow);
+  }
+}

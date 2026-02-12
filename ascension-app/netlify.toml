@@ -1,0 +1,9 @@
+# SV Medicare Institute — Static Export (bulletproof Netlify deploy)
+# Build produces ./out — plain static HTML/CSS/JS, no serverless needed
+
+[build]
+  command = "npm run build"
+  publish = "out"
+
+[build.environment]
+  NODE_VERSION = "20"
