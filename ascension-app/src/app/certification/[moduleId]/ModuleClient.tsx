@@ -1,18 +1,18 @@
 "use client";
 
 import { useState, useEffect, useCallback } from "react";
-import { motion, AnimatePresence } from "framer-motion";
+import { motion } from "framer-motion";
 import Link from "next/link";
 import type { CertificationModule } from "@/data/certification";
 import { MODULE_CONTENT } from "@/data/module-content";
 import { getObjectiveContent } from "@/data/objectives-content";
+import { getObjectivesForTopic, getLessonForTopic } from "@/data/topic-lessons";
 import { getLeafNodes, findNodeById, getFirstLeaf } from "@/lib/module-utils";
 import { VideoPlaceholder } from "@/components/VideoPlaceholder";
 import { ModuleFiletree } from "@/components/ModuleFiletree";
-import { ContentCanvas } from "@/components/ContentCanvas";
+import { LessonCanvas } from "@/components/LessonCanvas";
 import { Badge } from "@/components/Badge";
 import { MiniExam } from "@/components/MiniExam";
-import { ObjectivePopup } from "@/components/ObjectivePopup";
 
 const STORAGE_KEY = "svmedicare-module-progress";
 
@@ -40,6 +40,11 @@ function setStoredProgress(moduleId: string, data: { completed: string[]; miniEx
   }
 }
 
+/** Lesson completion key: topicId_objectiveIndex */
+function lessonKey(topicId: string, objectiveIndex: number) {
+  return `${topicId}_obj${objectiveIndex}`;
+}
+
 export function CertificationModuleClient({ module }: { module: CertificationModule }) {
   const content = MODULE_CONTENT.find((m) => m.moduleId === module.id);
   const topics = content?.topics ?? [];
@@ -47,13 +52,13 @@ export function CertificationModuleClient({ module }: { module: CertificationMod
   const firstLeafId = leaves[0]?.id ?? null;
 
   const [activeId, setActiveId] = useState<string | null>(firstLeafId);
+  const [selectedObjectiveIndex, setSelectedObjectiveIndex] = useState<number | null>(null);
   const [completedIds, setCompletedIds] = useState<Set<string>>(() => {
     const { completed } = getStoredProgress(module.id);
     return new Set(completed);
   });
   const [miniExamPassed, setMiniExamPassed] = useState(false);
   const [showMiniExam, setShowMiniExam] = useState(false);
-  const [objectivePopupIndex, setObjectivePopupIndex] = useState<number | null>(null);
 
   useEffect(() => {
     const { completed, miniExamPassed: passed } = getStoredProgress(module.id);
@@ -65,6 +70,10 @@ export function CertificationModuleClient({ module }: { module: CertificationMod
     if (activeId === null && firstLeafId) setActiveId(firstLeafId);
   }, [firstLeafId, activeId]);
 
+  useEffect(() => {
+    if (activeId) setSelectedObjectiveIndex(null);
+  }, [activeId]);
+
   const saveProgress = useCallback(
     (completed: string[], miniPassed: boolean) => {
       setStoredProgress(module.id, { completed, miniExamPassed: miniPassed });
@@ -72,15 +81,19 @@ export function CertificationModuleClient({ module }: { module: CertificationMod
     [module.id]
   );
 
-  const handleComplete = useCallback(() => {
-    if (!activeId) return;
-    setCompletedIds((prev) => {
-      const next = new Set(prev);
-      next.add(activeId);
-      saveProgress([...next], miniExamPassed);
-      return next;
-    });
-  }, [activeId, miniExamPassed, saveProgress]);
+  const handleLessonComplete = useCallback(
+    (topicId: string, objIndex: number) => {
+      const key = lessonKey(topicId, objIndex);
+      setCompletedIds((prev) => {
+        const next = new Set(prev);
+        next.add(key);
+        next.add(topicId);
+        saveProgress([...next], miniExamPassed);
+        return next;
+      });
+    },
+    [miniExamPassed, saveProgress]
+  );
 
   const handleMiniExamPass = useCallback(() => {
     setMiniExamPassed(true);
@@ -93,6 +106,28 @@ export function CertificationModuleClient({ module }: { module: CertificationMod
 
   const activeNode = activeId ? findNodeById(topics, activeId) : null;
   const displayNode = activeNode ? getFirstLeaf(activeNode) : null;
+  const topicId = displayNode?.id ?? null;
+
+  const objectivesForTopic =
+    topicId && module.objectives.length > 0
+      ? getObjectivesForTopic(topicId, module.objectives.length)
+      : [];
+
+  const currentLesson =
+    topicId !== null && selectedObjectiveIndex !== null
+      ? getLessonForTopic(topicId, selectedObjectiveIndex)
+      : null;
+
+  const objectiveContent =
+    module.id && selectedObjectiveIndex !== null
+      ? getObjectiveContent(module.id, selectedObjectiveIndex)
+      : null;
+
+  const isLessonCompleted =
+    topicId !== null && selectedObjectiveIndex !== null
+      ? completedIds.has(lessonKey(topicId, selectedObjectiveIndex))
+      : false;
+
   const allLeavesCompleted = leaves.length > 0 && leaves.every((l) => completedIds.has(l.id));
 
   return (
@@ -109,9 +144,7 @@ export function CertificationModuleClient({ module }: { module: CertificationMod
         </div>
       </header>
 
-      {/* 20/80 split */}
       <div className="mx-auto flex w-full max-w-7xl flex-1 min-h-0">
-        {/* 20% — Filetree sidebar */}
         <aside className="w-[20%] min-w-[220px] shrink-0 border-r border-[var(--border-gold)]/20 bg-[var(--bg-matte-elevated)] p-4">
           <h2 className="mb-3 text-xs font-semibold uppercase tracking-widest text-[var(--text-muted)]">
             Topics
@@ -123,20 +156,11 @@ export function CertificationModuleClient({ module }: { module: CertificationMod
             onSelect={setActiveId}
           />
           <div className="mt-6 space-y-2">
-            <Badge
-              label="Content Complete"
-              icon="✓"
-              earned={allLeavesCompleted}
-            />
-            <Badge
-              label="Mini Exam Passed"
-              icon="🏆"
-              earned={miniExamPassed}
-            />
+            <Badge label="Content Complete" icon="✓" earned={allLeavesCompleted} />
+            <Badge label="Mini Exam Passed" icon="🏆" earned={miniExamPassed} />
           </div>
         </aside>
 
-        {/* 80% — Content canvas */}
         <main className="flex-1 overflow-y-auto p-8">
           <div className="mx-auto max-w-3xl">
             <motion.div
@@ -160,56 +184,6 @@ export function CertificationModuleClient({ module }: { module: CertificationMod
                 caption="Create with ElevenLabs: character welcome, key concept explainer, or scene transition"
               />
 
-              <section>
-                <h2 className="font-body text-lg font-semibold text-[var(--text-primary)]">
-                  Learning Objectives
-                </h2>
-                <p className="mt-1 text-sm text-[var(--text-muted)]">
-                  Click any objective to open interactive learning material (5+ pages each).
-                </p>
-                <ul className="mt-3 space-y-2">
-                  {module.objectives.map((obj, i) => {
-                    const content = getObjectiveContent(module.id, i);
-                    const hasContent = content && content.pages.length >= 5;
-                    return (
-                      <li key={i}>
-                        <button
-                          onClick={() => hasContent && setObjectivePopupIndex(i)}
-                          className={`flex w-full items-start gap-2 rounded-lg px-3 py-2.5 text-left transition-colors ${
-                            hasContent
-                              ? "text-[var(--text-muted)] hover:bg-[var(--gold-accent)]/10 hover:text-[var(--gold-accent)]"
-                              : "cursor-default text-[var(--text-muted)] opacity-75"
-                          }`}
-                        >
-                          <span className="shrink-0 text-[var(--gold-accent)]">
-                            {hasContent ? "→" : "•"}
-                          </span>
-                          <span>{obj}</span>
-                          {hasContent && (
-                            <span className="shrink-0 text-xs text-[var(--gold-accent)]/70">
-                              {content.pages.length} pages
-                            </span>
-                          )}
-                        </button>
-                      </li>
-                    );
-                  })}
-                </ul>
-              </section>
-
-              <AnimatePresence>
-                {objectivePopupIndex !== null && (() => {
-                  const content = getObjectiveContent(module.id, objectivePopupIndex);
-                  return content ? (
-                    <ObjectivePopup
-                      key={objectivePopupIndex}
-                      content={content}
-                      onClose={() => setObjectivePopupIndex(null)}
-                    />
-                  ) : null;
-                })()}
-              </AnimatePresence>
-
               {showMiniExam && content?.miniExamIds && content.miniExamIds.length > 0 ? (
                 <MiniExam
                   questionIds={content.miniExamIds}
@@ -217,16 +191,77 @@ export function CertificationModuleClient({ module }: { module: CertificationMod
                   onClose={() => setShowMiniExam(false)}
                   passThreshold={0.7}
                 />
-              ) : displayNode && (displayNode.children?.length ?? 0) === 0 ? (
-                <ContentCanvas
-                  node={displayNode}
-                  onComplete={handleComplete}
-                  isCompleted={completedIds.has(displayNode.id)}
-                />
+              ) : displayNode && topicId ? (
+                <>
+                  {/* Topic + Learning Objectives */}
+                  <section>
+                    <h2 className="font-body text-lg font-semibold text-[var(--text-primary)]">
+                      {displayNode.label}
+                    </h2>
+                    {displayNode.body && (
+                      <p className="mt-2 text-[var(--text-muted)]">{displayNode.body}</p>
+                    )}
+                    <div className="mt-6">
+                      <h3 className="text-sm font-semibold uppercase tracking-wider text-[var(--text-muted)]">
+                        Learning objectives — click to expand lesson
+                      </h3>
+                      <p className="mt-1 text-xs text-[var(--text-muted)]">
+                        Each objective opens a full lesson with scenarios and key concepts for this topic.
+                      </p>
+                      <ul className="mt-4 space-y-2">
+                        {objectivesForTopic.map((objIndex) => {
+                          const objText = module.objectives[objIndex];
+                          const isSelected = selectedObjectiveIndex === objIndex;
+                          const hasLesson =
+                            getLessonForTopic(topicId, objIndex) || getObjectiveContent(module.id, objIndex);
+                          return (
+                            <li key={objIndex}>
+                              <button
+                                onClick={() =>
+                                  setSelectedObjectiveIndex(isSelected ? null : objIndex)
+                                }
+                                className={`flex w-full items-start gap-2 rounded-lg px-3 py-2.5 text-left transition-colors ${
+                                  hasLesson
+                                    ? isSelected
+                                      ? "bg-[var(--gold-accent)]/20 text-[var(--gold-accent)]"
+                                      : "text-[var(--text-muted)] hover:bg-[var(--gold-accent)]/10 hover:text-[var(--gold-accent)]"
+                                    : "cursor-default text-[var(--text-muted)] opacity-75"
+                                }`}
+                              >
+                                <span className="shrink-0 text-[var(--gold-accent)]">
+                                  {isSelected ? "▾" : "▸"}
+                                </span>
+                                <span>{objText}</span>
+                              </button>
+                            </li>
+                          );
+                        })}
+                      </ul>
+                    </div>
+                  </section>
+
+                  {/* Expanded lesson when objective clicked */}
+                  {selectedObjectiveIndex !== null && (currentLesson || objectiveContent) && (
+                    <section className="border-t border-[var(--border-gold)]/20 pt-8">
+                      <LessonCanvas
+                        lesson={currentLesson}
+                        topicNode={displayNode}
+                        objectiveText={module.objectives[selectedObjectiveIndex]}
+                        objectivePages={objectiveContent?.pages}
+                        onComplete={() =>
+                          handleLessonComplete(topicId, selectedObjectiveIndex)
+                        }
+                        isCompleted={isLessonCompleted}
+                        moduleId={module.id}
+                        objectiveIndex={selectedObjectiveIndex}
+                      />
+                    </section>
+                  )}
+                </>
               ) : (
                 <div className="rounded-lg border border-[var(--border-gold)]/30 bg-[var(--bg-matte-elevated)] p-6">
                   <p className="text-[var(--text-muted)]">
-                    Select a topic from the sidebar to view its content.
+                    Select a topic from the sidebar to view its content and learning objectives.
                   </p>
                 </div>
               )}
