@@ -1,6 +1,0 @@
-1:"$Sreact.fragment"
-2:I[17272,["/_next/static/chunks/ff08e75a7544d97e.js","/_next/static/chunks/eefaa1959da9fa2d.js"],"CertificationModuleClient"]
-3:I[14507,["/_next/static/chunks/11b2205630e13a14.js","/_next/static/chunks/841cd77c9e062664.js"],"OutletBoundary"]
-4:"$Sreact.suspense"
-0:{"buildId":"n_IRPy5-e1Zb5YQcduFgt","rsc":["$","$1","c",{"children":[["$","$L2",null,{"module":{"id":"2","title":"Plan Types & Benefits","description":"Medicare Advantage, PFFS, MSA, SNPs, Part D, and TrOOP.","objectives":["Compare Original Medicare vs Medicare Advantage","Explain HMO, PPO, PFFS, and MSA plan types","Describe Special Needs Plans (SNPs) and eligibility","Understand Part D coverage, formularies, and TrOOP","Explain when standalone Part D pairs with MA plans"],"duration":"~20 min","contentSlug":"plans","videoPlaceholder":"/assets/elevenlabs/module-2-intro.mp4"}}],[["$","script","script-0",{"src":"/_next/static/chunks/ff08e75a7544d97e.js","async":true}],["$","script","script-1",{"src":"/_next/static/chunks/eefaa1959da9fa2d.js","async":true}]],["$","$L3",null,{"children":["$","$4",null,{"name":"Next.MetadataOutlet","children":"$@5"}]}]]}],"loading":null,"isPartial":false}
-5:null

@@ -1,10 +1,10 @@
-# SV Medicare Institute — deploys ascension-app (static export)
-# For Git deploys: set Base directory = ascension-app in Netlify UI
+# SV Medicare Institute — Ascension Mode (dark cinematic theme)
+# ONLY ascension-app deploys. Do not use netlify-site or course-in-a-box.
 
 [build]
   base = "ascension-app"
   command = "npm run build"
-  publish = "ascension-app/out"
+  publish = "out"
 
 [build.environment]
   NODE_VERSION = "20"

@@ -1,0 +1,6 @@
+# Legacy sites — DO NOT RESTORE (use ascension-app only)
+netlify-site/
+course-in-a-box/
+
+# OS
+.DS_Store

@@ -1,16 +1,18 @@
 "use client";
 
 import { useState, useEffect, useCallback } from "react";
-import { motion } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
 import Link from "next/link";
 import type { CertificationModule } from "@/data/certification";
 import { MODULE_CONTENT } from "@/data/module-content";
+import { getObjectiveContent } from "@/data/objectives-content";
 import { getLeafNodes, findNodeById, getFirstLeaf } from "@/lib/module-utils";
 import { VideoPlaceholder } from "@/components/VideoPlaceholder";
 import { ModuleFiletree } from "@/components/ModuleFiletree";
 import { ContentCanvas } from "@/components/ContentCanvas";
 import { Badge } from "@/components/Badge";
 import { MiniExam } from "@/components/MiniExam";
+import { ObjectivePopup } from "@/components/ObjectivePopup";
 
 const STORAGE_KEY = "svmedicare-module-progress";
 
@@ -51,6 +53,7 @@ export function CertificationModuleClient({ module }: { module: CertificationMod
   });
   const [miniExamPassed, setMiniExamPassed] = useState(false);
   const [showMiniExam, setShowMiniExam] = useState(false);
+  const [objectivePopupIndex, setObjectivePopupIndex] = useState<number | null>(null);
 
   useEffect(() => {
     const { completed, miniExamPassed: passed } = getStoredProgress(module.id);
@@ -161,15 +164,51 @@ export function CertificationModuleClient({ module }: { module: CertificationMod
                 <h2 className="font-body text-lg font-semibold text-[var(--text-primary)]">
                   Learning Objectives
                 </h2>
-                <ul className="mt-2 space-y-2 text-[var(--text-muted)]">
-                  {module.objectives.map((obj, i) => (
-                    <li key={i} className="flex gap-2">
-                      <span className="text-[var(--gold-accent)]">•</span>
-                      {obj}
-                    </li>
-                  ))}
+                <p className="mt-1 text-sm text-[var(--text-muted)]">
+                  Click any objective to open interactive learning material (5+ pages each).
+                </p>
+                <ul className="mt-3 space-y-2">
+                  {module.objectives.map((obj, i) => {
+                    const content = getObjectiveContent(module.id, i);
+                    const hasContent = content && content.pages.length >= 5;
+                    return (
+                      <li key={i}>
+                        <button
+                          onClick={() => hasContent && setObjectivePopupIndex(i)}
+                          className={`flex w-full items-start gap-2 rounded-lg px-3 py-2.5 text-left transition-colors ${
+                            hasContent
+                              ? "text-[var(--text-muted)] hover:bg-[var(--gold-accent)]/10 hover:text-[var(--gold-accent)]"
+                              : "cursor-default text-[var(--text-muted)] opacity-75"
+                          }`}
+                        >
+                          <span className="shrink-0 text-[var(--gold-accent)]">
+                            {hasContent ? "→" : "•"}
+                          </span>
+                          <span>{obj}</span>
+                          {hasContent && (
+                            <span className="shrink-0 text-xs text-[var(--gold-accent)]/70">
+                              {content.pages.length} pages
+                            </span>
+                          )}
+                        </button>
+                      </li>
+                    );
+                  })}
                 </ul>
               </section>
+
+              <AnimatePresence>
+                {objectivePopupIndex !== null && (() => {
+                  const content = getObjectiveContent(module.id, objectivePopupIndex);
+                  return content ? (
+                    <ObjectivePopup
+                      key={objectivePopupIndex}
+                      content={content}
+                      onClose={() => setObjectivePopupIndex(null)}
+                    />
+                  ) : null;
+                })()}
+              </AnimatePresence>
 
               {showMiniExam && content?.miniExamIds && content.miniExamIds.length > 0 ? (
                 <MiniExam
