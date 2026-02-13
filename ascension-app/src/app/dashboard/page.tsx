@@ -2,6 +2,8 @@
 
 import { motion } from "framer-motion";
 import Link from "next/link";
+import Image from "next/image";
+import { PEXELS_IMAGES } from "@/data/pexels-images";
 
 // Mock data for MVP — will wire to Supabase
 const RANKS = [
@@ -13,33 +15,15 @@ const RANKS = [
 ] as const;
 
 const STARTER_MISSIONS = [
-  {
-    id: "1",
-    title: "Mission 1: Medicare Basics",
-    description: "Define Parts A, B, C, D. Master eligibility.",
-    xp: 150,
-    completed: false,
-  },
-  {
-    id: "2",
-    title: "Mission 2: Plan Types",
-    description: "Compare Advantage vs Original. Explore Medigap.",
-    xp: 200,
-    completed: false,
-  },
-  {
-    id: "3",
-    title: "Mission 3: Compliance Drills",
-    description: "CMS regulations. Compliant messaging.",
-    xp: 250,
-    completed: false,
-  },
+  { id: "1", title: "Mission 1: Medicare Basics", description: "Define Parts A, B, C, D. Master eligibility.", xp: 150, completed: false, img: PEXELS_IMAGES.missions.basics },
+  { id: "2", title: "Mission 2: Plan Types", description: "Compare Advantage vs Original. Explore Medigap.", xp: 200, completed: false, img: PEXELS_IMAGES.missions.plans },
+  { id: "3", title: "Mission 3: Compliance Drills", description: "CMS regulations. Compliant messaging.", xp: 250, completed: false, img: PEXELS_IMAGES.missions.compliance },
 ];
 
 const QUICK_ACTIONS = [
-  { href: "/certification", label: "Certification Course", icon: "📜", desc: "5 modules + exam" },
-  { href: "/trivia", label: "Medicare Trivia", icon: "🎯", desc: "Test your knowledge" },
-  { href: "/transfers", label: "Live Transfers", icon: "📞", desc: "Master the handoff" },
+  { href: "/certification", label: "Certification Course", icon: "📜", desc: "5 modules + exam", img: PEXELS_IMAGES.certification[1] },
+  { href: "/trivia", label: "Medicare Trivia", icon: "🎯", desc: "Test your knowledge", img: PEXELS_IMAGES.trivia },
+  { href: "/transfers", label: "Live Transfers", icon: "📞", desc: "Master the handoff", img: PEXELS_IMAGES.transfers[1] },
 ];
 
 export default function DashboardPage() {
@@ -127,21 +111,27 @@ export default function DashboardPage() {
           <h2 className="mb-4 font-display text-2xl uppercase tracking-widest text-[var(--text-primary)]" style={{ fontFamily: "var(--font-display)" }}>
             Quick Actions
           </h2>
-          <div className="grid gap-4 sm:grid-cols-2">
+          <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
             {QUICK_ACTIONS.map((action, i) => (
               <Link key={action.href} href={action.href}>
                 <motion.div
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ delay: 0.1 * i }}
-                  className="group flex items-center gap-4 rounded-lg border border-[var(--border-gold)]/30 bg-[var(--bg-matte-elevated)] p-6 transition-all hover:border-[var(--gold-accent)]/60 hover:bg-[var(--gold-accent)]/5"
+                  className="group flex flex-col overflow-hidden rounded-lg border border-[var(--border-gold)]/30 bg-[var(--bg-matte-elevated)] transition-all hover:border-[var(--gold-accent)]/60 hover:bg-[var(--gold-accent)]/5"
                 >
-                  <span className="text-4xl">{action.icon}</span>
-                  <div>
-                    <h3 className="font-body font-semibold text-[var(--text-primary)] group-hover:text-[var(--gold-accent)]">
-                      {action.label}
-                    </h3>
-                    <p className="text-sm text-[var(--text-muted)]">{action.desc}</p>
+                  <div className="relative h-24 w-full shrink-0">
+                    <Image src={action.img.src} alt={action.img.alt} fill className="object-cover opacity-90" />
+                    <div className="absolute inset-0 bg-gradient-to-t from-[var(--bg-matte-elevated)]/80 to-transparent" />
+                  </div>
+                  <div className="flex items-center gap-3 p-4">
+                    <span className="text-2xl">{action.icon}</span>
+                    <div>
+                      <h3 className="font-body font-semibold text-[var(--text-primary)] group-hover:text-[var(--gold-accent)]">
+                        {action.label}
+                      </h3>
+                      <p className="text-sm text-[var(--text-muted)]">{action.desc}</p>
+                    </div>
                   </div>
                 </motion.div>
               </Link>
@@ -167,6 +157,11 @@ export default function DashboardPage() {
                 }}
                 className="group relative overflow-hidden rounded-sm border border-[var(--border-gold)]/30 bg-[var(--bg-matte-elevated)] p-6 transition-colors hover:border-[var(--border-gold)]/60"
               >
+                <div className="relative h-20 w-full shrink-0">
+                  <Image src={mission.img.src} alt={mission.img.alt} fill className="object-cover opacity-80" />
+                  <div className="absolute inset-0 bg-gradient-to-b from-transparent to-[var(--bg-matte-elevated)]/90" />
+                </div>
+                <div className="p-6">
                 <div className="mb-3 flex items-start justify-between">
                   <span className="text-xs uppercase tracking-wider text-[var(--gold-accent)]">
                     {mission.xp} XP
@@ -192,6 +187,7 @@ export default function DashboardPage() {
                     {mission.completed ? "Review" : "Start Mission"}
                   </motion.button>
                 </Link>
+                </div>
               </motion.div>
             ))}
           </div>

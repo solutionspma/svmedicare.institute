@@ -14,7 +14,7 @@ export type ContentNode = {
   bullets?: string[];
   /** Audio path for voiceover */
   audioPath?: string;
-  /** Video path for ElevenLabs clip */
+  /** Video path */
   videoPath?: string;
 };
 
@@ -31,7 +31,7 @@ export const MODULE_CONTENT: ModuleContent[] = [
   {
     moduleId: "1",
     title: "Medicare Program Basics",
-    introVideo: "/assets/elevenlabs/module-1-intro.mp4",
+    introVideo: "/assets/intro-videos/module-1-intro.mp4",
     topics: [
       {
         id: "1-1",
@@ -170,7 +170,7 @@ export const MODULE_CONTENT: ModuleContent[] = [
   {
     moduleId: "2",
     title: "Part C and Medicare Health Plans",
-    introVideo: "/assets/elevenlabs/module-2-intro.mp4",
+    introVideo: "/assets/intro-videos/module-2-intro.mp4",
     topics: [
       {
         id: "2-1",
@@ -249,7 +249,7 @@ export const MODULE_CONTENT: ModuleContent[] = [
   {
     moduleId: "3",
     title: "Part D Prescription Drug Coverage",
-    introVideo: "/assets/elevenlabs/module-3-intro.mp4",
+    introVideo: "/assets/intro-videos/module-3-intro.mp4",
     topics: [
       {
         id: "3-1",
@@ -319,7 +319,7 @@ export const MODULE_CONTENT: ModuleContent[] = [
   {
     moduleId: "4",
     title: "Communications & Marketing Rules",
-    introVideo: "/assets/elevenlabs/module-4-intro.mp4",
+    introVideo: "/assets/intro-videos/module-4-intro.mp4",
     topics: [
       {
         id: "4-1",
@@ -389,7 +389,7 @@ export const MODULE_CONTENT: ModuleContent[] = [
   {
     moduleId: "5",
     title: "Fraud, Waste & Abuse",
-    introVideo: "/assets/elevenlabs/module-5-intro.mp4",
+    introVideo: "/assets/intro-videos/module-5-intro.mp4",
     topics: [
       {
         id: "5-1",
@@ -447,7 +447,7 @@ export const MODULE_CONTENT: ModuleContent[] = [
   {
     moduleId: "6",
     title: "Enrollment & Election Periods",
-    introVideo: "/assets/elevenlabs/module-5-intro.mp4",
+    introVideo: "/assets/intro-videos/module-5-intro.mp4",
     topics: [
       {
         id: "6-1",

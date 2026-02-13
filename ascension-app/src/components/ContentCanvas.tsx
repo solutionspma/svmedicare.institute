@@ -52,7 +52,7 @@ export function ContentCanvas({ node, onComplete, isCompleted }: Props) {
       {node.videoPath && (
         <VideoPlaceholder
           src={node.videoPath}
-          placeholderLabel="Concept video — add ElevenLabs clip"
+          placeholderLabel="Concept video"
         />
       )}
 

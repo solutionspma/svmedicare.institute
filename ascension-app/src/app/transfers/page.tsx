@@ -3,7 +3,7 @@
 import { motion } from "framer-motion";
 import Link from "next/link";
 import Image from "next/image";
-import { WOODEN_BACKGROUNDS } from "@/data/pexels-images";
+import { PEXELS_IMAGES } from "@/data/pexels-images";
 
 export default function LiveTransfersPage() {
   return (
@@ -11,10 +11,10 @@ export default function LiveTransfersPage() {
       {/* Animated wooden backdrop */}
       <div className="pointer-events-none absolute inset-0 z-0">
         <Image
-          src={WOODEN_BACKGROUNDS[0]}
+          src={PEXELS_IMAGES.background[0]}
           alt=""
           fill
-          className="object-cover opacity-20"
+          className="object-cover opacity-[0.30]"
           sizes="100vw"
           priority
         />
@@ -36,14 +36,27 @@ export default function LiveTransfersPage() {
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          className="mb-12"
+          className="mb-12 flex flex-col gap-6 sm:flex-row sm:items-start sm:gap-8"
         >
-          <h2 className="font-display text-3xl uppercase tracking-widest text-[var(--text-primary)]" style={{ fontFamily: "var(--font-display)" }}>
-            Mastering Live Transfers
-          </h2>
-          <p className="mt-4 text-[var(--text-muted)]">
-            Live transfers are a critical touchpoint in Medicare sales. A smooth handoff builds trust, protects compliance, and increases conversion. Here&apos;s how to nail them.
-          </p>
+          <div className="flex-1">
+            <h2 className="font-display text-3xl uppercase tracking-widest text-[var(--text-primary)]" style={{ fontFamily: "var(--font-display)" }}>
+              Mastering Live Transfers
+            </h2>
+            <p className="mt-4 text-[var(--text-muted)]">
+              Live transfers are a critical touchpoint in Medicare sales. A smooth handoff builds trust, protects compliance, and increases conversion. Here&apos;s how to nail them.
+            </p>
+          </div>
+          <div className="shrink-0">
+            <div className="h-32 w-48 overflow-hidden rounded border border-[var(--border-gold)]/30">
+              <Image
+                src={PEXELS_IMAGES.transfers[0].src}
+                alt={PEXELS_IMAGES.transfers[0].alt}
+                width={192}
+                height={128}
+                className="h-full w-full object-cover"
+              />
+            </div>
+          </div>
         </motion.div>
 
         <div className="space-y-8">

@@ -18,11 +18,13 @@ if (!API_KEY) {
 }
 
 const SEARCHES = [
-  { query: "wooden desk healthcare", count: 3 },
-  { query: "healthcare professional", count: 2 },
-  { query: "senior citizen healthcare", count: 2 },
-  { query: "wooden texture warm", count: 2 },
-  { query: "insurance office", count: 2 },
+  { query: "doctor stethoscope professional office", count: 2 },
+  { query: "insurance agent senior citizen meeting", count: 2 },
+  { query: "healthcare professional senior desk", count: 2 },
+  { query: "agent discussing documents senior couple", count: 2 },
+  { query: "senior medical appointment professional", count: 2 },
+  { query: "professional agent paperwork elderly", count: 2 },
+  { query: "warm office desk professional", count: 2 },
 ];
 
 function fetch(url) {

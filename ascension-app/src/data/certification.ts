@@ -11,7 +11,7 @@ export type CertificationModule = {
   objectives: string[];
   duration: string;
   contentSlug: string;
-  /** ElevenLabs: scene/video placeholder — path to asset when ready */
+  /** Intro video path */
   videoPlaceholder?: string;
 };
 
@@ -29,7 +29,7 @@ export const CERTIFICATION_MODULES: CertificationModule[] = [
     ],
     duration: "~15 min",
     contentSlug: "basics",
-    videoPlaceholder: "/assets/elevenlabs/module-1-intro.mp4",
+    videoPlaceholder: "/assets/intro-videos/module-1-intro.mp4",
   },
   {
     id: "2",
@@ -44,7 +44,7 @@ export const CERTIFICATION_MODULES: CertificationModule[] = [
     ],
     duration: "~20 min",
     contentSlug: "plans",
-    videoPlaceholder: "/assets/elevenlabs/module-2-intro.mp4",
+    videoPlaceholder: "/assets/intro-videos/module-2-intro.mp4",
   },
   {
     id: "3",
@@ -59,7 +59,7 @@ export const CERTIFICATION_MODULES: CertificationModule[] = [
     ],
     duration: "~20 min",
     contentSlug: "compliance",
-    videoPlaceholder: "/assets/elevenlabs/module-3-intro.mp4",
+    videoPlaceholder: "/assets/intro-videos/module-3-intro.mp4",
   },
   {
     id: "4",
@@ -74,7 +74,7 @@ export const CERTIFICATION_MODULES: CertificationModule[] = [
     ],
     duration: "~20 min",
     contentSlug: "compliance",
-    videoPlaceholder: "/assets/elevenlabs/module-4-intro.mp4",
+    videoPlaceholder: "/assets/intro-videos/module-4-intro.mp4",
   },
   {
     id: "5",
@@ -89,7 +89,7 @@ export const CERTIFICATION_MODULES: CertificationModule[] = [
     ],
     duration: "~15 min",
     contentSlug: "fwa",
-    videoPlaceholder: "/assets/elevenlabs/module-5-intro.mp4",
+    videoPlaceholder: "/assets/intro-videos/module-5-intro.mp4",
   },
   {
     id: "6",
@@ -104,7 +104,7 @@ export const CERTIFICATION_MODULES: CertificationModule[] = [
     ],
     duration: "~15 min",
     contentSlug: "enrollment",
-    videoPlaceholder: "/assets/elevenlabs/module-5-intro.mp4",
+    videoPlaceholder: "/assets/intro-videos/module-5-intro.mp4",
   },
 ];
 

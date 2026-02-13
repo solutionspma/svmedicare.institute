@@ -1,6 +1,7 @@
 # 🚀 Deployment — SV Medicare Institute (Ascension Mode)
 
-**Live URL:** https://gouniv.netlify.app
+**Live URL:** https://svmedicare-institue.netlify.app (or svmedicare.institute)
+**Site ID:** `bd062cce-9787-4edc-8be9-32ea31304216` — this is the actual svmedicare.institute site.
 
 Uses **static export** (output: "export") — bulletproof deploy, no serverless. Plain HTML/CSS/JS.
 
@@ -11,10 +12,11 @@ Uses **static export** (output: "export") — bulletproof deploy, no serverless.
 ```bash
 cd ascension-app
 
-# Link to existing site (one-time)
+# Link to svmedicare.institute site (one-time)
 netlify link --id bd062cce-9787-4edc-8be9-32ea31304216
 
 # Build + deploy
+npm run build
 netlify deploy --prod --dir=out
 ```
 
@@ -23,7 +25,7 @@ netlify deploy --prod --dir=out
 ## Deploy from Git (Auto-deploy)
 
 1. Push this repo to GitHub
-2. In [Netlify Dashboard](https://app.netlify.com) → **gouniv** → **Site settings** → **Build & deploy**
+2. In [Netlify Dashboard](https://app.netlify.com) → **svmedicare-institue** (site ID above) → **Site settings** → **Build & deploy**
 3. Confirm:
    - **Base directory:** `ascension-app` (so Netlify builds from that folder)
    - **Build command:** `npm run build`

@@ -2,8 +2,9 @@
 
 import { motion } from "framer-motion";
 import Link from "next/link";
+import Image from "next/image";
 import { CERTIFICATION_MODULES } from "@/data/certification";
-import { VideoPlaceholder } from "@/components/VideoPlaceholder";
+import { PEXELS_IMAGES } from "@/data/pexels-images";
 
 export default function CertificationPage() {
   return (
@@ -23,15 +24,28 @@ export default function CertificationPage() {
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          className="mb-12"
+          className="mb-12 flex flex-col gap-6 sm:flex-row sm:items-start sm:gap-8"
         >
-          <h2 className="font-display text-3xl uppercase tracking-widest text-[var(--text-primary)]" style={{ fontFamily: "var(--font-display)" }}>
-            Medicare Certification Course
-          </h2>
-          <p className="mt-4 text-[var(--text-muted)]">
-            Based on <em>The Only Medicare Book You Need</em>, AHIP Modules 1–5, and CMS Compliance Training. 
-            Effective, not exhaustive — key competencies for insurance professionals.
-          </p>
+          <div className="flex-1">
+            <h2 className="font-display text-3xl uppercase tracking-widest text-[var(--text-primary)]" style={{ fontFamily: "var(--font-display)" }}>
+              Medicare Certification Course
+            </h2>
+            <p className="mt-4 text-[var(--text-muted)]">
+              Based on <em>The Only Medicare Book You Need</em>, AHIP Modules 1–5, and CMS Compliance Training. 
+              Effective, not exhaustive — key competencies for insurance professionals.
+            </p>
+          </div>
+          <div className="shrink-0">
+            <div className="h-32 w-48 overflow-hidden rounded border border-[var(--border-gold)]/30">
+              <Image
+                src={PEXELS_IMAGES.certification[0].src}
+                alt={PEXELS_IMAGES.certification[0].alt}
+                width={192}
+                height={128}
+                className="h-full w-full object-cover"
+              />
+            </div>
+          </div>
         </motion.div>
 
         <div className="space-y-8">
@@ -100,14 +114,6 @@ export default function CertificationPage() {
           </Link>
         </motion.div>
 
-        {/* ElevenLabs placeholder reminder */}
-        <div className="mt-12 rounded border border-[var(--border-gold)]/20 p-4">
-          <p className="text-xs text-[var(--text-muted)]">
-            <strong className="text-[var(--gold-accent)]">ElevenLabs:</strong> Add character intros and scene transitions by placing your exports in{" "}
-            <code className="rounded bg-black/30 px-1">/public/assets/elevenlabs/</code>
-            {" "}— e.g. module-1-intro.mp4, module-2-intro.mp4
-          </p>
-        </div>
       </main>
     </div>
   );

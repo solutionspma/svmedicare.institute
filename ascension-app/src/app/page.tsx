@@ -2,28 +2,10 @@
 
 import { motion } from "framer-motion";
 import Link from "next/link";
-import Image from "next/image";
-import { WOODEN_BACKGROUNDS } from "@/data/pexels-images";
 
 export default function LandingPage() {
   return (
     <div className="relative min-h-screen overflow-hidden bg-[var(--bg-matte)]">
-      {/* Animated wooden backdrop — subtle, cinematic */}
-      <div className="pointer-events-none absolute inset-0 z-0">
-        <Image
-          src={WOODEN_BACKGROUNDS[0]}
-          alt=""
-          fill
-          className="object-cover opacity-[0.12]"
-          sizes="100vw"
-          priority
-        />
-        <motion.div
-          className="absolute inset-0 bg-gradient-to-b from-[var(--bg-matte)]/95 via-[var(--bg-matte)]/90 to-[var(--bg-matte)]"
-          animate={{ opacity: 1 }}
-          transition={{ duration: 1 }}
-        />
-      </div>
       {/* Subtle moving light sweep */}
       <motion.div
         className="pointer-events-none absolute inset-0 z-0"

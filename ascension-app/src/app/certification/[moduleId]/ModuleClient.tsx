@@ -16,33 +16,28 @@ import { MiniExam } from "@/components/MiniExam";
 
 const STORAGE_KEY = "svmedicare-module-progress";
 
-function getStoredProgress(moduleId: string): { completed: string[]; miniExamPassed: boolean } {
-  if (typeof window === "undefined") return { completed: [], miniExamPassed: false };
+function getStoredProgress(moduleId: string): { miniExamPassed: boolean } {
+  if (typeof window === "undefined") return { miniExamPassed: false };
   try {
     const raw = localStorage.getItem(STORAGE_KEY);
-    if (!raw) return { completed: [], miniExamPassed: false };
-    const all = JSON.parse(raw) as Record<string, { completed: string[]; miniExamPassed: boolean }>;
-    return all[moduleId] ?? { completed: [], miniExamPassed: false };
+    if (!raw) return { miniExamPassed: false };
+    const all = JSON.parse(raw) as Record<string, { completed?: string[]; miniExamPassed: boolean }>;
+    return { miniExamPassed: all[moduleId]?.miniExamPassed ?? false };
   } catch {
-    return { completed: [], miniExamPassed: false };
+    return { miniExamPassed: false };
   }
 }
 
-function setStoredProgress(moduleId: string, data: { completed: string[]; miniExamPassed: boolean }) {
+function setStoredProgress(moduleId: string, data: { miniExamPassed: boolean }) {
   if (typeof window === "undefined") return;
   try {
     const raw = localStorage.getItem(STORAGE_KEY);
     const all = raw ? JSON.parse(raw) : {};
-    all[moduleId] = data;
+    all[moduleId] = { ...all[moduleId], ...data };
     localStorage.setItem(STORAGE_KEY, JSON.stringify(all));
   } catch {
     /* ignore */
   }
-}
-
-/** Lesson completion key: topicId_objectiveIndex */
-function lessonKey(topicId: string, objectiveIndex: number) {
-  return `${topicId}_obj${objectiveIndex}`;
 }
 
 export function CertificationModuleClient({ module }: { module: CertificationModule }) {
@@ -53,16 +48,11 @@ export function CertificationModuleClient({ module }: { module: CertificationMod
 
   const [activeId, setActiveId] = useState<string | null>(firstLeafId);
   const [selectedObjectiveIndex, setSelectedObjectiveIndex] = useState<number | null>(null);
-  const [completedIds, setCompletedIds] = useState<Set<string>>(() => {
-    const { completed } = getStoredProgress(module.id);
-    return new Set(completed);
-  });
   const [miniExamPassed, setMiniExamPassed] = useState(false);
   const [showMiniExam, setShowMiniExam] = useState(false);
 
   useEffect(() => {
-    const { completed, miniExamPassed: passed } = getStoredProgress(module.id);
-    setCompletedIds(new Set(completed));
+    const { miniExamPassed: passed } = getStoredProgress(module.id);
     setMiniExamPassed(passed);
   }, [module.id]);
 
@@ -74,35 +64,10 @@ export function CertificationModuleClient({ module }: { module: CertificationMod
     if (activeId) setSelectedObjectiveIndex(null);
   }, [activeId]);
 
-  const saveProgress = useCallback(
-    (completed: string[], miniPassed: boolean) => {
-      setStoredProgress(module.id, { completed, miniExamPassed: miniPassed });
-    },
-    [module.id]
-  );
-
-  const handleLessonComplete = useCallback(
-    (topicId: string, objIndex: number) => {
-      const key = lessonKey(topicId, objIndex);
-      setCompletedIds((prev) => {
-        const next = new Set(prev);
-        next.add(key);
-        next.add(topicId);
-        saveProgress([...next], miniExamPassed);
-        return next;
-      });
-    },
-    [miniExamPassed, saveProgress]
-  );
-
   const handleMiniExamPass = useCallback(() => {
     setMiniExamPassed(true);
-    setCompletedIds((prev) => {
-      const arr = [...prev];
-      saveProgress(arr, true);
-      return prev;
-    });
-  }, [saveProgress]);
+    setStoredProgress(module.id, { miniExamPassed: true });
+  }, [module.id]);
 
   const activeNode = activeId ? findNodeById(topics, activeId) : null;
   const displayNode = activeNode ? getFirstLeaf(activeNode) : null;
@@ -123,12 +88,8 @@ export function CertificationModuleClient({ module }: { module: CertificationMod
       ? getObjectiveContent(module.id, selectedObjectiveIndex)
       : null;
 
-  const isLessonCompleted =
-    topicId !== null && selectedObjectiveIndex !== null
-      ? completedIds.has(lessonKey(topicId, selectedObjectiveIndex))
-      : false;
-
-  const allLeavesCompleted = leaves.length > 0 && leaves.every((l) => completedIds.has(l.id));
+  /** Module completion = passing mini exam only. No click-through. */
+  const moduleComplete = miniExamPassed;
 
   return (
     <div className="flex min-h-screen flex-col bg-[var(--bg-matte)]">
@@ -152,12 +113,12 @@ export function CertificationModuleClient({ module }: { module: CertificationMod
           <ModuleFiletree
             nodes={topics}
             activeId={activeId}
-            completedIds={completedIds}
+            completedIds={new Set()}
+            showAllComplete={miniExamPassed}
             onSelect={setActiveId}
           />
           <div className="mt-6 space-y-2">
-            <Badge label="Content Complete" icon="✓" earned={allLeavesCompleted} />
-            <Badge label="Mini Exam Passed" icon="🏆" earned={miniExamPassed} />
+            <Badge label="Module Complete" icon="✓" earned={moduleComplete} />
           </div>
         </aside>
 
@@ -180,8 +141,7 @@ export function CertificationModuleClient({ module }: { module: CertificationMod
 
               <VideoPlaceholder
                 src={content?.introVideo ?? module.videoPlaceholder}
-                placeholderLabel="Module intro — add your ElevenLabs character/scene here"
-                caption="Create with ElevenLabs: character welcome, key concept explainer, or scene transition"
+                placeholderLabel="Module intro — add your video here"
               />
 
               {showMiniExam && content?.miniExamIds && content.miniExamIds.length > 0 ? (
@@ -248,10 +208,6 @@ export function CertificationModuleClient({ module }: { module: CertificationMod
                         topicNode={displayNode}
                         objectiveText={module.objectives[selectedObjectiveIndex]}
                         objectivePages={objectiveContent?.pages}
-                        onComplete={() =>
-                          handleLessonComplete(topicId, selectedObjectiveIndex)
-                        }
-                        isCompleted={isLessonCompleted}
                         moduleId={module.id}
                         objectiveIndex={selectedObjectiveIndex}
                       />
@@ -266,13 +222,13 @@ export function CertificationModuleClient({ module }: { module: CertificationMod
                 </div>
               )}
 
-              {!showMiniExam && allLeavesCompleted && content?.miniExamIds && content.miniExamIds.length > 0 && (
+              {!showMiniExam && !miniExamPassed && content?.miniExamIds && content.miniExamIds.length > 0 && (
                 <div className="rounded-lg border border-[var(--gold-accent)]/40 bg-[var(--gold-accent)]/5 p-6">
                   <h3 className="font-body font-semibold text-[var(--text-primary)]">
                     End of Chapter — Mini Exam
                   </h3>
                   <p className="mt-2 text-sm text-[var(--text-muted)]">
-                    You've completed all topics. Take the mini exam to earn your chapter badge.
+                    Complete the lessons above, then take the mini exam to earn your module completion badge.
                   </p>
                   <button
                     onClick={() => setShowMiniExam(true)}

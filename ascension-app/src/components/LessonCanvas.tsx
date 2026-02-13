@@ -3,7 +3,6 @@
 import { motion } from "framer-motion";
 import type { LessonContent } from "@/data/topic-lessons";
 import type { ContentNode } from "@/data/module-content";
-import { getObjectiveContent } from "@/data/objectives-content";
 
 type Props = {
   /** Full scenario-based lesson (preferred) */
@@ -14,10 +13,10 @@ type Props = {
   objectiveText: string;
   /** Objective pages from objectives-content (fallback when no lesson) */
   objectivePages?: { title: string; body: string; bullets?: string[]; keyPoint?: string; callout?: string }[];
-  onComplete: () => void;
-  isCompleted: boolean;
   moduleId: string;
   objectiveIndex: number;
+  /** Future: allow click-through for users who previously completed (backend master control) */
+  allowClickThrough?: boolean;
 };
 
 export function LessonCanvas({
@@ -25,8 +24,6 @@ export function LessonCanvas({
   topicNode,
   objectiveText,
   objectivePages,
-  onComplete,
-  isCompleted,
   moduleId,
   objectiveIndex,
 }: Props) {
@@ -42,16 +39,6 @@ export function LessonCanvas({
           <h2 className="font-display text-2xl uppercase tracking-widest text-[var(--text-primary)]" style={{ fontFamily: "var(--font-display)" }}>
             Lesson: {objectiveText}
           </h2>
-          {!isCompleted && (
-            <motion.button
-              onClick={onComplete}
-              className="shrink-0 rounded border border-[var(--gold-accent)] px-3 py-1.5 text-xs uppercase tracking-wider text-[var(--gold-accent)] hover:bg-[var(--gold-accent)]/10"
-              whileHover={{ scale: 1.02 }}
-              whileTap={{ scale: 0.98 }}
-            >
-              Mark complete
-            </motion.button>
-          )}
         </div>
 
         {/* Scenario */}
@@ -129,16 +116,6 @@ export function LessonCanvas({
         <h2 className="font-display text-2xl uppercase tracking-widest text-[var(--text-primary)]" style={{ fontFamily: "var(--font-display)" }}>
           Lesson: {objectiveText}
         </h2>
-        {!isCompleted && (
-          <motion.button
-            onClick={onComplete}
-            className="shrink-0 rounded border border-[var(--gold-accent)] px-3 py-1.5 text-xs uppercase tracking-wider text-[var(--gold-accent)] hover:bg-[var(--gold-accent)]/10"
-            whileHover={{ scale: 1.02 }}
-            whileTap={{ scale: 0.98 }}
-          >
-            Mark complete
-          </motion.button>
-        )}
       </div>
 
       {topicNode?.body && (

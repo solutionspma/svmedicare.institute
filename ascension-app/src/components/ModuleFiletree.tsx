@@ -9,12 +9,13 @@ type ItemProps = {
   depth: number;
   activeId: string | null;
   completedIds: Set<string>;
+  showAllComplete: boolean;
   onSelect: (id: string) => void;
 };
 
-function FiletreeItem({ node, depth, activeId, completedIds, onSelect }: ItemProps) {
+function FiletreeItem({ node, depth, activeId, completedIds, showAllComplete, onSelect }: ItemProps) {
   const isActive = activeId === node.id;
-  const isCompleted = completedIds.has(node.id) || isNodeComplete(node, completedIds);
+  const isCompleted = showAllComplete || completedIds.has(node.id) || isNodeComplete(node, completedIds);
   const hasChildren = node.children && node.children.length > 0;
 
   return (
@@ -53,6 +54,7 @@ function FiletreeItem({ node, depth, activeId, completedIds, onSelect }: ItemPro
             depth={depth + 1}
             activeId={activeId}
             completedIds={completedIds}
+            showAllComplete={showAllComplete}
             onSelect={onSelect}
           />
         ))}
@@ -64,10 +66,12 @@ type Props = {
   nodes: ContentNode[];
   activeId: string | null;
   completedIds: Set<string>;
+  /** When true, show all topics as complete — e.g. after passing mini exam */
+  showAllComplete?: boolean;
   onSelect: (id: string) => void;
 };
 
-export function ModuleFiletree({ nodes, activeId, completedIds, onSelect }: Props) {
+export function ModuleFiletree({ nodes, activeId, completedIds, showAllComplete = false, onSelect }: Props) {
   return (
     <div className="flex flex-col gap-1">
       {nodes.map((node) => (
@@ -77,6 +81,7 @@ export function ModuleFiletree({ nodes, activeId, completedIds, onSelect }: Prop
           depth={0}
           activeId={activeId}
           completedIds={completedIds}
+          showAllComplete={showAllComplete}
           onSelect={onSelect}
         />
       ))}
