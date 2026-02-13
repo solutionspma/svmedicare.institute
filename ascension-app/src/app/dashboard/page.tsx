@@ -21,9 +21,9 @@ const STARTER_MISSIONS = [
 ];
 
 const QUICK_ACTIONS = [
-  { href: "/certification", label: "Certification Course", icon: "📜", desc: "5 modules + exam", img: PEXELS_IMAGES.certification[1] },
+  { href: "/certification", label: "Certification Course", icon: "📜", desc: "5 modules + exam", img: PEXELS_IMAGES.certification[0] },
   { href: "/trivia", label: "Medicare Trivia", icon: "🎯", desc: "Test your knowledge", img: PEXELS_IMAGES.trivia },
-  { href: "/transfers", label: "Live Transfers", icon: "📞", desc: "Master the handoff", img: PEXELS_IMAGES.transfers[1] },
+  { href: "/transfers", label: "Live Transfers", icon: "📞", desc: "Master the handoff", img: PEXELS_IMAGES.transfers[0] },
 ];
 
 export default function DashboardPage() {

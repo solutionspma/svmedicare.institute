@@ -1,86 +1,296 @@
 [
   {
+    "id": 8867208,
     "filename": "pexels_0.jpeg",
+    "alt": "A cheerful call center agent talking on the phone with a headset.",
+    "photographer": "Yan Krukau",
+    "url": "https://www.pexels.com/photo/woman-with-afro-hair-holding-cellphone-8867208/"
+  },
+  {
+    "id": 7681113,
+    "filename": "pexels_1.jpeg",
+    "alt": "Asian man in a gray suit adjusting his headset for a call. Ideal for customer service or business themes.",
+    "photographer": "Mikhail Nilov",
+    "url": "https://www.pexels.com/photo/man-in-gray-suit-jacket-holding-his-headphones-7681113/"
+  },
+  {
+    "id": 8682773,
+    "filename": "pexels_2.jpeg",
+    "alt": "Side view of a tired call center agent taking a break while holding a phone in an office.",
+    "photographer": "Ron Lach",
+    "url": "https://www.pexels.com/photo/woman-talking-on-the-telephone-8682773/"
+  },
+  {
+    "id": 5453830,
+    "filename": "pexels_3.jpeg",
+    "alt": "Close-up of a focused male call center agent wearing a black headset at work.",
+    "photographer": "Tima Miroshnichenko",
+    "url": "https://www.pexels.com/photo/a-man-wearing-black-headphones-while-working-5453830/"
+  },
+  {
+    "id": 8682778,
+    "filename": "pexels_4.jpeg",
+    "alt": "Asian call center agent relaxing on chair while talking on phone in an office setting. Business environment.",
+    "photographer": "Ron Lach",
+    "url": "https://www.pexels.com/photo/a-man-with-eyeglasses-talking-on-the-telephone-8682778/"
+  },
+  {
+    "id": 13062477,
+    "filename": "pexels_5.jpeg",
+    "alt": "Call center agents wearing headsets working in a focused office environment.",
+    "photographer": "112 Uttar Pradesh",
+    "url": "https://www.pexels.com/photo/a-woman-wearing-black-headset-13062477/"
+  },
+  {
+    "id": 7681984,
+    "filename": "pexels_6.jpeg",
+    "alt": "Professional Asian man working in call center holding pen and smartphone.",
+    "photographer": "Mikhail Nilov",
+    "url": "https://www.pexels.com/photo/man-in-long-sleeves-holding-a-sticky-note-and-pen-7681984/"
+  },
+  {
+    "id": 7709148,
+    "filename": "pexels_7.jpeg",
+    "alt": "Customer support agent with headset working on laptop in office.",
+    "photographer": "MART  PRODUCTION",
+    "url": "https://www.pexels.com/photo/photo-of-a-woman-in-a-black-blazer-working-7709148/"
+  },
+  {
+    "id": 7709198,
+    "filename": "pexels_8.jpeg",
+    "alt": "Smiling female call center agent wearing a headset, providing customer support.",
+    "photographer": "MART  PRODUCTION",
+    "url": "https://www.pexels.com/photo/a-woman-wearing-a-headset-7709198/"
+  },
+  {
+    "id": 5453821,
+    "filename": "pexels_9.jpeg",
+    "alt": "Call center agents working diligently with computers and headphones, providing customer support.",
+    "photographer": "Tima Miroshnichenko",
+    "url": "https://www.pexels.com/photo/call-center-agents-working-in-the-office-5453821/"
+  },
+  {
+    "id": 5453809,
+    "filename": "pexels_10.jpeg",
+    "alt": "Dedicated call center agents working diligently at their desks in an office.",
+    "photographer": "Tima Miroshnichenko",
+    "url": "https://www.pexels.com/photo/man-in-white-long-sleeve-shirt-wearing-black-headset-5453809/"
+  },
+  {
+    "id": 8867376,
+    "filename": "pexels_11.jpeg",
+    "alt": "Two cheerful call center agents at work, engaging with customers and providing support.",
+    "photographer": "Yan Krukau",
+    "url": "https://www.pexels.com/photo/smiling-women-in-black-blazers-wearing-headsets-looking-at-a-computer-monitor-8867376/"
+  },
+  {
+    "id": 4267526,
+    "filename": "pexels_12.jpeg",
+    "alt": "Side view of a call center agent wearing a headset, working diligently in a busy office environment.",
+    "photographer": "112 Uttar Pradesh",
+    "url": "https://www.pexels.com/photo/a-dispatch-officer-at-up-112-4267526/"
+  },
+  {
+    "id": 7709228,
+    "filename": "pexels_13.jpeg",
+    "alt": "Portrait of a young call center agent confidently working with a headset.",
+    "photographer": "MART  PRODUCTION",
+    "url": "https://www.pexels.com/photo/woman-working-as-a-call-center-agent-7709228/"
+  },
+  {
+    "id": 7736038,
+    "filename": "pexels_14.jpeg",
+    "alt": "Confident woman in beige blazer holding a home insurance policy.",
+    "photographer": "Mikhail Nilov",
+    "url": "https://www.pexels.com/photo/woman-in-beige-blazer-holding-a-document-while-looking-at-the-camera-7736038/"
+  },
+  {
+    "id": 7736040,
+    "filename": "pexels_15.jpeg",
+    "alt": "Young woman presenting a home insurance policy document while pointing with a pen.",
+    "photographer": "Mikhail Nilov",
+    "url": "https://www.pexels.com/photo/a-woman-showing-the-piece-of-document-she-is-holding-while-looking-at-the-camera-7736040/"
+  },
+  {
+    "id": 7736070,
+    "filename": "pexels_16.jpeg",
+    "alt": "Professional woman showcasing a home insurance policy document with confidence and clarity.",
+    "photographer": "Mikhail Nilov",
+    "url": "https://www.pexels.com/photo/woman-in-corporate-attire-holding-a-home-insurance-policy-7736070/"
+  },
+  {
+    "id": 7731328,
+    "filename": "pexels_17.jpeg",
+    "alt": "An agent and clients discussing paperwork for home insurance at a meeting table.",
+    "photographer": "Mikhail Nilov",
+    "url": "https://www.pexels.com/photo/person-presenting-paperwork-7731328/"
+  },
+  {
+    "id": 7736034,
+    "filename": "pexels_18.jpeg",
+    "alt": "Confident woman in beige blazer discussing home insurance policy over phone.",
+    "photographer": "Mikhail Nilov",
+    "url": "https://www.pexels.com/photo/a-woman-in-beige-blazer-holding-a-document-while-having-a-phone-call-7736034/"
+  },
+  {
+    "id": 7735625,
+    "filename": "pexels_19.jpeg",
+    "alt": "Three adults discuss a home insurance policy at a meeting table indoors.",
+    "photographer": "Mikhail Nilov",
+    "url": "https://www.pexels.com/photo/a-woman-explaining-a-document-to-a-couple-7735625/"
+  },
+  {
+    "id": 5921668,
+    "filename": "pexels_20.jpeg",
+    "alt": "Elegant senior woman in gray coat using a cellphone in a modern office.",
+    "photographer": "RDNE Stock project",
+    "url": "https://www.pexels.com/photo/an-elderly-woman-in-gray-coat-sitting-while-talking-on-the-phone-5921668/"
+  },
+  {
+    "id": 7551605,
+    "filename": "pexels_21.jpeg",
+    "alt": "Senior man wearing glasses making a phone call while sitting on a sofa at home.",
+    "photographer": "Kampus Production",
+    "url": "https://www.pexels.com/photo/elderly-man-on-phone-call-7551605/"
+  },
+  {
+    "id": 6838557,
+    "filename": "pexels_22.jpeg",
+    "alt": "Smiling senior woman talking on cellphone outdoors in a park setting, enjoying a cheerful phone call.",
+    "photographer": "Kampus Production",
+    "url": "https://www.pexels.com/photo/an-elderly-woman-leaning-on-throw-pillow-while-having-a-phone-call-6838557/"
+  },
+  {
+    "id": 27087240,
+    "filename": "pexels_23.jpeg",
+    "alt": "Elderly man multitasking with a laptop and phone while sitting indoors.",
+    "photographer": "Helena Lopes",
+    "url": "https://www.pexels.com/photo/elderly-man-working-on-laptop-27087240/"
+  },
+  {
+    "id": 6838553,
+    "filename": "pexels_24.jpeg",
+    "alt": "Elderly woman sitting on a bench, enjoying a phone call, surrounded by trees in Portugal.",
+    "photographer": "Kampus Production",
+    "url": "https://www.pexels.com/photo/an-elderly-woman-sitting-on-a-couch-near-trees-while-having-a-phone-call-6838553/"
+  },
+  {
+    "id": 5591274,
+    "filename": "pexels_25.jpeg",
+    "alt": "Happy senior couple sitting on a sofa having a joyful video call on a laptop in a cozy living room.",
+    "photographer": "Tima Miroshnichenko",
+    "url": "https://www.pexels.com/photo/elderly-couple-sitting-on-a-couch-while-in-a-video-call-using-a-laptop-5591274/"
+  },
+  {
+    "id": 5407206,
+    "filename": "pexels_26.jpeg",
+    "alt": "A female doctor writes notes at her desk in a clinical setting, focusing on healthcare tasks.",
+    "photographer": "Tima Miroshnichenko",
+    "url": "https://www.pexels.com/photo/photo-of-woman-writing-on-a-desk-5407206/"
+  },
+  {
+    "id": 7579823,
+    "filename": "pexels_27.jpeg",
+    "alt": "A female doctor consulting a patient in a modern medical office setting.",
+    "photographer": "cottonbro studio",
+    "url": "https://www.pexels.com/photo/woman-in-white-suit-with-stethoscope-talking-to-a-person-7579823/"
+  },
+  {
+    "id": 35260727,
+    "filename": "pexels_28.jpeg",
+    "alt": "Female doctor at desk in modern office setting, smiling confidently.",
+    "photographer": "8pCarlos Morocho",
+    "url": "https://www.pexels.com/photo/female-doctor-in-modern-office-interior-35260727/"
+  },
+  {
+    "id": 8376273,
+    "filename": "pexels_29.jpeg",
+    "alt": "Elderly doctor with glasses and beard in office setting, holding a pen, emphasizing telemedicine professionalism.",
+    "photographer": "Tima Miroshnichenko",
+    "url": "https://www.pexels.com/photo/a-man-in-white-lab-gown-8376273/"
+  },
+  {
+    "id": 5407235,
+    "filename": "pexels_30.jpeg",
+    "alt": "A female doctor using a laptop in a modern healthcare office setting.",
+    "photographer": "Tima Miroshnichenko",
+    "url": "https://www.pexels.com/photo/doctor-working-on-laptop-5407235/"
+  },
+  {
+    "id": 35260728,
+    "filename": "pexels_31.jpeg",
+    "alt": "Confident female doctor seated at her desk in a modern office setting.",
+    "photographer": "8pCarlos Morocho",
+    "url": "https://www.pexels.com/photo/female-doctor-in-office-setting-with-professional-attire-35260728/"
+  },
+  {
+    "id": 7598696,
+    "filename": "pexels_32.jpeg",
+    "alt": "Young female doctor standing confidently with medical equipment in the background.",
+    "photographer": "Daniel Dan",
+    "url": "https://www.pexels.com/photo/woman-wearing-white-medical-uniform-and-stethoscope-7598696/"
+  },
+  {
+    "id": 19438566,
+    "filename": "pexels_33.jpeg",
+    "alt": "Professional portrait of a South Asian male doctor in a white coat with stethoscope.",
+    "photographer": "Oys Photography",
+    "url": "https://www.pexels.com/photo/doctor-19438566/"
+  },
+  {
+    "id": 48604,
+    "filename": "pexels_34.jpeg",
     "alt": "Medical stethoscope and laptop on a white desk, symbolizing digital health solutions.",
     "photographer": "Negative Space",
     "url": "https://www.pexels.com/photo/computer-desk-laptop-stethoscope-48604/"
   },
   {
-    "filename": "pexels_1.jpeg",
-    "alt": "Side profile of a female doctor in a white coat working on a laptop at a desk.",
+    "id": 5998477,
+    "filename": "pexels_35.jpeg",
+    "alt": "Portrait of a female doctor holding a stethoscope, symbolizing healthcare and professionalism.",
     "photographer": "Pavel Danilyuk",
-    "url": "https://www.pexels.com/photo/woman-in-white-scrub-using-laptop-5998487/"
+    "url": "https://www.pexels.com/photo/physician-in-white-coat-wearing-a-stethoscope-5998477/"
   },
   {
-    "filename": "pexels_2.jpeg",
-    "alt": "Senior man engages in a video conference with a colleague on a laptop, discussing documents.",
-    "photographer": "Kampus Production",
-    "url": "https://www.pexels.com/photo/an-elderly-man-on-video-call-with-an-agent-doing-a-hand-sign-8441855/"
-  },
-  {
-    "filename": "pexels_3.jpeg",
-    "alt": "Consulting agent discussing documents with senior couple indoors during a business meeting.",
-    "photographer": "Kampus Production",
-    "url": "https://www.pexels.com/photo/man-discussing-documents-with-his-clients-8439661/"
-  },
-  {
-    "filename": "pexels_4.jpeg",
-    "alt": "Senior male doctor reviewing patient records on his laptop in a cozy office setting.",
+    "id": 8376236,
+    "filename": "pexels_36.jpeg",
+    "alt": "Senior doctor in white coat having an online consultation. Medical professional using technology for healthcare.",
     "photographer": "Tima Miroshnichenko",
-    "url": "https://www.pexels.com/photo/an-elderly-doctor-wearing-eyeglasses-while-working-on-his-laptop-8376335/"
+    "url": "https://www.pexels.com/photo/an-elderly-doctor-giving-online-consultation-8376236/"
   },
   {
-    "filename": "pexels_5.jpeg",
-    "alt": "Elderly doctor wearing eyeglasses and stethoscope writes at office desk.",
+    "id": 8376243,
+    "filename": "pexels_37.jpeg",
+    "alt": "Senior female healthcare worker in a video call with a patient, wearing a stethoscope and lab coat.",
     "photographer": "Tima Miroshnichenko",
-    "url": "https://www.pexels.com/photo/man-in-white-scrub-suit-wearing-black-framed-eyeglasses-8376319/"
+    "url": "https://www.pexels.com/photo/a-doctor-in-a-video-conference-using-a-laptop-8376243/"
   },
   {
-    "filename": "pexels_6.jpeg",
-    "alt": "Consulting agent discussing documents with senior couple indoors during a business meeting.",
-    "photographer": "Kampus Production",
-    "url": "https://www.pexels.com/photo/man-discussing-documents-with-his-clients-8439661/"
+    "id": 8376222,
+    "filename": "pexels_38.jpeg",
+    "alt": "An elderly doctor in a white coat conducting an online medical consultation, focusing attentively.",
+    "photographer": "Tima Miroshnichenko",
+    "url": "https://www.pexels.com/photo/doctor-wearing-his-eyeglasses-8376222/"
   },
   {
-    "filename": "pexels_7.jpeg",
-    "alt": "Senior couple consulting with a business agent at home on a laptop.",
-    "photographer": "Kampus Production",
-    "url": "https://www.pexels.com/photo/a-man-standing-between-elderly-people-sitting-at-a-desk-8441869/"
+    "id": 8376291,
+    "filename": "pexels_39.jpeg",
+    "alt": "Senior doctor in a lab coat conducting a virtual consultation using a laptop in an office setting.",
+    "photographer": "Tima Miroshnichenko",
+    "url": "https://www.pexels.com/photo/an-elderly-man-in-white-lab-coat-talking-while-facing-the-laptop-8376291/"
   },
   {
-    "filename": "pexels_8.jpeg",
+    "id": 8376303,
+    "filename": "pexels_40.jpeg",
+    "alt": "Elderly doctor using telemedicine for virtual consultation in office.",
+    "photographer": "Tima Miroshnichenko",
+    "url": "https://www.pexels.com/photo/a-man-in-white-coat-8376303/"
+  },
+  {
+    "id": 8376297,
+    "filename": "pexels_41.jpeg",
     "alt": "Elderly female doctor using a stethoscope during a virtual consultation in a medical office.",
     "photographer": "Tima Miroshnichenko",
     "url": "https://www.pexels.com/photo/close-up-shot-of-a-doctor-holding-stethoscope-8376297/"
-  },
-  {
-    "filename": "pexels_9.jpeg",
-    "alt": "Elderly male doctor in office, wearing glasses, ready for telemedicine session.",
-    "photographer": "Tima Miroshnichenko",
-    "url": "https://www.pexels.com/photo/a-man-sitting-at-the-table-8376265/"
-  },
-  {
-    "filename": "pexels_10.jpeg",
-    "alt": "A senior woman and businessman having a discussion in a modern office.",
-    "photographer": "Kampus Production",
-    "url": "https://www.pexels.com/photo/salesman-discussing-real-estate-to-a-senior-woman-8815874/"
-  },
-  {
-    "filename": "pexels_11.jpeg",
-    "alt": "Senior couple signing real estate documents with an agent in a modern office setting.",
-    "photographer": "Kampus Production",
-    "url": "https://www.pexels.com/photo/salesman-discussing-real-estate-to-a-senior-couple-8815885/"
-  },
-  {
-    "filename": "pexels_12.jpeg",
-    "alt": "Minimalist workspace featuring a wireless charging station on an adjustable desk.",
-    "photographer": "Mateusz Haberny",
-    "url": "https://www.pexels.com/photo/a-person-using-a-mouse-on-a-desk-19238353/"
-  },
-  {
-    "filename": "pexels_13.jpeg",
-    "alt": "A clean and modern desk setup featuring a computer, clock, and accessories in a home office.",
-    "photographer": "Mateusz Haberny",
-    "url": "https://www.pexels.com/photo/a-man-is-sitting-at-a-desk-with-a-computer-monitor-19238352/"
   }
 ]
