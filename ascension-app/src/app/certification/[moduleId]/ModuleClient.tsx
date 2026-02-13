@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useEffect, useCallback } from "react";
-import { motion } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
 import Link from "next/link";
 import type { CertificationModule } from "@/data/certification";
 import { MODULE_CONTENT } from "@/data/module-content";
@@ -50,6 +50,7 @@ export function CertificationModuleClient({ module }: { module: CertificationMod
   const [selectedObjectiveIndex, setSelectedObjectiveIndex] = useState<number | null>(null);
   const [miniExamPassed, setMiniExamPassed] = useState(false);
   const [showMiniExam, setShowMiniExam] = useState(false);
+  const [mobileTopicsOpen, setMobileTopicsOpen] = useState(false);
 
   useEffect(() => {
     const { miniExamPassed: passed } = getStoredProgress(module.id);
@@ -90,23 +91,38 @@ export function CertificationModuleClient({ module }: { module: CertificationMod
 
   /** Module completion = passing mini exam only. No click-through. */
   const moduleComplete = miniExamPassed;
+  const activeLabel = displayNode?.label ?? activeNode?.label ?? "Select topic";
+  const handleTopicSelect = useCallback((id: string) => {
+    setActiveId(id);
+    setMobileTopicsOpen(false);
+  }, []);
 
   return (
     <div className="flex min-h-screen flex-col bg-[var(--bg-matte)]">
-      <header className="shrink-0 border-b border-[var(--border-gold)]/20 bg-[var(--bg-matte-elevated)] px-6 py-4">
-        <div className="mx-auto flex max-w-7xl items-center justify-between">
+      <header className="shrink-0 border-b border-[var(--border-gold)]/20 bg-[var(--bg-matte-elevated)] px-4 py-3 md:px-6 md:py-4">
+        <div className="mx-auto flex max-w-7xl items-center justify-between gap-3">
           <Link
             href="/certification"
-            className="text-sm uppercase tracking-wider text-[var(--text-muted)] hover:text-[var(--gold-accent)]"
+            className="shrink-0 text-sm uppercase tracking-wider text-[var(--text-muted)] hover:text-[var(--gold-accent)]"
           >
             ← Certification
           </Link>
-          <span className="text-xs uppercase text-[var(--gold-accent)]">Module {module.id}</span>
+          {/* Mobile: Topics dropdown trigger */}
+          <button
+            type="button"
+            onClick={() => setMobileTopicsOpen(true)}
+            className="md:hidden flex flex-1 min-w-0 items-center justify-between gap-2 rounded border border-[var(--border-gold)]/40 bg-black/30 px-4 py-2.5 text-left"
+          >
+            <span className="truncate text-sm text-[var(--text-primary)]">{activeLabel}</span>
+            <span className="shrink-0 text-[var(--gold-accent)]">▾</span>
+          </button>
+          <span className="hidden shrink-0 text-xs uppercase text-[var(--gold-accent)] md:block">Module {module.id}</span>
         </div>
       </header>
 
-      <div className="mx-auto flex w-full max-w-7xl flex-1 min-h-0">
-        <aside className="w-[20%] min-w-[220px] shrink-0 border-r border-[var(--border-gold)]/20 bg-[var(--bg-matte-elevated)] p-4">
+      <div className="relative mx-auto flex w-full max-w-7xl flex-1 min-h-0">
+        {/* Desktop sidebar — hidden on mobile */}
+        <aside className="hidden md:block w-[220px] lg:w-[20%] min-w-[220px] shrink-0 border-r border-[var(--border-gold)]/20 bg-[var(--bg-matte-elevated)] p-4">
           <h2 className="mb-3 text-xs font-semibold uppercase tracking-widest text-[var(--text-muted)]">
             Topics
           </h2>
@@ -122,7 +138,54 @@ export function CertificationModuleClient({ module }: { module: CertificationMod
           </div>
         </aside>
 
-        <main className="flex-1 overflow-y-auto p-8">
+        {/* Mobile topics drawer — slide-over from left */}
+        <AnimatePresence>
+          {mobileTopicsOpen && (
+            <>
+              <motion.div
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                exit={{ opacity: 0 }}
+                onClick={() => setMobileTopicsOpen(false)}
+                className="md:hidden fixed inset-0 z-40 bg-black/60 backdrop-blur-sm"
+              />
+              <motion.aside
+                initial={{ x: "-100%" }}
+                animate={{ x: 0 }}
+                exit={{ x: "-100%" }}
+                transition={{ type: "spring", damping: 25, stiffness: 300 }}
+                className="md:hidden fixed left-0 top-0 z-50 h-full w-[min(300px,85vw)] overflow-y-auto border-r border-[var(--border-gold)]/20 bg-[var(--bg-matte-elevated)] p-4 shadow-xl"
+              >
+                <div className="mb-4 flex items-center justify-between">
+                  <h2 className="text-sm font-semibold uppercase tracking-widest text-[var(--text-muted)]">
+                    Topics
+                  </h2>
+                  <button
+                    type="button"
+                    onClick={() => setMobileTopicsOpen(false)}
+                    className="rounded p-2 text-[var(--text-muted)] hover:bg-[var(--gold-accent)]/10 hover:text-[var(--gold-accent)]"
+                    aria-label="Close topics"
+                  >
+                    ✕
+                  </button>
+                </div>
+                <ModuleFiletree
+                  nodes={topics}
+                  activeId={activeId}
+                  completedIds={new Set()}
+                  showAllComplete={miniExamPassed}
+                  onSelect={handleTopicSelect}
+                />
+                <div className="mt-6">
+                  <Badge label="Module Complete" icon="✓" earned={moduleComplete} />
+                </div>
+              </motion.aside>
+            </>
+          )}
+        </AnimatePresence>
+
+        {/* Main content — full width on mobile */}
+        <main className="flex-1 min-w-0 overflow-y-auto p-4 md:p-8">
           <div className="mx-auto max-w-3xl">
             <motion.div
               initial={{ opacity: 0, y: 20 }}
