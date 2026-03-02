@@ -1,5 +1,59 @@
 # SV Medicare Institute — Checkpoint
 
+**Latest Update:** March 2, 2026 @ 11:10 AM PST  
+**Status:** Audio narration & live presenter features added. GitHub & Netlify configured.
+
+---
+
+## 🆕 March 2, 2026 Updates
+
+### New Features Added
+1. **Audio Narration System** 🎧
+   - `AudioPlayer` component with play/pause, progress bar, time display
+   - Supabase Storage integration for audio files
+   - ElevenLabs workflow for generating module intro narrations
+   - Files: `AudioPlayer.tsx`, `audio_storage.sql` migration
+   - Docs: `AUDIO-SETUP.md`, `SUPABASE-SETUP.md`
+
+2. **Live Presenter/Facilitator Window** 🎥
+   - Multi-platform support: Zoom, Microsoft Teams, Cisco WebEx, openmeeting.space
+   - Floating, minimizable video window overlay
+   - Per-module configuration with scheduling support
+   - Auto-embed URL conversion for each platform
+   - Files: `PresenterWindow.tsx`, `live-sessions.ts`
+   - Docs: `LIVE-PRESENTER-SETUP.md`, `QUICK-TEST-PRESENTER.md`
+
+3. **Infrastructure**
+   - GitHub repository connected: `git@github.com:solutionspma/svmedicare.institute.git`
+   - Netlify project linked: `bd062cce-9787-4edc-8be9-32ea31304216`
+   - Supabase configured: `https://supjsnjsbtxsehmsjicv.supabase.co`
+   - Environment variables set in `.env.local`
+
+### Files Modified
+- `ModuleClient.tsx` - Added AudioPlayer and PresenterWindow integration
+- `certification.ts` - Added audioUrl field with Supabase URLs
+- `netlify.toml` - Added site ID configuration
+- `README.md` - Updated with new features
+- `.env.example` - Added Supabase credentials
+
+### New Components
+- `src/components/AudioPlayer.tsx` - Audio playback with progress controls
+- `src/components/PresenterWindow.tsx` - Live video conferencing embed
+
+### New Configuration Files
+- `src/data/live-sessions.ts` - Live presenter session configuration
+- `supabase/migrations/20250302000000_audio_storage.sql` - Audio bucket setup
+
+### Documentation Added
+- `AUDIO-SETUP.md` - Complete audio upload guide
+- `LIVE-PRESENTER-SETUP.md` - Live session configuration guide
+- `SUPABASE-SETUP.md` - Quick start for Supabase
+- `QUICK-TEST-PRESENTER.md` - Testing instructions
+
+---
+
+## Previous Checkpoint
+
 **Date:** Feb 12, 2026  
 **Status:** Working well. Save point before break.
 

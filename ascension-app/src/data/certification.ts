@@ -13,6 +13,8 @@ export type CertificationModule = {
   contentSlug: string;
   /** Intro video path */
   videoPlaceholder?: string;
+  /** Audio narration URL (from Supabase Storage or CDN) */
+  audioUrl?: string;
 };
 
 export const CERTIFICATION_MODULES: CertificationModule[] = [
@@ -30,6 +32,7 @@ export const CERTIFICATION_MODULES: CertificationModule[] = [
     duration: "~15 min",
     contentSlug: "basics",
     videoPlaceholder: "/assets/intro-videos/module-1-intro.mp4",
+    // audioUrl: "https://supjsnjsbtxsehmsjicv.supabase.co/storage/v1/object/public/audio/module-intros/module-1-intro.mp3",
   },
   {
     id: "2",
@@ -45,6 +48,7 @@ export const CERTIFICATION_MODULES: CertificationModule[] = [
     duration: "~20 min",
     contentSlug: "plans",
     videoPlaceholder: "/assets/intro-videos/module-2-intro.mp4",
+    // audioUrl: "https://supjsnjsbtxsehmsjicv.supabase.co/storage/v1/object/public/audio/module-intros/module-2-intro.mp3",
   },
   {
     id: "3",
@@ -60,6 +64,7 @@ export const CERTIFICATION_MODULES: CertificationModule[] = [
     duration: "~20 min",
     contentSlug: "compliance",
     videoPlaceholder: "/assets/intro-videos/module-3-intro.mp4",
+    // audioUrl: "https://supjsnjsbtxsehmsjicv.supabase.co/storage/v1/object/public/audio/module-intros/module-3-intro.mp3",
   },
   {
     id: "4",
@@ -75,6 +80,7 @@ export const CERTIFICATION_MODULES: CertificationModule[] = [
     duration: "~20 min",
     contentSlug: "compliance",
     videoPlaceholder: "/assets/intro-videos/module-4-intro.mp4",
+    // audioUrl: "https://supjsnjsbtxsehmsjicv.supabase.co/storage/v1/object/public/audio/module-intros/module-4-intro.mp3",
   },
   {
     id: "5",
@@ -90,6 +96,7 @@ export const CERTIFICATION_MODULES: CertificationModule[] = [
     duration: "~15 min",
     contentSlug: "fwa",
     videoPlaceholder: "/assets/intro-videos/module-5-intro.mp4",
+    // audioUrl: "https://supjsnjsbtxsehmsjicv.supabase.co/storage/v1/object/public/audio/module-intros/module-5-intro.mp3",
   },
   {
     id: "6",
@@ -105,6 +112,7 @@ export const CERTIFICATION_MODULES: CertificationModule[] = [
     duration: "~15 min",
     contentSlug: "enrollment",
     videoPlaceholder: "/assets/intro-videos/module-5-intro.mp4",
+    // audioUrl: "https://supjsnjsbtxsehmsjicv.supabase.co/storage/v1/object/public/audio/module-intros/module-6-intro.mp3",
   },
 ];
 

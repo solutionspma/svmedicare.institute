@@ -8,3 +8,12 @@
 
 [build.environment]
   NODE_VERSION = "20"
+
+# Netlify site configuration
+[dev]
+  command = "npm run dev"
+  targetPort = 3000
+
+# Site ID for deployment
+[context.production]
+  environment = { NETLIFY_SITE_ID = "bd062cce-9787-4edc-8be9-32ea31304216" }

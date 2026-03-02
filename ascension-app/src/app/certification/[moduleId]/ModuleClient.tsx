@@ -13,6 +13,9 @@ import { ModuleFiletree } from "@/components/ModuleFiletree";
 import { LessonCanvas } from "@/components/LessonCanvas";
 import { Badge } from "@/components/Badge";
 import { MiniExam } from "@/components/MiniExam";
+import { AudioPlayer } from "@/components/AudioPlayer";
+import { PresenterWindow } from "@/components/PresenterWindow";
+import { getLiveSession } from "@/data/live-sessions";
 
 const STORAGE_KEY = "svmedicare-module-progress";
 
@@ -45,6 +48,9 @@ export function CertificationModuleClient({ module }: { module: CertificationMod
   const topics = content?.topics ?? [];
   const leaves = getLeafNodes(topics);
   const firstLeafId = leaves[0]?.id ?? null;
+
+  // Check for live presenter session
+  const liveSession = getLiveSession(module.id);
 
   const [activeId, setActiveId] = useState<string | null>(firstLeafId);
   const [selectedObjectiveIndex, setSelectedObjectiveIndex] = useState<number | null>(null);
@@ -202,6 +208,12 @@ export function CertificationModuleClient({ module }: { module: CertificationMod
                 <p className="mt-2 text-[var(--text-muted)]">{module.description}</p>
               </div>
 
+              {/* Audio narration for module introduction */}
+              <AudioPlayer 
+                src={module.audioUrl} 
+                label={`${module.title} - Introduction Narration`}
+              />
+
               <VideoPlaceholder
                 src={content?.introVideo ?? module.videoPlaceholder}
                 placeholderLabel="Module intro — add your video here"
@@ -318,6 +330,16 @@ export function CertificationModuleClient({ module }: { module: CertificationMod
           </div>
         </main>
       </div>
+
+      {/* Live Presenter Window - appears when enabled */}
+      {liveSession && (
+        <PresenterWindow
+          defaultOpen={liveSession.autoOpen}
+          meetingUrl={liveSession.meetingUrl}
+          platform={liveSession.platform}
+          presenterName={liveSession.presenterName}
+        />
+      )}
     </div>
   );
 }

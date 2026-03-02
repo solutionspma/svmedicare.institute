@@ -9,7 +9,17 @@ Content from **The Only Medicare Book You Need**.
 - **Framer Motion** — cinematic transitions
 - **Tailwind CSS** — custom design tokens
 - **Pexels** — wooden/healthcare background images
-- **Supabase** — Auth + Database (optional)
+- **Supabase** — Auth, Database, Storage
+
+## Features
+
+- 🎓 **6 Certification Modules** — Medicare basics to advanced compliance
+- 🎧 **Audio Narration** — ElevenLabs integration for module introductions
+- 🎥 **Live Presenter Mode** — Zoom, Teams, Cisco, openmeeting.space integration
+- 🎯 **Interactive Lessons** — Scenario-based learning with mini-exams
+- 🏆 **Gamification** — XP system, missions, trivia, rank progression
+- 📊 **Progress Tracking** — LocalStorage + Supabase sync
+- 🎨 **Cinematic Design** — Dark theme with gold accents and smooth animations
 
 ## Quick Start
 
@@ -44,6 +54,39 @@ Migrations are in `supabase/migrations/`:
 - `20250211000000_initial_schema.sql` — Tables: profiles, theme_state, xp_records, modules, etc.
 - `20250211000001_rls_policies.sql` — Row-level security
 - `20250211000002_seed_data.sql` — 3 starter missions
+- `20250302000000_audio_storage.sql` — Audio storage bucket for narration
+
+## Audio Narration
+
+Add audio narration to module introductions using ElevenLabs:
+
+1. Generate audio files in ElevenLabs
+2. Upload to Supabase Storage (`audio/module-intros/`)
+3. Update URLs in `src/data/certification.ts`
+
+See [AUDIO-SETUP.md](AUDIO-SETUP.md) for detailed instructions.
+
+## Live Presenter Mode
+
+Enable live video conferencing on any module for real-time instruction:
+
+```typescript
+// src/data/live-sessions.ts
+"1": {
+  enabled: true,
+  platform: "openmeeting",  // zoom | teams | cisco | openmeeting
+  meetingUrl: "https://openmeeting.space/medicare-basics",
+  presenterName: "Debbie Thompson",
+}
+```
+
+**Supported platforms:**
+- ✅ Zoom
+- ✅ Microsoft Teams
+- ✅ Cisco WebEx
+- ✅ openmeeting.space
+
+See [LIVE-PRESENTER-SETUP.md](LIVE-PRESENTER-SETUP.md) for detailed configuration.
 
 ## Routes
 
