@@ -36,7 +36,7 @@ export type LiveSession = {
  */
 export const LIVE_SESSIONS: Record<string, LiveSession> = {
   "1": {
-    enabled: false,
+    enabled: true,  // ✅ ENABLED for testing
     platform: "openmeeting",
     meetingUrl: "https://openmeeting.space/medicare-basics",
     presenterName: "Debbie Thompson",

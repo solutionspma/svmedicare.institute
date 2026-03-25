@@ -4,6 +4,7 @@ import { motion } from "framer-motion";
 import Link from "next/link";
 import Image from "next/image";
 import { PEXELS_IMAGES } from "@/data/pexels-images";
+import { FEATURES } from "@/config/features";
 
 // Mock data for MVP — will wire to Supabase
 const RANKS = [
@@ -138,6 +139,56 @@ export default function DashboardPage() {
             ))}
           </div>
         </motion.section>
+
+        {FEATURES.PLATFORM_AGENCY_COMMAND ||
+        FEATURES.PLATFORM_AUDIT_CONSOLE ||
+        FEATURES.PLATFORM_CERTIFICATES ? (
+          <motion.section
+            className="mb-12"
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.25 }}
+          >
+            <h2
+              className="mb-4 font-display text-2xl uppercase tracking-widest text-[var(--text-primary)]"
+              style={{ fontFamily: "var(--font-display)" }}
+            >
+              Command &amp; compliance
+            </h2>
+            <div className="flex flex-wrap gap-3 text-xs uppercase tracking-wider">
+              <Link
+                href="/training/call-lab"
+                className="rounded-sm border border-[var(--border-gold)]/35 px-4 py-2 text-[var(--text-muted)] transition-colors hover:border-[var(--gold-accent)]/50 hover:text-[var(--gold-accent)]"
+              >
+                Call Lab
+              </Link>
+              {FEATURES.PLATFORM_AGENCY_COMMAND ? (
+                <Link
+                  href="/agency/dashboard"
+                  className="rounded-sm border border-[var(--border-gold)]/35 px-4 py-2 text-[var(--text-muted)] transition-colors hover:border-[var(--gold-accent)]/50 hover:text-[var(--gold-accent)]"
+                >
+                  Agency dashboard
+                </Link>
+              ) : null}
+              {FEATURES.PLATFORM_AUDIT_CONSOLE ? (
+                <Link
+                  href="/agency/audit"
+                  className="rounded-sm border border-[var(--border-gold)]/35 px-4 py-2 text-[var(--text-muted)] transition-colors hover:border-[var(--gold-accent)]/50 hover:text-[var(--gold-accent)]"
+                >
+                  Audit logs
+                </Link>
+              ) : null}
+              {FEATURES.PLATFORM_CERTIFICATES || FEATURES.CREDENTIAL_VERIFICATION ? (
+                <Link
+                  href="/verify"
+                  className="rounded-sm border border-[var(--border-gold)]/35 px-4 py-2 text-[var(--text-muted)] transition-colors hover:border-[var(--gold-accent)]/50 hover:text-[var(--gold-accent)]"
+                >
+                  Verify credential
+                </Link>
+              ) : null}
+            </div>
+          </motion.section>
+        ) : null}
 
         {/* Mission cards */}
         <section>

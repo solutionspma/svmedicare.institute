@@ -1,0 +1,38 @@
+import type { CallAttempt } from "@/types/compliance";
+
+export const MOCK_CALL_ATTEMPTS: CallAttempt[] = [
+  {
+    id: "att-demo-1",
+    agentUserId: "agent-orion",
+    agentDisplayName: "R. Vega",
+    scenarioId: "inbound_call_standard",
+    scenarioTitle: "Inbound Medicare Inquiry - Full Compliance Flow",
+    mode: "ai-live",
+    profileId: "cooperative_senior",
+    difficultyKey: "MEDIUM",
+    score: 91,
+    passLabel: "pass",
+    violations: [],
+    missedSteps: [],
+    startedAt: new Date(Date.now() - 3600000 * 5).toISOString(),
+    endedAt: new Date(Date.now() - 3600000 * 5 + 480000).toISOString(),
+    transcriptPreview: "Agent: Thank you for calling...",
+  },
+  {
+    id: "att-demo-2",
+    agentUserId: "agent-lynx",
+    agentDisplayName: "T. Chen",
+    scenarioId: "hostile_caller",
+    scenarioTitle: "Hostile Beneficiary Scenario",
+    mode: "ai-live",
+    profileId: "hostile_caller",
+    difficultyKey: "HARD",
+    score: 76,
+    passLabel: "fail",
+    violations: ["Critical checkpoint not evidenced: Scope of appointment completed"],
+    missedSteps: ["Recording consent obtained"],
+    startedAt: new Date(Date.now() - 86400000 * 2).toISOString(),
+    endedAt: new Date(Date.now() - 86400000 * 2 + 600000).toISOString(),
+    transcriptPreview: "Beneficiary: I keep getting calls...",
+  },
+];

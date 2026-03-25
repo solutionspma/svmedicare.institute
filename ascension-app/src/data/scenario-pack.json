@@ -1,0 +1,238 @@
+{
+  "scenarioPack": {
+    "id": "sv_medicare_call_training_v1",
+    "title": "SV Medicare Compliance Call Training",
+    "version": "1.0",
+    "author": "SV Medicare Institute",
+    "modes": ["guided", "roleplay", "ai_live"],
+    "disclaimer": {
+      "global": "This platform provides educational training only and does not supersede CMS, AHIP, state regulations, or carrier-specific compliance requirements. Users are responsible for adhering to all current official guidelines.",
+      "script": "This script is a guideline and does not replace CMS or carrier-mandated scripts or compliance requirements."
+    },
+    "scenarios": [
+      {
+        "id": "inbound_call_standard",
+        "title": "Inbound Medicare Inquiry - Full Compliance Flow",
+        "difficulty": "normal",
+        "personality": "neutral_beneficiary",
+        "description": "Caller is seeking Medicare plan information. Agent must follow full CMS compliance flow.",
+        "steps": [
+          {
+            "id": "greeting",
+            "type": "agent_prompt",
+            "expected": [
+              "Thank you for calling HealthMarkets",
+              "My name is",
+              "How may I assist you"
+            ],
+            "failOnMissing": true,
+            "next": "collect_name_zip"
+          },
+          {
+            "id": "collect_name_zip",
+            "type": "agent_action",
+            "expected": ["name", "zip_code"],
+            "aiResponse": {
+              "success": "My name is Mary Johnson, zip code 70808.",
+              "fail": "Why do you need my zip code?"
+            },
+            "branches": {
+              "collected": "recording_disclosure",
+              "not_collected": "retry_name_zip"
+            }
+          },
+          {
+            "id": "recording_disclosure",
+            "type": "compliance_required",
+            "rule": "recording_consent",
+            "expected": [
+              "This call will be monitored and recorded",
+              "Do you agree"
+            ],
+            "aiResponse": {
+              "agree": "Yes, that's fine.",
+              "decline": "I'd rather not be recorded."
+            },
+            "branches": {
+              "agreed": "multi_plan_disclaimer",
+              "declined": "terminate_call_recording_required"
+            }
+          },
+          {
+            "id": "multi_plan_disclaimer",
+            "type": "compliance_required",
+            "rule": "multi_plan_disclosure",
+            "expected": [
+              "We do not offer every plan available",
+              "contact Medicare.gov or 1-800-MEDICARE"
+            ],
+            "failOnMissing": true,
+            "next": "scope_of_appointment"
+          },
+          {
+            "id": "scope_of_appointment",
+            "type": "compliance_required",
+            "rule": "scope_permission",
+            "expected": [
+              "Medicare Advantage",
+              "Medicare Supplement",
+              "Prescription Drug Plans",
+              "Dental Vision Hearing",
+              "permission to discuss"
+            ],
+            "aiResponse": {
+              "agree": "Yes, you have my permission.",
+              "confused": "What does that mean?"
+            },
+            "branches": {
+              "granted": "needs_analysis",
+              "not_granted": "limit_scope_warning"
+            }
+          },
+          {
+            "id": "needs_analysis",
+            "type": "agent_action",
+            "expected": [
+              "Part A",
+              "Part B",
+              "current plan",
+              "likes_dislikes",
+              "Medicaid status"
+            ],
+            "aiResponse": {
+              "complete": "Yes, I have Parts A and B. I have Humana. I don't like my copays.",
+              "partial": "I just want better coverage."
+            },
+            "next": "connecture_simulation"
+          },
+          {
+            "id": "connecture_simulation",
+            "type": "system_step",
+            "description": "Simulate Connecture workflow",
+            "fields": [
+              "beneficiary_profile",
+              "providers",
+              "prescriptions",
+              "subsidy_status",
+              "preferences"
+            ],
+            "validation": "all_required",
+            "next": "plan_discussion"
+          },
+          {
+            "id": "plan_discussion",
+            "type": "agent_action",
+            "expected": [
+              "recommendation_based_on_needs",
+              "no_pressure_language"
+            ],
+            "failConditions": ["misrepresentation", "pressure_sale"],
+            "next": "close_call"
+          },
+          {
+            "id": "close_call",
+            "type": "agent_prompt",
+            "expected": ["not obligated to enroll", "questions"],
+            "next": "end"
+          }
+        ],
+        "violations": [
+          {
+            "code": "NO_RECORDING_DISCLOSURE",
+            "severity": "high",
+            "message": "Agent failed to disclose recording requirement."
+          },
+          {
+            "code": "NO_SCOPE_PERMISSION",
+            "severity": "critical",
+            "message": "Agent discussed plans without scope of appointment."
+          },
+          {
+            "code": "MISREPRESENTATION",
+            "severity": "critical",
+            "message": "Agent misrepresented plan coverage."
+          },
+          {
+            "code": "PRESSURE_SALE",
+            "severity": "high",
+            "message": "Agent used high-pressure tactics."
+          }
+        ]
+      },
+      {
+        "id": "hostile_caller",
+        "title": "Hostile Beneficiary Scenario",
+        "difficulty": "hard",
+        "personality": "frustrated_beneficiary",
+        "description": "Caller is frustrated with unsolicited Medicare calls; agent must de-escalate before compliance flow.",
+        "steps": [
+          {
+            "id": "opening",
+            "aiResponse": "I keep getting calls about Medicare and I'm sick of it. Why should I talk to you?",
+            "expected": ["acknowledge", "calm_tone"],
+            "branches": {
+              "handled_well": "proceed_compliance",
+              "handled_poorly": "escalation"
+            }
+          },
+          {
+            "id": "proceed_compliance",
+            "next": "recording_disclosure"
+          },
+          {
+            "id": "escalation",
+            "result": "fail",
+            "feedback": "Agent failed to de-escalate caller."
+          }
+        ]
+      },
+      {
+        "id": "live_transfer_training",
+        "title": "Live Transfer Compliance Scenario",
+        "difficulty": "advanced",
+        "personality": "neutral_beneficiary",
+        "description": "Agent must properly handle a transfer while maintaining compliance.",
+        "steps": [
+          {
+            "id": "transfer_intro",
+            "expected": ["explain_transfer", "obtain_consent"],
+            "next": "transfer_execution"
+          },
+          {
+            "id": "transfer_execution",
+            "system": "simulate_transfer",
+            "next": "handoff"
+          },
+          {
+            "id": "handoff",
+            "expected": ["reintroduce", "reconfirm_details"],
+            "next": "end"
+          }
+        ]
+      }
+    ],
+    "aiPersonalities": [
+      {
+        "id": "neutral_beneficiary",
+        "tone": "calm",
+        "behavior": "cooperative"
+      },
+      {
+        "id": "frustrated_beneficiary",
+        "tone": "irritated",
+        "behavior": "challenging"
+      },
+      {
+        "id": "elderly_confused",
+        "tone": "slow",
+        "behavior": "needs_clarity"
+      }
+    ],
+    "scoring": {
+      "compliance_weight": 0.6,
+      "communication_weight": 0.25,
+      "accuracy_weight": 0.15,
+      "pass_threshold": 85
+    }
+  }
+}
