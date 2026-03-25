@@ -1,6 +1,6 @@
 /**
- * Extended transcript analysis: optional checklist + scenario metadata in the audit prompt.
- * API key server-side only.
+ * Extended transcript analysis: optional checklist + scenario metadata.
+ * Uses strict Medicare compliance auditor prompt. API key server-side only.
  */
 const cors = {
   "Access-Control-Allow-Origin": "*",
@@ -8,12 +8,10 @@ const cors = {
   "Access-Control-Allow-Methods": "POST, OPTIONS",
 };
 
-const BASE_AUDITOR =
-  "You are a Medicare compliance auditor. Review the call transcript. " +
-  "Respond with JSON only, no markdown: " +
-  '{"complianceScore":number,"violations":string[],"missedSteps":string[],"suggestedResponses":string[],"coachingFeedback":string} ' +
-  "complianceScore 0-100. Penalize heavily if recording disclosure, recording consent, multi-plan disclaimer, or scope of appointment " +
-  "appear missing or out of sequence before detailed plan discussion.";
+const {
+  MEDICARE_AUDITOR_SYSTEM_PROMPT,
+  normalizeMedicareAuditJson,
+} = require("../lib/medicareAuditorPrompt.js");
 
 exports.handler = async function handler(event) {
   if (event.httpMethod === "OPTIONS") {
@@ -61,9 +59,11 @@ exports.handler = async function handler(event) {
   }
 
   const userBlock = [
-    scenarioMeta ? `Scenario metadata:\n${JSON.stringify(scenarioMeta).slice(0, 1500)}` : "",
-    checklistState ? `Trainee checklist state (client heuristic):\n${JSON.stringify(checklistState).slice(0, 2000)}` : "",
-    `Transcript:\n\n${transcript}`,
+    "Reference only (client-side heuristics — do not treat as proof of compliance):",
+    scenarioMeta ? `Scenario metadata:\n${JSON.stringify(scenarioMeta).slice(0, 1200)}` : "",
+    checklistState ? `Client checklist snapshot:\n${JSON.stringify(checklistState).slice(0, 1500)}` : "",
+    "TRANSCRIPT TO AUDIT (evaluate ONLY this):",
+    transcript,
   ]
     .filter(Boolean)
     .join("\n\n");
@@ -76,11 +76,14 @@ exports.handler = async function handler(event) {
     },
     body: JSON.stringify({
       model: "gpt-4o-mini",
-      temperature: 0.2,
+      temperature: 0.12,
       response_format: { type: "json_object" },
       messages: [
-        { role: "system", content: BASE_AUDITOR },
-        { role: "user", content: userBlock },
+        { role: "system", content: MEDICARE_AUDITOR_SYSTEM_PROMPT },
+        {
+          role: "user",
+          content: userBlock,
+        },
       ],
     }),
   });
@@ -115,15 +118,24 @@ exports.handler = async function handler(event) {
     };
   }
 
+  const norm = normalizeMedicareAuditJson(parsed);
+
   return {
     statusCode: 200,
     headers: { ...cors, "Content-Type": "application/json" },
     body: JSON.stringify({
-      complianceScore: Number(parsed.complianceScore) || 0,
-      violations: Array.isArray(parsed.violations) ? parsed.violations : [],
-      missedSteps: Array.isArray(parsed.missedSteps) ? parsed.missedSteps : [],
-      suggestedResponses: Array.isArray(parsed.suggestedResponses) ? parsed.suggestedResponses : [],
-      coachingFeedback: typeof parsed.coachingFeedback === "string" ? parsed.coachingFeedback : "",
+      complianceScore: norm.complianceScore,
+      score: norm.score,
+      result: norm.result,
+      passLabel: norm.passLabel,
+      summary: norm.summary,
+      checklist: norm.checklist,
+      violations: norm.violations,
+      violationsDetailed: norm.violationsDetailed,
+      missedSteps: norm.missedSteps,
+      coaching: norm.coaching,
+      coachingFeedback: norm.coachingFeedback,
+      suggestedResponses: norm.suggestedResponses,
     }),
   };
 };

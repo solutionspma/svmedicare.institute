@@ -16,6 +16,10 @@ export type StoredTranscript = {
 
 export type ComplianceResultPayload = {
   complianceScore: number;
+  /** Server-derived from model `result` when present; otherwise UI may infer from score. */
+  passLabel?: "pass" | "conditional" | "fail";
+  summary?: string;
+  checklist?: Record<string, string> | null;
   violations: string[];
   missedSteps: string[];
   suggestedResponses: string[];

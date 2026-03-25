@@ -625,14 +625,42 @@ export function AICallMode({
         return;
       }
 
+      const score = Number(data.complianceScore ?? data.score) || 0;
+      const coachingFb = typeof data.coachingFeedback === "string" ? data.coachingFeedback : "";
+      const coachingArr =
+        Array.isArray(data.coaching) ? (data.coaching as unknown[]).filter((x): x is string => typeof x === "string") : [];
+      const coachingFeedback = coachingFb || coachingArr.join("\n\n");
+
+      let checklist: Record<string, string> | null = null;
+      if (data.checklist != null && typeof data.checklist === "object" && !Array.isArray(data.checklist)) {
+        const entries: Record<string, string> = {};
+        for (const [k, v] of Object.entries(data.checklist as Record<string, unknown>)) {
+          if (typeof v === "string") entries[k] = v;
+        }
+        checklist = Object.keys(entries).length ? entries : null;
+      }
+
+      const apiPass = typeof data.passLabel === "string" ? data.passLabel.trim() : "";
+      let passLabel: "pass" | "conditional" | "fail" = "fail";
+      if (apiPass === "pass" || apiPass === "conditional" || apiPass === "fail") {
+        passLabel = apiPass;
+      } else {
+        if (score >= 85) passLabel = "pass";
+        else if (score >= 70) passLabel = "conditional";
+        else passLabel = "fail";
+      }
+
       const payload: ComplianceResultPayload = {
-        complianceScore: Number(data.complianceScore) || 0,
+        complianceScore: score,
+        passLabel,
+        summary: typeof data.summary === "string" ? data.summary : "",
+        checklist,
         violations: Array.isArray(data.violations) ? (data.violations as string[]) : [],
         missedSteps: Array.isArray(data.missedSteps) ? (data.missedSteps as string[]) : [],
         suggestedResponses: Array.isArray(data.suggestedResponses)
           ? (data.suggestedResponses as string[])
           : [],
-        coachingFeedback: typeof data.coachingFeedback === "string" ? data.coachingFeedback : "",
+        coachingFeedback,
       };
       saveComplianceResult(sessionId, payload);
       setDebrief(payload);
@@ -867,6 +895,9 @@ export function AICallMode({
       {analyzing || debrief ? (
         <AICallDebrief
           score={debrief?.complianceScore ?? 0}
+          passLabel={debrief?.passLabel ?? "fail"}
+          summary={debrief?.summary ?? ""}
+          checklist={debrief?.checklist ?? null}
           violations={debrief?.violations ?? []}
           missedSteps={debrief?.missedSteps ?? []}
           coachingFeedback={debrief?.coachingFeedback ?? ""}

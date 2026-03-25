@@ -74,6 +74,8 @@ export function AILiveCallMode({
   const [debrief, setDebrief] = useState<{
     score: number;
     passLabel: string;
+    summary: string;
+    checklist: Record<string, string> | null;
     violations: string[];
     missed: string[];
     coaching: string;
@@ -200,6 +202,8 @@ export function AILiveCallMode({
       setDebrief({
         score: 0,
         passLabel: "fail",
+        summary: "",
+        checklist: null,
         violations: [],
         missed: ["No transcript captured"],
         coaching: "Confirm microphone permissions and realtime function deployment.",
@@ -249,17 +253,38 @@ export function AILiveCallMode({
       return;
     }
 
-    const score = Number(data.complianceScore) || 0;
+    const score = Number(data.complianceScore ?? data.score) || 0;
     const violations = Array.isArray(data.violations) ? (data.violations as string[]) : [];
     const missed = Array.isArray(data.missedSteps) ? (data.missedSteps as string[]) : [];
-    const coaching = typeof data.coachingFeedback === "string" ? data.coachingFeedback : "";
+    const summary = typeof data.summary === "string" ? data.summary : "";
+    const coachingFeedback =
+      typeof data.coachingFeedback === "string" ? data.coachingFeedback : "";
+    const coachingFromArray = Array.isArray(data.coaching)
+      ? (data.coaching as unknown[]).filter((x): x is string => typeof x === "string").join("\n\n")
+      : "";
+    const coaching = coachingFeedback || coachingFromArray;
     const suggestions = Array.isArray(data.suggestedResponses) ? (data.suggestedResponses as string[]) : [];
 
-    let passLabel = "pass";
-    if (score < 70) passLabel = "fail";
-    else if (score < 85) passLabel = "conditional";
+    let checklist: Record<string, string> | null = null;
+    if (data.checklist != null && typeof data.checklist === "object" && !Array.isArray(data.checklist)) {
+      const entries: Record<string, string> = {};
+      for (const [k, v] of Object.entries(data.checklist as Record<string, unknown>)) {
+        if (typeof v === "string") entries[k] = v;
+      }
+      checklist = Object.keys(entries).length ? entries : null;
+    }
 
-    setDebrief({ score, passLabel, violations, missed, coaching, suggestions });
+    const apiPass = typeof data.passLabel === "string" ? data.passLabel.trim() : "";
+    let passLabel: "pass" | "conditional" | "fail" = "fail";
+    if (apiPass === "pass" || apiPass === "conditional" || apiPass === "fail") {
+      passLabel = apiPass;
+    } else {
+      if (score >= 85) passLabel = "pass";
+      else if (score >= 70) passLabel = "conditional";
+      else passLabel = "fail";
+    }
+
+    setDebrief({ score, passLabel, summary, checklist, violations, missed, coaching, suggestions });
     onSessionScored?.({
       score,
       avgResponseTimeSec,
@@ -342,6 +367,8 @@ export function AILiveCallMode({
         <PostCallDebrief
           score={debrief?.score ?? 0}
           passLabel={debrief?.passLabel ?? "fail"}
+          summary={debrief?.summary ?? ""}
+          checklist={debrief?.checklist ?? null}
           violations={debrief?.violations ?? []}
           missedSteps={debrief?.missed ?? []}
           coaching={debrief?.coaching ?? ""}

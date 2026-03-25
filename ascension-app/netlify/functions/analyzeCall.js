@@ -4,18 +4,12 @@ const cors = {
   "Access-Control-Allow-Methods": "POST, OPTIONS",
 };
 
-const AUDITOR_PROMPT =
-  "You are a Medicare compliance auditor. " +
-  "Review this call transcript and evaluate whether the agent followed CMS regulations. " +
-  "Respond with JSON only, no markdown, using this shape:\n" +
-  '{"complianceScore":number,"violations":string[],"missedSteps":string[],"suggestedResponses":string[],"coachingFeedback":string}\n' +
-  "complianceScore must be 0-100. " +
-  "violations: specific issues. " +
-  "missedSteps: CMS steps the agent skipped. " +
-  "suggestedResponses: concrete improved phrases. " +
-  "coachingFeedback: 2-4 short paragraphs of narrative feedback.";
+const {
+  MEDICARE_AUDITOR_SYSTEM_PROMPT,
+  normalizeMedicareAuditJson,
+} = require("../lib/medicareAuditorPrompt.js");
 
-export async function handler(event) {
+exports.handler = async function handler(event) {
   if (event.httpMethod === "OPTIONS") {
     return { statusCode: 204, headers: cors, body: "" };
   }
@@ -69,10 +63,10 @@ export async function handler(event) {
     },
     body: JSON.stringify({
       model: "gpt-4o-mini",
-      temperature: 0.2,
+      temperature: 0.12,
       response_format: { type: "json_object" },
       messages: [
-        { role: "system", content: AUDITOR_PROMPT },
+        { role: "system", content: MEDICARE_AUDITOR_SYSTEM_PROMPT },
         { role: "user", content: `Transcript:\n\n${transcript}` },
       ],
     }),
@@ -108,15 +102,24 @@ export async function handler(event) {
     };
   }
 
+  const norm = normalizeMedicareAuditJson(parsed);
+
   return {
     statusCode: 200,
     headers: { ...cors, "Content-Type": "application/json" },
     body: JSON.stringify({
-      complianceScore: Number(parsed.complianceScore) || 0,
-      violations: Array.isArray(parsed.violations) ? parsed.violations : [],
-      missedSteps: Array.isArray(parsed.missedSteps) ? parsed.missedSteps : [],
-      suggestedResponses: Array.isArray(parsed.suggestedResponses) ? parsed.suggestedResponses : [],
-      coachingFeedback: typeof parsed.coachingFeedback === "string" ? parsed.coachingFeedback : "",
+      complianceScore: norm.complianceScore,
+      score: norm.score,
+      result: norm.result,
+      passLabel: norm.passLabel,
+      summary: norm.summary,
+      checklist: norm.checklist,
+      violations: norm.violations,
+      violationsDetailed: norm.violationsDetailed,
+      missedSteps: norm.missedSteps,
+      coaching: norm.coaching,
+      coachingFeedback: norm.coachingFeedback,
+      suggestedResponses: norm.suggestedResponses,
     }),
   };
-}
+};

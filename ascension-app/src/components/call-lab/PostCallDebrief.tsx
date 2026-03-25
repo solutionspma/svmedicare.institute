@@ -1,8 +1,15 @@
 "use client";
 
+import {
+  buildMedicareAuditChecklistRows,
+  medicareAuditChecklistStatusClass,
+} from "@/lib/medicareAuditDisplay";
+
 export function PostCallDebrief(props: {
   score: number;
   passLabel: string;
+  summary?: string;
+  checklist?: Record<string, string> | null;
   violations: string[];
   missedSteps: string[];
   coaching: string;
@@ -13,6 +20,7 @@ export function PostCallDebrief(props: {
 }) {
   const tone =
     props.passLabel === "pass" ? "text-emerald-400/90" : props.passLabel === "conditional" ? "text-amber-400/90" : "text-red-400/85";
+  const checklistRows = buildMedicareAuditChecklistRows(props.checklist ?? null);
   return (
     <div className="rounded-sm border border-[var(--border-gold)]/35 bg-black/45 p-4">
       <div className="flex flex-wrap items-end justify-between gap-3 border-b border-[var(--border-gold)]/20 pb-3">
@@ -26,10 +34,34 @@ export function PostCallDebrief(props: {
           <p className={`text-[10px] uppercase tracking-wider ${tone}`}>{props.passLabel}</p>
         </div>
       </div>
+      {!props.analyzing && props.summary && !props.error ? (
+        <section className="mt-3 border-b border-[var(--border-gold)]/15 pb-3">
+          <h4 className="mb-1 text-[10px] font-semibold uppercase tracking-wider text-[var(--text-muted)]">Summary</h4>
+          <p className="text-xs leading-relaxed text-[var(--text-primary)]/88">{props.summary}</p>
+        </section>
+      ) : null}
       {props.error ? (
         <p className="mt-3 whitespace-pre-wrap text-xs text-red-300/90">{props.error}</p>
       ) : null}
       {props.analyzing ? <p className="mt-3 animate-pulse text-xs text-[var(--text-muted)]">Auditing transcript…</p> : null}
+      {!props.analyzing && checklistRows.length > 0 && !props.error ? (
+        <section className="mt-4">
+          <h4 className="mb-2 text-[10px] font-semibold uppercase tracking-wider text-[var(--text-muted)]">Checklist</h4>
+          <ul className="grid gap-1.5 sm:grid-cols-2">
+            {checklistRows.map((row) => (
+              <li
+                key={row.key}
+                className="flex items-baseline justify-between gap-2 rounded-sm border border-[var(--border-gold)]/15 bg-black/25 px-2 py-1.5 text-[11px]"
+              >
+                <span className="text-[var(--text-primary)]/80">{row.label}</span>
+                <span className={`shrink-0 font-mono text-[10px] uppercase tracking-wide ${medicareAuditChecklistStatusClass(row.value)}`}>
+                  {row.value}
+                </span>
+              </li>
+            ))}
+          </ul>
+        </section>
+      ) : null}
       <div className="mt-4 grid gap-4 md:grid-cols-2">
         <section>
           <h4 className="mb-2 text-[10px] font-semibold uppercase tracking-wider text-red-400/85">Violations</h4>
