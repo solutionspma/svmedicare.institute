@@ -37,8 +37,8 @@ export default function AgencyCommandPage() {
             Manager dashboards require an elevated role on this workstation (demo toggle).
           </p>
           <div className="mt-6 flex flex-col gap-3 text-xs uppercase tracking-wider">
-            <Link href="/training/call-lab" className="text-[var(--gold-accent)] hover:underline">
-              Trainee · Call Lab →
+            <Link href="/training/comply-track" className="text-[var(--gold-accent)] hover:underline">
+              Trainee · ComplyTrack →
             </Link>
             <button
               type="button"

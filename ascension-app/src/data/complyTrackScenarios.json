@@ -1,0 +1,47 @@
+{
+  "version": "1.0",
+  "scenarios": [
+    {
+      "id": "inbound-beneficiary-question",
+      "name": "Inbound — beneficiary question",
+      "type": "inbound",
+      "description": "A member calls with a general Medicare question. You must complete all compliance gates before discussing plan details.",
+      "callerDisplayName": "Unknown caller",
+      "callerSubtitle": "Wireless · local area",
+      "requiredComplianceSteps": [
+        "permission_confirmed",
+        "callback_number_captured",
+        "scope_confirmed",
+        "disclaimer_provided"
+      ]
+    },
+    {
+      "id": "outbound-scheduled-callback",
+      "name": "Outbound — scheduled callback",
+      "type": "outbound",
+      "description": "Returning a scheduled call. Confirm identity context and run disclosures before needs discovery.",
+      "callerDisplayName": "Member callback",
+      "callerSubtitle": "Saved contact",
+      "requiredComplianceSteps": [
+        "permission_confirmed",
+        "callback_number_captured",
+        "scope_confirmed",
+        "disclaimer_provided"
+      ]
+    },
+    {
+      "id": "event-booth-follow-up",
+      "name": "Event — booth lead follow-up",
+      "type": "event",
+      "description": "Follow-up from a community event. SOA and disclaimers apply before substantive plan discussion.",
+      "callerDisplayName": "Event lead",
+      "callerSubtitle": "Permission-to-contact on file",
+      "requiredComplianceSteps": [
+        "permission_confirmed",
+        "scope_confirmed",
+        "disclaimer_provided",
+        "callback_number_captured"
+      ]
+    }
+  ]
+}

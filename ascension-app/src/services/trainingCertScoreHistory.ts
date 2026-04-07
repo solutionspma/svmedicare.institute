@@ -1,6 +1,6 @@
 import type { ScoreRecord } from "@/services/certificationEngine";
 
-const CERT_KEY = "call-lab-score-history-v1";
+const CERT_KEY = "comply-track-cert-score-history-v1";
 
 export function loadCertScoreHistory(): ScoreRecord[] {
   if (typeof window === "undefined") return [];

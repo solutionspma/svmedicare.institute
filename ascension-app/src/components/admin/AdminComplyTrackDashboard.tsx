@@ -13,7 +13,7 @@ import { ScenarioPerformanceChart } from "./ScenarioPerformanceChart";
 import { SessionReviewPanel } from "./SessionReviewPanel";
 import { ViolationSummaryPanel } from "./ViolationSummaryPanel";
 
-export function AdminCallLabDashboard() {
+export function AdminComplyTrackDashboard() {
   const snap = useMemo(() => buildAdminDashboardSnapshot(), []);
   const [agent, setAgent] = useState<AdminAgentRow | null>(null);
   const [sessionNote, setSessionNote] = useState<AdminSessionSummary | null>(null);
@@ -77,7 +77,7 @@ export function AdminCallLabDashboard() {
               </p>
               <p className="text-[var(--text-muted)]">{sessionNote.transcriptPreview}</p>
               <p className="text-[10px] uppercase text-[var(--text-muted)]">
-                Full transcript sync — future Supabase hook.
+                Demo metrics — ComplyTrack trainee sessions are local-only.
               </p>
             </div>
           ) : (
@@ -87,8 +87,8 @@ export function AdminCallLabDashboard() {
       </div>
 
       <div className="flex flex-wrap gap-3 text-[10px] uppercase tracking-wider">
-        <Link href="/training/call-lab" className="text-[var(--gold-accent)] hover:underline">
-          ← Call Lab
+        <Link href="/training/comply-track" className="text-[var(--gold-accent)] hover:underline">
+          ← ComplyTrack
         </Link>
         <Link href="/agency/dashboard" className="text-[var(--text-muted)] hover:text-[var(--gold-accent)]">
           Command

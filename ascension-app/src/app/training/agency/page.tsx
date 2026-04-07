@@ -20,8 +20,8 @@ export default function AgencyDashboardPage() {
     return (
       <div className="min-h-screen bg-[var(--bg-matte)] px-6 py-16 text-center text-[var(--text-muted)]">
         <p className="text-[var(--text-primary)]">Agency dashboard disabled.</p>
-        <Link href="/training/call-lab" className="mt-6 inline-block text-[var(--gold-accent)]">
-          Call Lab
+        <Link href="/training/comply-track" className="mt-6 inline-block text-[var(--gold-accent)]">
+          ComplyTrack
         </Link>
       </div>
     );
@@ -46,10 +46,10 @@ export default function AgencyDashboardPage() {
               Refresh
             </button>
             <Link
-              href="/training/call-lab"
+              href="/training/comply-track"
               className="text-xs uppercase tracking-wider text-[var(--text-muted)] hover:text-[var(--gold-accent)]"
             >
-              ← Call Lab
+              ← ComplyTrack
             </Link>
           </div>
         </div>
@@ -57,7 +57,7 @@ export default function AgencyDashboardPage() {
 
       <main className="mx-auto max-w-5xl px-6 py-10">
         <p className="mb-6 text-sm text-[var(--text-muted)]">
-          Roll-up of AI lab sessions for this workstation (local ledger). Connect Supabase for multi-device manager
+          Roll-up of training sessions for this workstation (local ledger). Connect Supabase for multi-device manager
           views.
         </p>
         <div className="overflow-x-auto rounded-sm border border-[var(--border-gold)]/30 bg-[var(--bg-matte-elevated)]/60">

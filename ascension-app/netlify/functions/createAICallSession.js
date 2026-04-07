@@ -24,7 +24,7 @@ exports.handler = async function handler(event) {
     return { statusCode: 405, headers: cors, body: JSON.stringify({ error: "Method not allowed" }) };
   }
 
-  const apiKey = process.env.OPENAI_API_KEY;
+  const apiKey = typeof process.env.OPENAI_API_KEY === "string" ? process.env.OPENAI_API_KEY.trim() : "";
   if (!apiKey) {
     return {
       statusCode: 503,
@@ -60,6 +60,9 @@ exports.handler = async function handler(event) {
 
   const instructions = buildRealtimeInstructions(profileId, difficultyKey, scenarioId);
 
+  /** GA realtime model; override with OPENAI_REALTIME_MODEL on Netlify if needed. */
+  const realtimeModel = process.env.OPENAI_REALTIME_MODEL?.trim() || "gpt-realtime";
+
   const response = await fetch("https://api.openai.com/v1/realtime/client_secrets", {
     method: "POST",
     headers: {
@@ -69,7 +72,7 @@ exports.handler = async function handler(event) {
     body: JSON.stringify({
       session: {
         type: "realtime",
-        model: "gpt-4o-realtime-preview",
+        model: realtimeModel,
         instructions,
         audio: {
           input: {
@@ -92,24 +95,50 @@ exports.handler = async function handler(event) {
     };
   }
 
-  const ephemeral = data.client_secret;
-  if (!ephemeral?.value) {
+  /**
+   * OpenAI returns either:
+   * - { value, expires_at, session } (current client_secrets docs), or
+   * - { client_secret: { value, expires_at } | string, ... } (older / nested shapes).
+   */
+  let secretValue;
+  let secretExpires;
+  if (typeof data.value === "string" && data.value.length > 0) {
+    secretValue = data.value;
+    secretExpires = data.expires_at;
+  } else if (data.client_secret != null) {
+    if (typeof data.client_secret === "string") {
+      secretValue = data.client_secret;
+      secretExpires = data.expires_at;
+    } else if (typeof data.client_secret === "object" && typeof data.client_secret.value === "string") {
+      secretValue = data.client_secret.value;
+      secretExpires = data.client_secret.expires_at;
+    }
+  }
+
+  if (!secretValue) {
     return {
       statusCode: 502,
       headers: { ...cors, "Content-Type": "application/json" },
       body: JSON.stringify({
         code: "EPHEMERAL_KEY_MISSING",
-        error: "OpenAI did not return an ephemeral client secret. Check API key validity and model access.",
+        error:
+          "OpenAI returned 200 but no client secret in the expected shape. If your project still uses gpt-4o-realtime-preview, set Netlify env OPENAI_REALTIME_MODEL=gpt-4o-realtime-preview and redeploy.",
+        raw_keys: data && typeof data === "object" ? Object.keys(data) : [],
       }),
     };
   }
+
+  const sessionModel =
+    data.session && typeof data.session === "object" && typeof data.session.model === "string"
+      ? data.session.model
+      : realtimeModel;
 
   return {
     statusCode: 200,
     headers: { ...cors, "Content-Type": "application/json" },
     body: JSON.stringify({
-      client_secret: { value: ephemeral.value, expires_at: ephemeral.expires_at },
-      model: data.model ?? "gpt-4o-realtime-preview",
+      client_secret: { value: secretValue, expires_at: secretExpires },
+      model: sessionModel,
     }),
   };
 };

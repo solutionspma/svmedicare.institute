@@ -32,8 +32,8 @@ export default function CarrierAuditPage() {
     return (
       <div className="min-h-screen bg-[var(--bg-matte)] px-6 py-16 text-center text-[var(--text-muted)]">
         <p className="text-[var(--text-primary)]">Carrier audit log disabled.</p>
-        <Link href="/training/call-lab" className="mt-6 inline-block text-[var(--gold-accent)]">
-          Call Lab
+        <Link href="/training/comply-track" className="mt-6 inline-block text-[var(--gold-accent)]">
+          ComplyTrack
         </Link>
       </div>
     );
@@ -65,10 +65,10 @@ export default function CarrierAuditPage() {
               Download CSV
             </button>
             <Link
-              href="/training/call-lab"
+              href="/training/comply-track"
               className="text-xs uppercase tracking-wider text-[var(--text-muted)] hover:text-[var(--gold-accent)]"
             >
-              ← Call Lab
+              ← ComplyTrack
             </Link>
           </div>
         </div>

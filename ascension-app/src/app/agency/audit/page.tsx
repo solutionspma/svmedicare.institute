@@ -51,8 +51,8 @@ export default function AgencyAuditPage() {
             <Link href="/agency/dashboard" className="text-[var(--text-muted)] hover:text-[var(--gold-accent)]">
               Command deck
             </Link>
-            <Link href="/training/call-lab" className="text-[var(--text-muted)] hover:text-[var(--gold-accent)]">
-              Call Lab
+            <Link href="/training/comply-track" className="text-[var(--text-muted)] hover:text-[var(--gold-accent)]">
+              ComplyTrack
             </Link>
           </div>
         </div>

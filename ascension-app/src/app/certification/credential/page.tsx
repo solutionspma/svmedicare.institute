@@ -25,8 +25,8 @@ function CredentialByQueryInner() {
     return (
       <div className="min-h-screen bg-[var(--bg-matte)] px-6 py-16 text-center text-[var(--text-muted)]">
         <p>Credentials platform disabled.</p>
-        <Link href="/training/call-lab" className="mt-6 inline-block text-[var(--gold-accent)]">
-          Call Lab
+        <Link href="/training/comply-track" className="mt-6 inline-block text-[var(--gold-accent)]">
+          ComplyTrack
         </Link>
       </div>
     );
@@ -36,7 +36,7 @@ function CredentialByQueryInner() {
     return (
       <div className="min-h-screen bg-[var(--bg-matte)] px-6 py-10 text-[var(--text-primary)]">
         <header className="mx-auto mb-8 flex max-w-3xl flex-wrap items-center justify-between gap-4">
-          <Link href="/training/call-lab" className="text-xs uppercase tracking-wider text-[var(--text-muted)] hover:text-[var(--gold-accent)]">
+          <Link href="/training/comply-track" className="text-xs uppercase tracking-wider text-[var(--text-muted)] hover:text-[var(--gold-accent)]">
             ← Training
           </Link>
           <p className="font-display text-[10px] uppercase tracking-[0.25em] text-[var(--gold-accent)]">Credential</p>
@@ -52,7 +52,7 @@ function CredentialByQueryInner() {
   return (
     <div className="min-h-screen bg-[var(--bg-matte)] px-6 py-10 text-[var(--text-primary)]">
       <header className="cert-no-print mx-auto mb-8 flex max-w-3xl flex-wrap items-center justify-between gap-4">
-        <Link href="/training/call-lab" className="text-xs uppercase tracking-wider text-[var(--text-muted)] hover:text-[var(--gold-accent)]">
+        <Link href="/training/comply-track" className="text-xs uppercase tracking-wider text-[var(--text-muted)] hover:text-[var(--gold-accent)]">
           ← Training
         </Link>
         <p className="font-display text-[10px] uppercase tracking-[0.25em] text-[var(--gold-accent)]">Credential</p>

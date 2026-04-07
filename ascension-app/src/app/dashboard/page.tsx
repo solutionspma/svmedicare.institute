@@ -102,6 +102,53 @@ export default function DashboardPage() {
           </div>
         </motion.section>
 
+        {FEATURES.COMPLY_TRACK ? (
+          <motion.section
+            className="mb-12"
+            initial={{ opacity: 0, y: 16 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.45, ease: [0.22, 1, 0.36, 1] }}
+          >
+            <Link href="/training/comply-track" className="group block outline-none focus-visible:ring-2 focus-visible:ring-[var(--gold-accent)] focus-visible:ring-offset-2 focus-visible:ring-offset-[var(--bg-matte)]">
+              <div className="relative overflow-hidden rounded-lg border-2 border-[var(--gold-accent)]/45 bg-gradient-to-br from-emerald-950/40 via-black/70 to-amber-950/25 shadow-[0_0_50px_rgba(201,162,39,0.12)] transition-all group-hover:border-[var(--gold-accent)]/70 group-hover:shadow-[0_0_60px_rgba(201,162,39,0.18)]">
+                <div className="pointer-events-none absolute -right-10 top-0 h-40 w-40 rounded-full bg-[var(--gold-accent)]/15 blur-3xl" />
+                <div className="grid md:grid-cols-[1fr_minmax(200px,320px)] md:items-stretch">
+                  <div className="space-y-4 p-8 md:p-10">
+                    <span className="inline-flex rounded-sm border border-emerald-400/40 bg-emerald-500/10 px-3 py-1 font-display text-[10px] uppercase tracking-[0.25em] text-emerald-200/95">
+                      Static compliance
+                    </span>
+                    <h2
+                      className="font-display text-3xl uppercase leading-none tracking-[0.12em] text-[var(--text-primary)] sm:text-4xl"
+                      style={{ fontFamily: "var(--font-display)" }}
+                    >
+                      ComplyTrack
+                    </h2>
+                    <p className="max-w-lg text-sm leading-relaxed text-[var(--text-primary)]/85">
+                      Simulated call shell, local scenarios, and a fixed checklist—no AI, no voice, no external APIs.
+                    </p>
+                    <span className="inline-flex items-center gap-2 font-display text-sm uppercase tracking-[0.18em] text-[var(--gold-accent)]">
+                      Open ComplyTrack
+                      <span aria-hidden className="transition-transform group-hover:translate-x-1">
+                        →
+                      </span>
+                    </span>
+                  </div>
+                  <div className="relative min-h-[200px] w-full md:min-h-[240px]">
+                    <Image
+                      src={PEXELS_IMAGES.transfers[2].src}
+                      alt={PEXELS_IMAGES.transfers[2].alt}
+                      fill
+                      className="object-cover opacity-90 transition-opacity group-hover:opacity-100"
+                      sizes="(max-width: 768px) 100vw, 320px"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-r from-[var(--bg-matte)] via-[var(--bg-matte)]/60 to-transparent md:from-[var(--bg-matte)]/90" />
+                  </div>
+                </div>
+              </div>
+            </Link>
+          </motion.section>
+        ) : null}
+
         {/* Quick actions — Trivia & Live Transfers */}
         <motion.section
           className="mb-12"
@@ -157,10 +204,10 @@ export default function DashboardPage() {
             </h2>
             <div className="flex flex-wrap gap-3 text-xs uppercase tracking-wider">
               <Link
-                href="/training/call-lab"
+                href="/training/comply-track"
                 className="rounded-sm border border-[var(--border-gold)]/35 px-4 py-2 text-[var(--text-muted)] transition-colors hover:border-[var(--gold-accent)]/50 hover:text-[var(--gold-accent)]"
               >
-                Call Lab
+                ComplyTrack
               </Link>
               {FEATURES.PLATFORM_AGENCY_COMMAND ? (
                 <Link

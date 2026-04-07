@@ -1,12 +1,13 @@
 export const FEATURES = {
-  /** Premium realtime voice (alias path with createRealtimeSession + WebRTC client). */
+  /** Disabled — ComplyTrack is static-only (no realtime voice). */
   AI_LIVE_CALL: false,
   /** PSTN bridge — placeholder only; must stay off unless explicitly enabled. */
   TELNYX_TRAINING: false,
-  /** Tactical 3-column Call Lab shell (scenario pack, checklist, Connecture sim). */
-  CALL_LAB_COMMAND_CENTER: true,
+  /** Static ComplyTrack training UI at /training/comply-track (JSON scenarios + checklist). */
+  COMPLY_TRACK: true,
   /** Structured compliance reports + call attempt persistence for admin views. */
   COMPLIANCE_REPORTS: true,
+  /** Legacy alias; kept off with ComplyTrack. */
   AI_CALL_MODE: false,
   LEADERBOARD: true,
   CERTIFICATION: true,
@@ -25,6 +26,6 @@ export const FEATURES = {
   PLATFORM_AGENCY_COMMAND: true,
   /** Compliance audit console (/agency/audit) */
   PLATFORM_AUDIT_CONSOLE: true,
-  /** Require acknowledgment before AI live call (training + audit logging copy). */
-  CALL_LAB_TRAINING_CONSENT: true,
+  /** Acknowledgment before legacy AI live call (keep off with ComplyTrack-only training). */
+  AI_CALL_TRAINING_CONSENT: false,
 } as const;

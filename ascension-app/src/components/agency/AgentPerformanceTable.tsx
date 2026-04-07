@@ -102,8 +102,8 @@ export function AgentPerformanceTable({ agents }: AgentPerformanceTableProps) {
       </div>
       <p className="text-[10px] text-[var(--text-muted)]">
         Drill-down:{" "}
-        <Link href="/training/call-lab" className="text-[var(--gold-accent)] hover:underline">
-          Call Lab
+        <Link href="/training/comply-track" className="text-[var(--gold-accent)] hover:underline">
+          ComplyTrack
         </Link>{" "}
         ·{" "}
         <Link href="/agency/audit" className="text-[var(--gold-accent)] hover:underline">

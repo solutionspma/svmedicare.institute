@@ -4,8 +4,8 @@ import { useCallback, useEffect, useState } from "react";
 import Link from "next/link";
 import { FEATURES } from "@/config/features";
 import { CredentialPrintSheet } from "@/components/credentials/CredentialPrintSheet";
-import { loadCertScoreHistory } from "@/services/callLabCertHistory";
-import { getOrCreateLocalUserId } from "@/services/callLabLeaderboard";
+import { loadCertScoreHistory } from "@/services/trainingCertScoreHistory";
+import { getOrCreateLocalUserId } from "@/services/trainingLeaderboardStore";
 import {
   loadStoredCredential,
   requestIssueCredential,
@@ -82,8 +82,8 @@ export default function TrainingCredentialPage() {
         <p className="font-display text-sm uppercase tracking-widest text-[var(--text-primary)]">
           Printable credentials disabled
         </p>
-        <Link href="/training/call-lab" className="mt-6 inline-block text-[var(--gold-accent)]">
-          ← Return to Call Lab
+        <Link href="/training/comply-track" className="mt-6 inline-block text-[var(--gold-accent)]">
+          ← Return to ComplyTrack
         </Link>
       </div>
     );
@@ -102,10 +102,10 @@ export default function TrainingCredentialPage() {
       <header className="no-print border-b border-[var(--border-gold)]/20 bg-[var(--bg-matte-elevated)] px-6 py-4">
         <div className="mx-auto flex max-w-3xl flex-wrap items-center justify-between gap-4">
           <Link
-            href="/training/call-lab"
+            href="/training/comply-track"
             className="text-xs uppercase tracking-wider text-[var(--text-muted)] hover:text-[var(--gold-accent)]"
           >
-            ← Call Lab
+            ← ComplyTrack
           </Link>
           <p className="font-display text-[10px] uppercase tracking-[0.25em] text-[var(--gold-accent)]">
             Verifiable credential
@@ -178,7 +178,7 @@ export default function TrainingCredentialPage() {
         </div>
       ) : (
         <p className="no-print mx-auto max-w-3xl px-6 pb-8 text-sm text-[var(--text-muted)]">
-          Complete certification in Call Lab, then return here to mint a credential.
+          Complete certification requirements in training, then return here to mint a credential.
         </p>
       )}
     </div>

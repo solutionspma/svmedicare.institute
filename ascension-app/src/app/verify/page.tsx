@@ -81,10 +81,10 @@ export default function PublicVerifyPage() {
         ) : null}
 
         <Link
-          href="/training/call-lab"
+          href="/training/comply-track"
           className="mt-8 inline-block text-xs uppercase tracking-wider text-[var(--text-muted)] hover:text-[var(--gold-accent)]"
         >
-          ← Call Lab
+          ← ComplyTrack
         </Link>
       </div>
     </div>

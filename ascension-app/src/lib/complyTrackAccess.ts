@@ -1,6 +1,6 @@
 import type { TrainingRole } from "@/hooks/useTrainingRole";
 
-export function canAccessAdminCallLab(role: TrainingRole): boolean {
+export function canAccessAdminComplyTrack(role: TrainingRole): boolean {
   return role === "manager" || role === "admin";
 }
 

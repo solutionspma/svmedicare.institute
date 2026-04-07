@@ -1,4 +1,4 @@
-/** User-facing copy for AI Call Lab / Netlify function failures (no secrets). */
+/** User-facing copy for legacy AI call / Netlify function failures (no secrets). */
 
 export const NETLIFY_OPENAI_REMEDIATION = [
   "Netlify → Site configuration → Environment variables → add OPENAI_API_KEY for the production (and preview) scopes you use.",

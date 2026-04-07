@@ -1,0 +1,160 @@
+{
+  "eventTypes": [
+    {
+      "id": "community",
+      "title": "Community Events",
+      "summary": "Health fairs, senior centers, and sponsored community education where Medicare products may be discussed only within permitted scopes."
+    },
+    {
+      "id": "retail",
+      "title": "Retail Booths",
+      "summary": "In-store or kiosk environments with defined hours, signage, and traffic flow; heightened visibility requires strict script and material controls."
+    },
+    {
+      "id": "carrier",
+      "title": "Carrier Events",
+      "summary": "Co-branded or carrier-hosted forums; follow carrier-specific addenda plus CMS marketing and communication standards."
+    },
+    {
+      "id": "self_hosted",
+      "title": "Self-Hosted Events",
+      "summary": "Sessions you or your agency organize; you own permits, notices, scope-of-appointment capture, and post-event documentation."
+    }
+  ],
+  "complianceByType": {
+    "community": {
+      "allowed": [
+        "Educational presentations that stay within approved talking points and materials.",
+        "Collecting permission-to-contact when all required disclosures are delivered first.",
+        "Scheduling follow-up appointments in compliant channels after SOA is documented."
+      ],
+      "prohibited": [
+        "Cash, gift cards, or meals conditioned on enrollment.",
+        "Health screening positioned as a requirement to hear a sales presentation.",
+        "Discussing off-scope products before scope and disclaimers are complete."
+      ],
+      "disclaimers": [
+        "Not affiliated with or endorsed by Medicare or the federal government.",
+        "Plan availability and benefits vary by county; network and formulary rules apply.",
+        "We do not offer every plan available—contact Medicare.gov or 1-800-MEDICARE for options."
+      ],
+      "soaRules": [
+        "Scope must list which product types may be discussed (e.g., MA, PDP, ancillary).",
+        "Document consent before needs analysis tied to a specific plan sale.",
+        "For new contacts, retain compliant evidence of permission to contact and scope."
+      ]
+    },
+    "retail": {
+      "allowed": [
+        "Fixed scripts and leave-behinds pre-approved for the location.",
+        "Sign-in or QR flows that capture consent disclosures in order.",
+        "Referrals to licensed agents for detailed plan comparisons by appointment."
+      ],
+      "prohibited": [
+        "Open enrollment discussions without a defined private or semi-private area when required.",
+        "Displaying carrier logos inconsistent with written co-marketing approval.",
+        "Pressure tactics tied to in-store promotions unrelated to Medicare."
+      ],
+      "disclaimers": [
+        "Same government / scope / availability disclosures as other marketing channels.",
+        "Recording notice if calls may be monitored or recorded per state policy.",
+        "Limited hours and representative licensing shown on posted notice where required."
+      ],
+      "soaRules": [
+        "Retail traffic is often cold—obtain explicit scope before personalized recommendations.",
+        "If event is only educational, do not pivot to sales without a new SOA pathway.",
+        "Document language preference and accessible format needs when captured on-site."
+      ]
+    },
+    "carrier": {
+      "allowed": [
+        "Activities explicitly listed in the carrier event addendum.",
+        "Distribution of carrier-approved collateral with your licensing reflected.",
+        "Coordinated RSVP or registration processes reviewed by compliance."
+      ],
+      "prohibited": [
+        "Deviating from approved agendas or speaker roles.",
+        "Offering incentives beyond carrier-authorized nominal items.",
+        "Comparing competitors by name in ways that violate fair communication rules."
+      ],
+      "disclaimers": [
+        "Combine CMS-required disclaimers with any carrier mandatory footers.",
+        "Clearly state your relationship to the carrier and appointment of record rules.",
+        "If PDP/MA dual-eligible topics arise, apply specialized disclosure cadence."
+      ],
+      "soaRules": [
+        "Many carrier events still require individual SOA before enrollments.",
+        "Batch sign-in does not replace person-specific scope where selling occurs.",
+        "Retain carrier attestations alongside your local audit trail."
+      ]
+    },
+    "self_hosted": {
+      "allowed": [
+        "Controlled invitation lists with documented marketing approval.",
+        "Virtual or hybrid formats using compliant platforms and recording notices.",
+        "Post-event surveys that avoid steering language."
+      ],
+      "prohibited": [
+        "Exclusive deals framed as one-night-only urgency for Medicare products.",
+        "Combining charitable donations with enrollment quotas.",
+        "Using purchased leads without verified permission chains."
+      ],
+      "disclaimers": [
+        "Event advertising must mirror eventual on-site disclaimers.",
+        "Virtual waiting rooms should repeat identity and scope before breakout sales.",
+        "Nominal refreshments must meet gift nominal value policies."
+      ],
+      "soaRules": [
+        "You are responsible for capturing SOA at the moment discussion turns to sales.",
+        "Self-hosted does not relax cold-call rules for follow-up.",
+        "Archive attendee lists, scripts version IDs, and slide decks per retention policy."
+      ]
+    }
+  },
+  "scenarios": [
+    {
+      "id": "sc-community-1",
+      "title": "Busy health fair table",
+      "eventTypeId": "community",
+      "instructions": "You have long lines and limited space. Practice a 60-second compliant greeting: permission, disclaimers, and how you will schedule a private follow-up instead of selling at the table. Document what you would write on the sign-in sheet."
+    },
+    {
+      "id": "sc-retail-1",
+      "title": "Shopper asks “What’s the best plan?”",
+      "eventTypeId": "retail",
+      "instructions": "Respond without steering: explain that best depends on drugs, doctors, and budget. List the steps you take to confirm SOA before any plan-specific detail. Note one prohibited phrase you will avoid."
+    },
+    {
+      "id": "sc-carrier-1",
+      "title": "Carrier speaker runs over time",
+      "eventTypeId": "carrier",
+      "instructions": "The agenda is compressed. Outline how you still deliver required disclosures before one-on-one sessions. Identify which materials you may defer to a scheduled call."
+    },
+    {
+      "id": "sc-self-1",
+      "title": "Friend brings an uninvited guest",
+      "eventTypeId": "self_hosted",
+      "instructions": "The guest did not receive pre-event marketing. Describe how you treat them as a cold contact: fresh disclosures, permission, and whether you reschedule for a compliant channel."
+    }
+  ],
+  "checklist": {
+    "before": [
+      "Materials, slides, and giveaways compliance-reviewed and versioned.",
+      "Licenses, appointment numbers, and state notices verified for the venue.",
+      "Signage, permits, and venue contracts aligned to marketing type.",
+      "Staff roles (greeter vs licensed closer) documented."
+    ],
+    "during": [
+      "Deliver required disclaimers before scope-specific discussion.",
+      "Maintain nominal gift and refreshment rules.",
+      "Use only approved scripts for transitions to enrollment.",
+      "Log incidents, complaints, or media presence per playbook."
+    ],
+    "after": [
+      "Secure attendee lists and SOA records; restrict access.",
+      "Submit carrier or FMO reporting within required windows.",
+      "Archive photos/booth layouts if used in supervisory review.",
+      "Debrief team on near-miss compliance items."
+    ]
+  }
+}

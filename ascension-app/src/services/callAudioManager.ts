@@ -1,5 +1,5 @@
 /**
- * Mic capture + mute for Call Lab (browser only).
+ * Mic capture + mute for browser call simulators (legacy).
  * Keeps stream refs centralized for pause/mute without tearing down WebRTC.
  */
 

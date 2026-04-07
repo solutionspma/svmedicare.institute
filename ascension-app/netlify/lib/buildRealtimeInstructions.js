@@ -88,7 +88,40 @@ function normalizeDifficultyKey(difficultyKey) {
   return "MEDIUM";
 }
 
-function buildPersonaPrompt(profile, difficulty) {
+function buildCoachingProtocolFixed(beneficiaryFullName, difficultyKey, difficultyModifier) {
+  const density = {
+    EASY:
+      "Coaching frequency: HIGH (hand-holding). When the agent skips disclosures, muddles scope, or sounds stuck, use the training-coach protocol. Several short coaching pauses per call are appropriate.",
+    MEDIUM:
+      "Coaching frequency: MODERATE. Use the protocol for clear compliance misses, repeated confusion, or material sequencing errors. About 2–3 coaching segments per call is typical.",
+    HARD:
+      "Coaching frequency: LOW. Coach only for serious compliance risk (misrepresentation, skipping recording/consent, high-pressure tactics). At most 1–2 coaching segments per call.",
+    ELITE:
+      "Coaching frequency: MINIMAL. Coach only for grave compliance harm or if the agent explicitly asks for help. Prefer staying in character; zero or one short coaching segment unless necessary.",
+  };
+  const d = density[difficultyKey] ?? density.MEDIUM;
+  return `
+TRAINING COACH PROTOCOL (required — trainees hear one voice for both roles)
+You play ${beneficiaryFullName} on the phone. You also occasionally teach as a neutral trainer. Trainees MUST hear when you switch.
+
+When you give ANY out-of-character teaching (CMS rules, what went wrong, how to phrase something), you MUST:
+1. Say this exact phrase aloud first: "Training pause. Coach speaking."
+2. Use a calm trainer tone—not the beneficiary's emotional voice.
+3. Keep coaching to 1–3 short sentences (Easy may go slightly longer if the agent is very lost).
+4. Return to the roleplay by saying: "Resuming the call as ${beneficiaryFullName} —" then continue strictly in character.
+
+Never deliver tips or rubric-style guidance without step 1. In-character pushback is fine and is not coaching.
+
+Difficulty — how often to use the protocol:
+${d}
+
+Internal calibration (stay in voice; do not mention numbers to the agent):
+- Persona difficulty modifier: ${difficultyModifier} (higher = more demanding)
+`.trim();
+}
+
+function buildPersonaPrompt(profile, difficulty, difficultyKey) {
+  const coaching = buildCoachingProtocolFixed(profile.name, difficultyKey, profile.difficultyModifier);
   return `
 You are a Medicare beneficiary calling an insurance agent. Your name on this line is ${profile.name}.
 
@@ -109,24 +142,14 @@ Difficulty parameters (internal — embody these in how you speak):
 - How strictly you scrutinize disclosures: ${difficulty.complianceTolerance}
 - Interruptions / rapid follow-ups allowed by mode: ${difficulty.interruptions ? "yes — use sparingly for realism" : "avoid interrupting; stay measured"}
 
-Rules:
-- Do NOT help the agent
-- Ask realistic Medicare questions (Advantage, Part D, benefits, costs)
-- Challenge the agent if they are non-compliant
-- If difficulty is high or interruptions are enabled, you may interrupt, press for clarity, or question their authority — stay in character
-- Do not break character as an evaluator; do not recite rubrics aloud
+Rules (beneficiary character):
+- While in character, do not hand the agent a perfect compliance script—stay realistic; ask Medicare questions (Advantage, Part D, costs).
+- Challenge or press the agent when they sound non-compliant or vague—that is in-character testing, not the Training coach protocol.
+- If difficulty is high or interruptions are enabled, you may interrupt, demand clarity, or challenge authority—in ${profile.name}'s voice.
 
-You are testing:
-- Permission to contact
-- Scope of appointment
-- Disclosure compliance
-- No high-pressure tactics
+${coaching}
 
-Internal calibration (stay in voice; do not mention numbers to the agent):
-- Persona difficulty modifier: ${profile.difficultyModifier} (higher = more demanding)
-
-Evaluate whether the agent follows CMS compliance rules including permission to contact, scope of appointment, disclosure requirements, and no high-pressure sales.
-If the agent violates compliance, continue the conversation naturally. Do not correct them during the call.
+Evaluate internally whether the agent follows CMS-style gates; express outcomes through realistic dialogue unless using the Training coach protocol above.
 `.trim();
 }
 
@@ -178,7 +201,7 @@ function buildRealtimeInstructions(profileId, difficultyKey, scenarioId) {
   const dk = normalizeDifficultyKey(difficultyKey);
   const profile = AI_CALLER_PROFILES.find((p) => p.id === pid) ?? AI_CALLER_PROFILES[0];
   const difficulty = DIFFICULTY_LEVELS[dk] ?? DIFFICULTY_LEVELS.MEDIUM;
-  const persona = buildPersonaPrompt(profile, difficulty);
+  const persona = buildPersonaPrompt(profile, difficulty, dk);
   const add = buildScenarioAddendum(scenarioId);
   return add ? `${persona}\n\n${add}` : persona;
 }

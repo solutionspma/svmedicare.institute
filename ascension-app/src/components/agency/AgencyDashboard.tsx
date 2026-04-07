@@ -25,8 +25,8 @@ export function AgencyDashboard({ metrics, agents }: AgencyDashboardProps) {
           <Link href="/agency/audit" className="text-[var(--text-muted)] hover:text-[var(--gold-accent)]">
             Audit console
           </Link>
-          <Link href="/training/call-lab" className="text-[var(--text-muted)] hover:text-[var(--gold-accent)]">
-            Call Lab
+          <Link href="/training/comply-track" className="text-[var(--text-muted)] hover:text-[var(--gold-accent)]">
+            ComplyTrack
           </Link>
           <Link href="/verify" className="text-[var(--text-muted)] hover:text-[var(--gold-accent)]">
             Verify credential

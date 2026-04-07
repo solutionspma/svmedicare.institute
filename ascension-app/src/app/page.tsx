@@ -189,6 +189,58 @@ export default function LandingPage() {
           </Link>
         </motion.div>
 
+        <motion.div
+          className="mt-8"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ delay: 1.85, duration: 0.5 }}
+        >
+          <Link
+            href="/training/comply-track"
+            className="font-body text-xs uppercase tracking-[0.22em] text-[var(--text-muted)] underline-offset-4 transition-colors hover:text-[var(--gold-accent)]"
+          >
+            ComplyTrack — static compliance practice
+          </Link>
+        </motion.div>
+
+        <motion.section
+          className="relative z-10 mt-16 w-full max-w-2xl border-t border-[var(--border-gold)]/25 px-4 pt-14 text-center md:max-w-3xl"
+          initial={{ opacity: 0, y: 24 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 1.95, duration: 0.55, ease: [0.22, 1, 0.36, 1] }}
+        >
+          <p className="font-display text-[10px] uppercase tracking-[0.28em] text-[var(--gold-accent)]">
+            Field readiness
+          </p>
+          <h2 className="mt-3 font-display text-xl uppercase tracking-[0.12em] text-[var(--text-primary)] sm:text-2xl md:text-3xl">
+            Events &amp; Field Compliance
+          </h2>
+          <p className="mx-auto mt-4 max-w-xl text-sm leading-relaxed text-[var(--text-muted)]">
+            Training and guidance for agents attending community events, retail booths, and CMS-regulated marketing
+            environments.
+          </p>
+          <div className="mt-8 flex flex-col items-stretch gap-3 sm:flex-row sm:flex-wrap sm:justify-center">
+            <Link
+              href="/events-training"
+              className="rounded-sm border border-[var(--gold-accent)]/50 bg-[var(--gold-accent)]/12 px-5 py-3 text-center font-body text-xs font-semibold uppercase tracking-[0.15em] text-[var(--gold-accent)] transition-colors hover:bg-[var(--gold-accent)]/18"
+            >
+              View Event Training
+            </Link>
+            <Link
+              href="/events-calendar"
+              className="rounded-sm border border-[var(--border-gold)]/45 bg-black/25 px-5 py-3 text-center font-body text-xs font-semibold uppercase tracking-[0.15em] text-[var(--text-primary)] transition-colors hover:border-[var(--gold-accent)]/45 hover:text-[var(--gold-accent)]"
+            >
+              Browse Events Calendar
+            </Link>
+            <Link
+              href="/schedule-event"
+              className="rounded-sm border border-[var(--border-gold)]/45 bg-black/25 px-5 py-3 text-center font-body text-xs font-semibold uppercase tracking-[0.15em] text-[var(--text-primary)] transition-colors hover:border-[var(--gold-accent)]/45 hover:text-[var(--gold-accent)]"
+            >
+              Schedule an Event
+            </Link>
+          </div>
+        </motion.section>
+
         {/* Optional: Ambient audio toggle placeholder */}
         <motion.div
           className="absolute bottom-8 right-8"

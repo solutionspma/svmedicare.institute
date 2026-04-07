@@ -13,7 +13,7 @@ import type { DifficultyLevelKey } from "@/config/difficultyLevels";
 import type { AICallerProfileId } from "@/data/aiCallerProfiles";
 import { appendCarrierAuditEntry } from "@/services/carrierAuditLog";
 import { logAuditEvent } from "@/services/auditLogger";
-import { getOrCreateLocalUserId } from "@/services/callLabLeaderboard";
+import { getOrCreateLocalUserId } from "@/services/trainingLeaderboardStore";
 import {
   formatAnalyzeCallFailure,
   formatCreateSessionFailure,
@@ -92,7 +92,7 @@ export function AICallMode({
   const [connectError, setConnectError] = useState<string | null>(null);
   const [trainingConsent, setTrainingConsent] = useState(false);
 
-  const consentRequired = FEATURES.CALL_LAB_TRAINING_CONSENT;
+  const consentRequired = FEATURES.AI_CALL_TRAINING_CONSENT;
   const canStartCall = !consentRequired || trainingConsent;
 
   useEffect(() => {
@@ -467,7 +467,7 @@ export function AICallMode({
         appendCarrierAuditEntry({
           eventType: "lab_session_started",
           agentRef: uid,
-          summary: `AI call lab session started (${profileId}, ${difficultyKey}).`,
+          summary: `AI training session started (${profileId}, ${difficultyKey}).`,
           metadata: {
             profileId,
             difficultyKey,

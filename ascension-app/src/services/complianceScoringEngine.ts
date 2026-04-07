@@ -44,8 +44,10 @@ export function detectMissedSteps(checklist: ChecklistItemState[]): string[] {
 
 export function detectViolations(
   transcript: string,
-  checklist: ChecklistItemState[]
+  checklist: ChecklistItemState[],
+  opts?: { treatPendingCriticalAsViolations?: boolean }
 ): ComplianceViolation[] {
+  const treatPendingCritical = opts?.treatPendingCriticalAsViolations ?? true;
   const out: ComplianceViolation[] = [];
   const lower = transcript.toLowerCase();
   if (PRESSURE.test(transcript)) {
@@ -126,7 +128,9 @@ export function scoreCall(
   _scenarioId: string,
   checklist: ChecklistItemState[]
 ): ComplianceScore {
-  const violations = detectViolations(transcript, checklist);
+  const violations = detectViolations(transcript, checklist, {
+    treatPendingCriticalAsViolations: transcript.trim().length > 0,
+  });
   return calculateFinalScore({
     checklist,
     violations,

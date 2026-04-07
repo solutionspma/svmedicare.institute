@@ -1,7 +1,7 @@
 import type { LeaderboardEntry } from "@/types/leaderboard";
 
-const LB_STORAGE = "call-lab-leaderboard-v1";
-const USER_ID_KEY = "call-lab-user-id-v1";
+const LB_STORAGE = "comply-track-leaderboard-v1";
+const USER_ID_KEY = "comply-track-local-user-id-v1";
 
 type PersistedAgent = {
   userId: string;

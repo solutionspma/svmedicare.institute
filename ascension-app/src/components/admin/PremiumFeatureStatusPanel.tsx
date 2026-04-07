@@ -8,7 +8,7 @@ export function PremiumFeatureStatusPanel() {
     { k: "AI_CALL_MODE (legacy alias)", on: FEATURES.AI_CALL_MODE },
     { k: "TELNYX_TRAINING", on: FEATURES.TELNYX_TRAINING },
     { k: "COMPLIANCE_REPORTS", on: FEATURES.COMPLIANCE_REPORTS },
-    { k: "CALL_LAB_COMMAND_CENTER", on: FEATURES.CALL_LAB_COMMAND_CENTER },
+    { k: "COMPLY_TRACK (static training)", on: FEATURES.COMPLY_TRACK },
   ];
   return (
     <div className="rounded-sm border border-[var(--border-gold)]/30 bg-black/35 p-4">

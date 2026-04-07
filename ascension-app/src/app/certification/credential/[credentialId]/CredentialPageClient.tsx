@@ -21,8 +21,8 @@ export default function CredentialPageClient() {
     return (
       <div className="min-h-screen bg-[var(--bg-matte)] px-6 py-16 text-center text-[var(--text-muted)]">
         <p>Credentials platform disabled.</p>
-        <Link href="/training/call-lab" className="mt-6 inline-block text-[var(--gold-accent)]">
-          Call Lab
+        <Link href="/training/comply-track" className="mt-6 inline-block text-[var(--gold-accent)]">
+          ComplyTrack
         </Link>
       </div>
     );
@@ -31,7 +31,7 @@ export default function CredentialPageClient() {
   return (
     <div className="min-h-screen bg-[var(--bg-matte)] px-6 py-10 text-[var(--text-primary)]">
       <header className="cert-no-print mx-auto mb-8 flex max-w-3xl flex-wrap items-center justify-between gap-4">
-        <Link href="/training/call-lab" className="text-xs uppercase tracking-wider text-[var(--text-muted)] hover:text-[var(--gold-accent)]">
+        <Link href="/training/comply-track" className="text-xs uppercase tracking-wider text-[var(--text-muted)] hover:text-[var(--gold-accent)]">
           ← Training
         </Link>
         <p className="font-display text-[10px] uppercase tracking-[0.25em] text-[var(--gold-accent)]">Credential</p>
@@ -42,8 +42,8 @@ export default function CredentialPageClient() {
           Credential not found for ID <span className="font-mono text-[var(--text-primary)]">{credentialId}</span>.
           <span className="mt-2 block text-xs">
             If this credential was issued in this browser, open it from{" "}
-            <Link className="text-[var(--gold-accent)] underline-offset-2 hover:underline" href="/training/call-lab">
-              Call Lab
+            <Link className="text-[var(--gold-accent)] underline-offset-2 hover:underline" href="/training/comply-track">
+              ComplyTrack
             </Link>{" "}
             or use{" "}
             <Link className="text-[var(--gold-accent)] underline-offset-2 hover:underline" href={`/certification/credential?id=${encodeURIComponent(credentialId)}`}>

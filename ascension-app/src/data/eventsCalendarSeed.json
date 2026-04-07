@@ -1,0 +1,47 @@
+[
+  {
+    "id": "seed-evt-1",
+    "title": "Spring Community Health Fair",
+    "eventType": "community",
+    "location": "Phoenix, AZ · Civic Center Hall B",
+    "startAt": "2026-05-03T14:00:00.000Z",
+    "endAt": "2026-05-03T20:00:00.000Z",
+    "description": "Education-first booth; licensed agents on rotating shifts. Bring tabletop disclaimers and bilingual SOA forms."
+  },
+  {
+    "id": "seed-evt-2",
+    "title": "Retail Partner Weekend Booth",
+    "eventType": "retail",
+    "location": "Tucson, AZ · Partner Store #412",
+    "startAt": "2026-05-10T15:00:00.000Z",
+    "endAt": "2026-05-11T19:00:00.000Z",
+    "description": "Two-day activation; confirm mall management signage approvals Friday close of business."
+  },
+  {
+    "id": "seed-evt-3",
+    "title": "Carrier Roadshow — Desert Region",
+    "eventType": "carrier",
+    "location": "Scottsdale, AZ · Conference Center",
+    "startAt": "2026-05-18T16:30:00.000Z",
+    "endAt": "2026-05-18T21:00:00.000Z",
+    "description": "Evening session; follow carrier deck v3.2 only. Registration desk collects attestations."
+  },
+  {
+    "id": "seed-evt-4",
+    "title": "Agency Self-Hosted Seminar",
+    "eventType": "self_hosted",
+    "location": "Virtual · Secure webinar link",
+    "startAt": "2026-05-29T19:00:00.000Z",
+    "endAt": "2026-05-29T20:30:00.000Z",
+    "description": "Invite-only; recording on. Pre-send disclosures with calendar invite."
+  },
+  {
+    "id": "seed-evt-5",
+    "title": "Summer Senior Expo",
+    "eventType": "community",
+    "location": "Mesa, AZ · Expo Hall",
+    "startAt": "2026-06-07T13:00:00.000Z",
+    "endAt": "2026-06-07T18:00:00.000Z",
+    "description": "High foot traffic; plan for queue management and privacy screens."
+  }
+]

@@ -1,8 +1,8 @@
 "use client";
 
 import { useMemo } from "react";
-import type { LeaderboardRow } from "@/services/callLabLeaderboard";
-import { getLeaderboardRows } from "@/services/callLabLeaderboard";
+import type { LeaderboardRow } from "@/services/trainingLeaderboardStore";
+import { getLeaderboardRows } from "@/services/trainingLeaderboardStore";
 
 type LeaderboardProps = {
   currentUserId: string;

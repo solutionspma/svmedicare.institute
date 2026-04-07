@@ -33,6 +33,26 @@ export default function RootLayout({
       >
         <div className="flex-1">{children}</div>
         <footer className="shrink-0 border-t border-[var(--border-gold)]/20 bg-[var(--bg-matte-elevated)] px-6 py-4">
+          <nav
+            aria-label="Site shortcuts"
+            className="mx-auto mb-3 flex max-w-6xl flex-wrap items-center justify-center gap-x-6 gap-y-2 text-[10px] uppercase tracking-[0.2em] text-[var(--text-muted)]"
+          >
+            <Link href="/" className="transition-colors hover:text-[var(--gold-accent)]">
+              Home
+            </Link>
+            <Link href="/dashboard" className="transition-colors hover:text-[var(--gold-accent)]">
+              Command deck
+            </Link>
+            <Link href="/training/comply-track" className="text-[var(--gold-accent)]/90 transition-colors hover:text-[var(--gold-accent)]">
+              ComplyTrack
+            </Link>
+            <Link href="/events-training" className="transition-colors hover:text-[var(--gold-accent)]">
+              Events &amp; field
+            </Link>
+            <Link href="/certification" className="transition-colors hover:text-[var(--gold-accent)]">
+              Certification
+            </Link>
+          </nav>
           <p className="mx-auto max-w-6xl text-center text-xs text-[var(--text-muted)]">
             SV Medicare Institute is designed, built, and powered by{" "}
             <Link
