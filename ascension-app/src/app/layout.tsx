@@ -35,7 +35,7 @@ export default function RootLayout({
         <footer className="shrink-0 border-t border-[var(--border-gold)]/20 bg-[var(--bg-matte-elevated)] px-6 py-4">
           <nav
             aria-label="Site shortcuts"
-            className="mx-auto mb-3 flex max-w-6xl flex-wrap items-center justify-center gap-x-6 gap-y-2 text-[10px] uppercase tracking-[0.2em] text-[var(--text-muted)]"
+            className="mx-auto mb-3 flex max-w-6xl flex-wrap items-center justify-center gap-x-6 gap-y-2 text-xs uppercase tracking-[0.2em] text-[var(--text-muted)]"
           >
             <Link href="/" className="transition-colors hover:text-[var(--gold-accent)]">
               Home
@@ -53,7 +53,7 @@ export default function RootLayout({
               Certification
             </Link>
           </nav>
-          <p className="mx-auto max-w-6xl text-center text-xs text-[var(--text-muted)]">
+          <p className="mx-auto max-w-6xl text-center text-sm text-[var(--text-muted)]">
             SV Medicare Institute is designed, built, and powered by{" "}
             <Link
               href="https://pitchmarketing.agency"

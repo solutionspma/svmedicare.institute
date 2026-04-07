@@ -115,7 +115,7 @@ export function PresenterWindow({
         initial={{ opacity: 0, scale: 0.9 }}
         animate={{ opacity: 1, scale: 1 }}
         onClick={() => setIsOpen(true)}
-        className="fixed bottom-6 right-6 z-40 flex items-center gap-3 rounded-full border border-[var(--gold-accent)]/40 bg-gradient-to-r from-black/90 to-[var(--gold-accent)]/20 px-6 py-3 shadow-2xl backdrop-blur-sm transition-all hover:scale-105 hover:border-[var(--gold-accent)]/60 hover:shadow-[0_0_30px_rgba(212,175,55,0.3)]"
+        className="fixed bottom-6 right-6 z-40 flex items-center gap-3 rounded-full border border-[var(--gold-accent)]/40 bg-gradient-to-r from-black/90 to-[var(--gold-accent)]/20 px-6 py-3 shadow-2xl backdrop-blur-sm transition-all hover:scale-105 hover:border-[var(--gold-accent)]/60 hover:shadow-[0_0_30px_rgba(61,165,255,0.35)]"
       >
         <span className="text-2xl">{config.icon}</span>
         <div className="text-left">

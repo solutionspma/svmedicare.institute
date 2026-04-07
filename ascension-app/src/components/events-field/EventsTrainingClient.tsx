@@ -33,16 +33,14 @@ export function EventsTrainingClient() {
               key={t.id}
               type="button"
               onClick={() => setSelectedTypeId(t.id)}
-              className={`rounded-sm border p-4 text-left transition-colors ${
-                selectedTypeId === t.id
-                  ? "border-[var(--gold-accent)]/55 bg-[var(--gold-accent)]/8"
-                  : "border-[var(--border-gold)]/35 bg-[var(--bg-matte-elevated)]/50 hover:border-[var(--border-gold)]/55"
+              className={`event-type w-full text-left text-[var(--text-primary)] ${
+                selectedTypeId === t.id ? "active" : ""
               }`}
             >
-              <p className="font-display text-[11px] uppercase tracking-[0.15em] text-[var(--gold-accent)]">
+              <p className="font-display text-[11px] uppercase tracking-[0.15em] text-[var(--accent-primary)]">
                 {t.title}
               </p>
-              <p className="mt-2 text-sm leading-relaxed text-[var(--text-primary)]/88">{t.summary}</p>
+              <p className="mt-2 text-sm leading-relaxed text-[var(--text-secondary)]">{t.summary}</p>
             </button>
           ))}
         </div>
@@ -111,23 +109,24 @@ function RuleList({
   items: string[];
   variant: "allowed" | "prohibited" | "neutral";
 }) {
-  const border =
-    variant === "allowed"
-      ? "border-emerald-500/35"
-      : variant === "prohibited"
-        ? "border-red-500/35"
-        : "border-[var(--border-gold)]/35";
   const labelTint =
     variant === "allowed"
-      ? "text-emerald-300/95"
+      ? "text-[var(--success)]"
       : variant === "prohibited"
-        ? "text-red-300/90"
-        : "text-[var(--gold-accent)]";
+        ? "text-[var(--danger)]"
+        : "text-[var(--accent-primary)]";
+
+  const shellClass =
+    variant === "allowed"
+      ? "allowed-box"
+      : variant === "prohibited"
+        ? "prohibited-box"
+        : "rounded-sm border border-[var(--border-subtle)] bg-[var(--glass-bg)] p-4 backdrop-blur-sm";
 
   return (
-    <div className={`rounded-sm border ${border} bg-[var(--bg-matte-elevated)]/40 p-4`}>
+    <div className={shellClass}>
       <h3 className={`font-display text-[10px] uppercase tracking-[0.2em] ${labelTint}`}>{title}</h3>
-      <ul className="mt-3 list-inside list-disc space-y-2 text-sm text-[var(--text-primary)]/88">
+      <ul className="mt-3 list-inside list-disc space-y-2 text-sm text-[var(--text-secondary)]">
         {items.map((x, i) => (
           <li key={i} className="leading-relaxed">
             {x}
@@ -140,7 +139,7 @@ function RuleList({
 
 function ChecklistColumn({ title, items }: { title: string; items: string[] }) {
   return (
-    <div className="rounded-sm border border-[var(--border-gold)]/30 bg-black/20 p-4">
+    <div className="card">
       <h3 className="font-display text-xs uppercase tracking-[0.18em] text-[var(--text-primary)]">{title}</h3>
       <ul className="mt-3 space-y-2 text-sm text-[var(--text-muted)]">
         {items.map((x, i) => (

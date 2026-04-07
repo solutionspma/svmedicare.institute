@@ -28,11 +28,11 @@ export default function LandingPage() {
           style={{
             background: `linear-gradient(90deg, 
               transparent 0%, 
-              rgba(212, 175, 55, 0.14) 20%, 
-              rgba(212, 175, 55, 0.28) 50%, 
-              rgba(212, 175, 55, 0.14) 80%, 
+              rgba(61, 165, 255, 0.14) 20%, 
+              rgba(61, 165, 255, 0.28) 50%, 
+              rgba(61, 165, 255, 0.14) 80%, 
               transparent 100%)`,
-            boxShadow: "0 0 80px rgba(212, 175, 55, 0.18)",
+            boxShadow: "0 0 80px rgba(61, 165, 255, 0.2)",
           }}
         >
           <motion.div
@@ -86,7 +86,7 @@ export default function LandingPage() {
           }}
         >
           <motion.p
-            className="font-display text-[clamp(2.5rem,10vw,5.5rem)] uppercase leading-[0.9] tracking-[0.08em] text-[var(--text-primary)]"
+            className="font-display text-[clamp(2.85rem,11vw,6rem)] uppercase leading-[0.9] tracking-[0.08em] text-[var(--text-primary)]"
             style={{ fontFamily: "var(--font-display)" }}
             variants={{
               hidden: { opacity: 0, y: 40, filter: "blur(8px)" },
@@ -104,7 +104,7 @@ export default function LandingPage() {
             KNOWLEDGE.
           </motion.p>
           <motion.p
-            className="font-display mt-2 text-[clamp(2.5rem,10vw,5.5rem)] uppercase leading-[0.9] tracking-[0.08em] text-[var(--text-primary)]"
+            className="font-display mt-2 text-[clamp(2.85rem,11vw,6rem)] uppercase leading-[0.9] tracking-[0.08em] text-[var(--text-primary)]"
             style={{ fontFamily: "var(--font-display)" }}
             variants={{
               hidden: { opacity: 0, y: 40, filter: "blur(8px)" },
@@ -122,7 +122,7 @@ export default function LandingPage() {
             CONFIDENCE.
           </motion.p>
           <motion.p
-            className="font-display mt-2 text-[clamp(2.5rem,10vw,5.5rem)] uppercase leading-[0.9] tracking-[0.08em] text-[var(--gold-accent)]"
+            className="font-display mt-2 text-[clamp(2.85rem,11vw,6rem)] uppercase leading-[0.9] tracking-[0.08em] text-[var(--gold-accent)]"
             style={{
               fontFamily: "var(--font-display)",
               textShadow: "0 0 60px var(--gold-glow)",
@@ -146,7 +146,7 @@ export default function LandingPage() {
 
         {/* Subline */}
         <motion.p
-          className="mt-8 max-w-md text-center font-body text-sm uppercase tracking-[0.2em] text-[var(--text-muted)]"
+          className="mt-8 max-w-md text-center font-body text-base uppercase tracking-[0.2em] text-[var(--text-muted)]"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ delay: 1.4, duration: 0.8 }}
@@ -154,7 +154,7 @@ export default function LandingPage() {
           SV Medicare Institute
         </motion.p>
         <motion.p
-          className="mt-2 text-center font-body text-sm text-[var(--text-muted)]"
+          className="mt-2 text-center font-body text-base text-[var(--text-muted)]"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ delay: 1.5, duration: 0.8 }}
@@ -171,11 +171,11 @@ export default function LandingPage() {
         >
           <Link href="/dashboard">
             <motion.button
-              className="group relative overflow-hidden rounded-sm border border-[var(--border-gold)] bg-transparent px-10 py-4 font-body text-sm font-medium uppercase tracking-[0.2em] text-[var(--gold-accent)] transition-colors hover:border-[var(--gold-accent)] hover:text-[var(--gold-accent)]"
+              className="group relative overflow-hidden rounded-sm border border-[var(--border-gold)] bg-transparent px-10 py-4 font-body text-base font-medium uppercase tracking-[0.2em] text-[var(--gold-accent)] transition-colors hover:border-[var(--gold-accent)] hover:text-[var(--gold-accent)]"
               whileHover={{ scale: 1.02 }}
               whileTap={{ scale: 0.98 }}
               style={{
-                boxShadow: "0 0 30px rgba(212, 175, 55, 0.14)",
+                boxShadow: "0 0 30px rgba(61, 165, 255, 0.18)",
               }}
             >
               <span className="relative z-10">Enter the Institute</span>
@@ -197,7 +197,7 @@ export default function LandingPage() {
         >
           <Link
             href="/training/comply-track"
-            className="font-body text-xs uppercase tracking-[0.22em] text-[var(--text-muted)] underline-offset-4 transition-colors hover:text-[var(--gold-accent)]"
+            className="font-body text-sm uppercase tracking-[0.22em] text-[var(--text-muted)] underline-offset-4 transition-colors hover:text-[var(--gold-accent)]"
           >
             ComplyTrack — static compliance practice
           </Link>
@@ -209,32 +209,32 @@ export default function LandingPage() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 1.95, duration: 0.55, ease: [0.22, 1, 0.36, 1] }}
         >
-          <p className="font-display text-[10px] uppercase tracking-[0.28em] text-[var(--gold-accent)]">
+          <p className="font-display text-[11px] uppercase tracking-[0.28em] text-[var(--gold-accent)] sm:text-xs">
             Field readiness
           </p>
-          <h2 className="mt-3 font-display text-xl uppercase tracking-[0.12em] text-[var(--text-primary)] sm:text-2xl md:text-3xl">
+          <h2 className="mt-3 font-display text-2xl uppercase tracking-[0.12em] text-[var(--text-primary)] sm:text-3xl md:text-4xl">
             Events &amp; Field Compliance
           </h2>
-          <p className="mx-auto mt-4 max-w-xl text-sm leading-relaxed text-[var(--text-muted)]">
+          <p className="mx-auto mt-4 max-w-xl text-base leading-relaxed text-[var(--text-muted)]">
             Training and guidance for agents attending community events, retail booths, and CMS-regulated marketing
             environments.
           </p>
           <div className="mt-8 flex flex-col items-stretch gap-3 sm:flex-row sm:flex-wrap sm:justify-center">
             <Link
               href="/events-training"
-              className="rounded-sm border border-[var(--gold-accent)]/50 bg-[var(--gold-accent)]/12 px-5 py-3 text-center font-body text-xs font-semibold uppercase tracking-[0.15em] text-[var(--gold-accent)] transition-colors hover:bg-[var(--gold-accent)]/18"
+              className="rounded-sm border border-[var(--gold-accent)]/50 bg-[var(--gold-accent)]/12 px-5 py-3 text-center font-body text-sm font-semibold uppercase tracking-[0.15em] text-[var(--gold-accent)] transition-colors hover:bg-[var(--gold-accent)]/18"
             >
               View Event Training
             </Link>
             <Link
               href="/events-calendar"
-              className="rounded-sm border border-[var(--border-gold)]/45 bg-black/25 px-5 py-3 text-center font-body text-xs font-semibold uppercase tracking-[0.15em] text-[var(--text-primary)] transition-colors hover:border-[var(--gold-accent)]/45 hover:text-[var(--gold-accent)]"
+              className="rounded-sm border border-[var(--border-gold)]/45 bg-black/25 px-5 py-3 text-center font-body text-sm font-semibold uppercase tracking-[0.15em] text-[var(--text-primary)] transition-colors hover:border-[var(--gold-accent)]/45 hover:text-[var(--gold-accent)]"
             >
               Browse Events Calendar
             </Link>
             <Link
               href="/schedule-event"
-              className="rounded-sm border border-[var(--border-gold)]/45 bg-black/25 px-5 py-3 text-center font-body text-xs font-semibold uppercase tracking-[0.15em] text-[var(--text-primary)] transition-colors hover:border-[var(--gold-accent)]/45 hover:text-[var(--gold-accent)]"
+              className="rounded-sm border border-[var(--border-gold)]/45 bg-black/25 px-5 py-3 text-center font-body text-sm font-semibold uppercase tracking-[0.15em] text-[var(--text-primary)] transition-colors hover:border-[var(--gold-accent)]/45 hover:text-[var(--gold-accent)]"
             >
               Schedule an Event
             </Link>
