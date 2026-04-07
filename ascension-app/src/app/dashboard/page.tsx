@@ -110,7 +110,7 @@ export default function DashboardPage() {
             transition={{ duration: 0.45, ease: [0.22, 1, 0.36, 1] }}
           >
             <Link href="/training/comply-track" className="group block outline-none focus-visible:ring-2 focus-visible:ring-[var(--gold-accent)] focus-visible:ring-offset-2 focus-visible:ring-offset-[var(--bg-matte)]">
-              <div className="relative overflow-hidden rounded-lg border-2 border-[var(--gold-accent)]/45 bg-gradient-to-br from-emerald-950/40 via-black/70 to-amber-950/25 shadow-[0_0_50px_rgba(201,162,39,0.12)] transition-all group-hover:border-[var(--gold-accent)]/70 group-hover:shadow-[0_0_60px_rgba(201,162,39,0.18)]">
+              <div className="relative overflow-hidden rounded-lg border-2 border-[var(--gold-accent)]/45 bg-gradient-to-br from-emerald-900/35 via-[#1a1916]/85 to-amber-950/22 shadow-[0_0_50px_rgba(212,175,55,0.14)] transition-all group-hover:border-[var(--gold-accent)]/70 group-hover:shadow-[0_0_60px_rgba(212,175,55,0.2)]">
                 <div className="pointer-events-none absolute -right-10 top-0 h-40 w-40 rounded-full bg-[var(--gold-accent)]/15 blur-3xl" />
                 <div className="grid md:grid-cols-[1fr_minmax(200px,320px)] md:items-stretch">
                   <div className="space-y-4 p-8 md:p-10">

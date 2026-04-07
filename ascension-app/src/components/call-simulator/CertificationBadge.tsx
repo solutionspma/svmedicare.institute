@@ -21,7 +21,7 @@ export function CertificationBadge({
     <div
       className={`rounded-sm border p-4 transition-shadow duration-500 ${
         certified
-          ? "border-[var(--border-gold)] bg-[var(--gold-accent)]/8 shadow-[0_0_24px_rgba(201,162,39,0.12)] [animation:gold-pulse_2.8s_ease-in-out_infinite]"
+          ? "border-[var(--border-gold)] bg-[var(--gold-accent)]/8 shadow-[0_0_24px_rgba(212,175,55,0.16)] [animation:gold-pulse_2.8s_ease-in-out_infinite]"
           : "border-[var(--border-gold)]/25 bg-black/25"
       }`}
     >

@@ -28,11 +28,11 @@ export default function LandingPage() {
           style={{
             background: `linear-gradient(90deg, 
               transparent 0%, 
-              rgba(201, 162, 39, 0.12) 20%, 
-              rgba(201, 162, 39, 0.25) 50%, 
-              rgba(201, 162, 39, 0.12) 80%, 
+              rgba(212, 175, 55, 0.14) 20%, 
+              rgba(212, 175, 55, 0.28) 50%, 
+              rgba(212, 175, 55, 0.14) 80%, 
               transparent 100%)`,
-            boxShadow: "0 0 80px rgba(201, 162, 39, 0.15)",
+            boxShadow: "0 0 80px rgba(212, 175, 55, 0.18)",
           }}
         >
           <motion.div
@@ -175,7 +175,7 @@ export default function LandingPage() {
               whileHover={{ scale: 1.02 }}
               whileTap={{ scale: 0.98 }}
               style={{
-                boxShadow: "0 0 30px rgba(201, 162, 39, 0.1)",
+                boxShadow: "0 0 30px rgba(212, 175, 55, 0.14)",
               }}
             >
               <span className="relative z-10">Enter the Institute</span>

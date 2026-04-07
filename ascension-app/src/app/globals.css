@@ -6,15 +6,15 @@
    ═══════════════════════════════════════════════════════════════ */
 
 :root {
-  /* Level 0 — Initiation (cinematic) */
-  --bg-matte: #0c0c0c;
-  --bg-matte-elevated: #121212;
-  --gold-accent: #c9a227;
-  --gold-accent-dim: #8b7220;
-  --gold-glow: rgba(201, 162, 39, 0.15);
-  --text-primary: #f5f5f0;
-  --text-muted: #8a8a85;
-  --border-gold: rgba(201, 162, 39, 0.35);
+  /* Level 0 — Initiation (cinematic, slightly brighter surfaces) */
+  --bg-matte: #171716;
+  --bg-matte-elevated: #1f1f1d;
+  --gold-accent: #d4af37;
+  --gold-accent-dim: #9a7d26;
+  --gold-glow: rgba(212, 175, 55, 0.22);
+  --text-primary: #f7f7f2;
+  --text-muted: #9b9b93;
+  --border-gold: rgba(212, 175, 55, 0.42);
   
   /* Typography — high contrast, cinematic */
   --font-display: "Bebas Neue", "Oswald", system-ui, sans-serif;
@@ -37,10 +37,10 @@
   
   /* Shadows — layered depth */
   --shadow-glow-gold: 0 0 60px var(--gold-glow);
-  --shadow-deep: 0 24px 48px -12px rgba(0, 0, 0, 0.6);
-  --shadow-layered: 0 4px 6px -1px rgba(0, 0, 0, 0.3),
-    0 2px 4px -2px rgba(0, 0, 0, 0.2),
-    0 0 0 1px rgba(201, 162, 39, 0.08);
+  --shadow-deep: 0 24px 48px -12px rgba(0, 0, 0, 0.45);
+  --shadow-layered: 0 4px 6px -1px rgba(0, 0, 0, 0.22),
+    0 2px 4px -2px rgba(0, 0, 0, 0.14),
+    0 0 0 1px rgba(212, 175, 55, 0.1);
 }
 
 @theme inline {
@@ -60,7 +60,8 @@
     scroll-behavior: smooth;
   }
   body {
-    background: var(--bg-matte);
+    background-color: var(--bg-matte);
+    background-image: radial-gradient(120% 80% at 50% -20%, rgba(212, 175, 55, 0.06), transparent 55%);
     color: var(--text-primary);
     font-family: var(--font-body);
     min-height: 100dvh;

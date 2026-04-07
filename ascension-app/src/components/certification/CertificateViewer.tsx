@@ -21,7 +21,7 @@ export function CertificateViewer({ record, verifyPagePath = "/verify" }: Certif
           .cert-no-print { display: none !important; }
           .cert-sheet {
             box-shadow: none !important;
-            border: 1px solid #c9a227 !important;
+            border: 1px solid #d4af37 !important;
             background: #faf9f6 !important;
             color: #1a1a18 !important;
             -webkit-print-color-adjust: exact;
@@ -30,8 +30,8 @@ export function CertificateViewer({ record, verifyPagePath = "/verify" }: Certif
         }
       `}</style>
 
-      <div className="cert-sheet rounded-sm border border-[#c9a227]/55 bg-[#faf9f6] p-10 text-[#1a1a18] shadow-[0_8px_40px_rgba(0,0,0,0.25)]">
-        <header className="border-b border-[#c9a227]/35 pb-6 text-center">
+      <div className="cert-sheet rounded-sm border border-[#d4af37]/55 bg-[#faf9f6] p-10 text-[#1a1a18] shadow-[0_8px_40px_rgba(0,0,0,0.2)]">
+        <header className="border-b border-[#d4af37]/35 pb-6 text-center">
           <p className="font-display text-[11px] uppercase tracking-[0.4em] text-[#8b7220]">SV Medicare Institute</p>
           <h1 className="mt-3 font-display text-2xl uppercase tracking-[0.15em] text-[#1a1a18]">
             Certificate of achievement
@@ -48,7 +48,7 @@ export function CertificateViewer({ record, verifyPagePath = "/verify" }: Certif
             {record.credentialTitle}
           </p>
 
-          <div className="mx-auto grid max-w-lg gap-3 border border-[#c9a227]/25 bg-white/80 p-4 text-left font-mono text-xs">
+          <div className="mx-auto grid max-w-lg gap-3 border border-[#d4af37]/25 bg-white/80 p-4 text-left font-mono text-xs">
             <div className="flex justify-between gap-4 border-b border-neutral-200/80 pb-2">
               <span className="text-neutral-500">Certificate no.</span>
               <span className="text-neutral-900">{record.certificateNumber}</span>
@@ -88,7 +88,7 @@ export function CertificateViewer({ record, verifyPagePath = "/verify" }: Certif
             </p>
           ) : null}
 
-          <div className="mx-auto flex max-w-xs justify-center border-2 border-[#c9a227]/40 p-4 text-center font-display text-[10px] uppercase tracking-[0.35em] text-[#8b7220]">
+          <div className="mx-auto flex max-w-xs justify-center border-2 border-[#d4af37]/40 p-4 text-center font-display text-[10px] uppercase tracking-[0.35em] text-[#9a7d26]">
             Official seal
           </div>
         </div>
@@ -97,7 +97,7 @@ export function CertificateViewer({ record, verifyPagePath = "/verify" }: Certif
           <button
             type="button"
             onClick={() => window.print()}
-            className="rounded-sm border border-[#c9a227] bg-[#c9a227]/15 px-5 py-2.5 text-xs font-medium uppercase tracking-wider text-[#6b5a1e]"
+            className="rounded-sm border border-[#d4af37] bg-[#d4af37]/15 px-5 py-2.5 text-xs font-medium uppercase tracking-wider text-[#6b5a1e]"
           >
             Print certificate
           </button>
