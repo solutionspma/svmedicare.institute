@@ -38,9 +38,26 @@ export default function DashboardPage() {
       {/* Level 1 HUD-style header */}
       <header className="border-b border-[var(--border-gold)]/20 bg-[var(--bg-matte-elevated)] px-6 py-4">
         <div className="mx-auto flex max-w-6xl items-center justify-between">
-          <span className="font-display text-xl uppercase tracking-widest text-[var(--gold-accent)]" style={{ fontFamily: "var(--font-display)" }}>
-            SV Institute
-          </span>
+          <div className="flex items-center gap-3 rounded-xl border border-[var(--border-gold)]/35 bg-gradient-to-r from-[var(--bg-primary)] to-[var(--bg-matte)] px-2.5 py-1.5">
+            <div className="relative h-10 w-10 overflow-hidden rounded-md border border-[var(--border-gold)]/35 bg-[#0f2f63]">
+              <Image
+                src="/SVC-logo.png"
+                alt="SV Custom Quality Insurance Consulting"
+                fill
+                className="object-cover"
+                sizes="40px"
+                priority
+              />
+            </div>
+            <div>
+              <p className="font-display text-[10px] uppercase tracking-[0.2em] text-[var(--gold-accent)]" style={{ fontFamily: "var(--font-display)" }}>
+                SVC
+              </p>
+              <p className="text-[11px] font-semibold uppercase tracking-[0.08em] text-[var(--text-muted)]">
+                Institute
+              </p>
+            </div>
+          </div>
           <div className="flex items-center gap-6">
             {/* XP counter in corner */}
             <div className="flex items-center gap-2 rounded border border-[var(--border-gold)]/30 bg-black/30 px-3 py-1.5">

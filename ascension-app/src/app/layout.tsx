@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Image from "next/image";
 import Link from "next/link";
 import { Bebas_Neue, DM_Sans } from "next/font/google";
 import "./globals.css";
@@ -35,9 +36,22 @@ export default function RootLayout({
           <div className="mx-auto flex max-w-6xl items-center justify-between gap-4">
             <Link
               href="/"
-              className="font-display text-xs uppercase tracking-[0.2em] text-[var(--text-muted)] hover:text-[var(--gold-accent)] transition-colors"
+              className="flex items-center gap-3 rounded-xl border border-[var(--border-gold)]/35 bg-gradient-to-r from-[var(--bg-primary)] to-[var(--bg-matte)] px-2.5 py-1.5 transition-colors hover:border-[var(--gold-accent)]/65"
+              aria-label="Go to home"
             >
-              ← Home
+              <span className="relative flex h-10 w-10 items-center justify-center overflow-hidden rounded-md border border-[var(--border-gold)]/35 bg-[#0f2f63]">
+                <Image
+                  src="/SVC-logo.png"
+                  alt="SV Custom Quality Insurance Consulting"
+                  fill
+                  className="object-cover"
+                  sizes="40px"
+                  priority
+                />
+              </span>
+              <span className="hidden font-display text-xs uppercase tracking-[0.2em] text-[var(--text-muted)] sm:inline">
+                SVC Home
+              </span>
             </Link>
             <nav
               aria-label="Primary navigation"

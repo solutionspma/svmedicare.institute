@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import Link from "next/link";
 import { useCallback, useEffect, useState } from "react";
 import {
@@ -73,6 +74,32 @@ export function EventsTrainingModuleClient() {
       {/* Page Header */}
       <header className="border-b border-[var(--border-gold)]/20 bg-[var(--bg-matte-elevated)] px-4 py-6 sm:px-6">
         <div className="mx-auto max-w-7xl">
+          <div className="mb-4 flex flex-wrap items-center gap-3">
+            <Link
+              href="/"
+              className="flex items-center gap-2 rounded-xl border border-[var(--border-gold)]/35 bg-gradient-to-r from-[var(--bg-primary)] to-[var(--bg-matte)] px-2 py-1.5 transition-colors hover:border-[var(--gold-accent)]/65"
+              aria-label="Go to home"
+            >
+              <span className="relative h-8 w-8 overflow-hidden rounded-md border border-[var(--border-gold)]/35 bg-[#0f2f63]">
+                <Image
+                  src="/SVC-logo.png"
+                  alt="SV Custom Quality Insurance Consulting"
+                  fill
+                  className="object-cover"
+                  sizes="32px"
+                />
+              </span>
+              <span className="font-display text-[10px] uppercase tracking-[0.2em] text-[var(--gold-accent)]">
+                SVC Home
+              </span>
+            </Link>
+            <Link
+              href="/dashboard"
+              className="text-[10px] uppercase tracking-wider text-[var(--text-muted)] hover:text-[var(--gold-accent)]"
+            >
+              Command deck
+            </Link>
+          </div>
           <p className="font-display text-[10px] uppercase tracking-[0.25em] text-[var(--text-muted)]">
             CMS-Regulated Marketing Training
           </p>
@@ -103,8 +130,14 @@ export function EventsTrainingModuleClient() {
         {/* Sidebar */}
         <aside className="w-full bg-gradient-to-b from-[var(--bg-primary)] to-[#0a1628] px-4 py-6 lg:sticky lg:top-0 lg:h-screen lg:w-80 lg:overflow-auto lg:px-6">
           <div className="mb-6 flex items-center gap-3">
-            <div className="flex h-12 w-12 items-center justify-center rounded-lg bg-gradient-to-br from-[#1c63b7] to-[#d99b20] font-display text-sm font-black text-white">
-              EF
+            <div className="relative h-12 w-12 overflow-hidden rounded-lg border border-white/20 bg-[#0f2f63]">
+              <Image
+                src="/SVC-logo.png"
+                alt="SV Custom Quality Insurance Consulting"
+                fill
+                className="object-cover"
+                sizes="48px"
+              />
             </div>
             <div>
               <p className="font-display font-bold text-white">SV Medicare Institute</p>
