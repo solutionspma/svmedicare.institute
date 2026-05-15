@@ -39,13 +39,13 @@ export default function RootLayout({
               className="flex flex-col items-center justify-center leading-none"
               aria-label="Go to home"
             >
-              <span className="relative block h-32 w-64">
+              <span className="relative block h-44 w-[22rem]">
                 <Image
                   src="/SVC-logo.png"
                   alt="SV Custom Quality Insurance Consulting"
                   fill
-                  className="object-contain drop-shadow-[0_0_1px_rgba(255,255,255,0.9)] drop-shadow-[0_0_6px_rgba(255,255,255,0.55)] drop-shadow-[0_0_11px_rgba(255,255,255,0.34)]"
-                  sizes="256px"
+                  className="object-contain scale-[1.75] drop-shadow-[0_0_1px_rgba(255,255,255,0.86)] drop-shadow-[0_0_6px_rgba(255,255,255,0.5)] drop-shadow-[0_0_11px_rgba(255,255,255,0.3)]"
+                  sizes="352px"
                   priority
                 />
               </span>
