@@ -36,27 +36,21 @@ export default function RootLayout({
           <div className="mx-auto flex max-w-6xl items-center justify-between gap-4">
             <Link
               href="/"
-              className="group relative flex items-center gap-3 rounded-2xl border border-white/65 bg-white/10 px-3 py-2 shadow-[0_0_0_1px_rgba(255,255,255,0.35),0_0_24px_rgba(255,255,255,0.34)] backdrop-blur-sm transition-colors hover:border-white"
+              className="flex flex-col items-center justify-center leading-none"
               aria-label="Go to home"
             >
-              <span className="pointer-events-none absolute inset-0 rounded-2xl bg-white/20 blur-lg" />
-              <span className="relative flex h-14 w-14 items-center justify-center overflow-hidden rounded-xl border border-white/70 bg-[#133d73] shadow-[0_0_18px_rgba(255,255,255,0.48)]">
+              <span className="relative block h-28 w-56">
                 <Image
                   src="/SVC-logo.png"
                   alt="SV Custom Quality Insurance Consulting"
                   fill
-                  className="scale-[2.8] object-cover object-center"
-                  sizes="56px"
+                  className="object-contain drop-shadow-[0_0_1px_rgba(255,255,255,1)] drop-shadow-[0_0_8px_rgba(255,255,255,0.95)] drop-shadow-[0_0_16px_rgba(255,255,255,0.7)]"
+                  sizes="224px"
                   priority
                 />
               </span>
-              <span className="relative pr-1">
-                <span className="block font-display text-base leading-none tracking-[0.18em] text-white drop-shadow-[0_1px_3px_rgba(0,0,0,0.7)]">
-                  SVC
-                </span>
-                <span className="mt-1 block text-[10px] font-semibold uppercase tracking-[0.12em] text-white/90 drop-shadow-[0_1px_2px_rgba(0,0,0,0.7)]">
-                  Insurance Consulting
-                </span>
+              <span className="-mt-1 block text-center font-display text-lg uppercase tracking-[0.12em] text-white drop-shadow-[0_1px_3px_rgba(0,0,0,0.75)]">
+                SV Medicare Institute
               </span>
             </Link>
             <nav
