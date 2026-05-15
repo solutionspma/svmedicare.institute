@@ -31,6 +31,36 @@ export default function RootLayout({
       <body
         className={`${bebasNeue.variable} ${dmSans.variable} antialiased font-sans flex min-h-screen flex-col`}
       >
+        <header className="sticky top-0 z-50 border-b border-[var(--border-gold)]/20 bg-[var(--bg-matte-elevated)]/95 backdrop-blur-sm px-4 py-3 sm:px-6">
+          <div className="mx-auto flex max-w-6xl items-center justify-between gap-4">
+            <Link
+              href="/"
+              className="font-display text-base uppercase tracking-[0.15em] text-[var(--gold-accent)] hover:opacity-90 transition-opacity"
+            >
+              SV Medicare Institute
+            </Link>
+            <nav
+              aria-label="Primary navigation"
+              className="flex flex-wrap items-center gap-x-5 gap-y-1 text-[11px] uppercase tracking-[0.18em] text-[var(--text-muted)]"
+            >
+              <Link href="/dashboard" className="transition-colors hover:text-[var(--gold-accent)]">
+                Dashboard
+              </Link>
+              <Link href="/training/comply-track" className="transition-colors hover:text-[var(--gold-accent)]">
+                ComplyTrack
+              </Link>
+              <Link href="/training/lis" className="transition-colors hover:text-[var(--gold-accent)]">
+                LIS
+              </Link>
+              <Link href="/events-training" className="transition-colors hover:text-[var(--gold-accent)]">
+                Events &amp; Field
+              </Link>
+              <Link href="/certification" className="transition-colors hover:text-[var(--gold-accent)]">
+                Certification
+              </Link>
+            </nav>
+          </div>
+        </header>
         <div className="flex-1">{children}</div>
         <footer className="shrink-0 border-t border-[var(--border-gold)]/20 bg-[var(--bg-matte-elevated)] px-6 py-4">
           <nav
