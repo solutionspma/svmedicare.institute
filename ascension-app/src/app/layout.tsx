@@ -36,22 +36,18 @@ export default function RootLayout({
           <div className="mx-auto flex max-w-6xl items-center justify-between gap-4">
             <Link
               href="/"
-              className="flex items-center gap-3 rounded-xl border border-[var(--border-gold)]/35 bg-gradient-to-r from-[var(--bg-primary)] to-[var(--bg-matte)] px-2.5 py-1.5 transition-colors hover:border-[var(--gold-accent)]/65"
+              className="relative flex h-20 w-[16rem] items-center justify-center overflow-hidden rounded-2xl border border-white/70 bg-white/10 shadow-[0_0_0_1px_rgba(255,255,255,0.35),0_0_35px_rgba(255,255,255,0.38)] backdrop-blur-sm transition-colors hover:border-white"
               aria-label="Go to home"
             >
-              <span className="relative flex h-10 w-10 items-center justify-center overflow-hidden rounded-md border border-[var(--border-gold)]/35 bg-[#0f2f63]">
-                <Image
-                  src="/SVC-logo.png"
-                  alt="SV Custom Quality Insurance Consulting"
-                  fill
-                  className="object-cover"
-                  sizes="40px"
-                  priority
-                />
-              </span>
-              <span className="hidden font-display text-xs uppercase tracking-[0.2em] text-[var(--text-muted)] sm:inline">
-                SVC Home
-              </span>
+              <span className="pointer-events-none absolute inset-0 bg-white/25 blur-xl" />
+              <Image
+                src="/SVC-logo.png"
+                alt="SV Custom Quality Insurance Consulting"
+                fill
+                className="relative z-10 object-contain p-2"
+                sizes="256px"
+                priority
+              />
             </Link>
             <nav
               aria-label="Primary navigation"

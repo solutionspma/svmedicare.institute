@@ -35,48 +35,7 @@ export default function DashboardPage() {
 
   return (
     <div className="min-h-screen bg-[var(--bg-matte)]">
-      {/* Level 1 HUD-style header */}
-      <header className="border-b border-[var(--border-gold)]/20 bg-[var(--bg-matte-elevated)] px-6 py-4">
-        <div className="mx-auto flex max-w-6xl items-center justify-between">
-          <div className="flex items-center gap-3 rounded-xl border border-[var(--border-gold)]/35 bg-gradient-to-r from-[var(--bg-primary)] to-[var(--bg-matte)] px-2.5 py-1.5">
-            <div className="relative h-10 w-10 overflow-hidden rounded-md border border-[var(--border-gold)]/35 bg-[#0f2f63]">
-              <Image
-                src="/SVC-logo.png"
-                alt="SV Custom Quality Insurance Consulting"
-                fill
-                className="object-cover"
-                sizes="40px"
-                priority
-              />
-            </div>
-            <div>
-              <p className="font-display text-[10px] uppercase tracking-[0.2em] text-[var(--gold-accent)]" style={{ fontFamily: "var(--font-display)" }}>
-                SVC
-              </p>
-              <p className="text-[11px] font-semibold uppercase tracking-[0.08em] text-[var(--text-muted)]">
-                Institute
-              </p>
-            </div>
-          </div>
-          <div className="flex items-center gap-6">
-            {/* XP counter in corner */}
-            <div className="flex items-center gap-2 rounded border border-[var(--border-gold)]/30 bg-black/30 px-3 py-1.5">
-              <span className="text-xs uppercase tracking-wider text-[var(--text-muted)]">
-                XP
-              </span>
-              <span className="font-mono text-sm font-semibold text-[var(--gold-accent)]">
-                {currentXP}
-              </span>
-            </div>
-            <div className="h-4 w-px bg-[var(--border-gold)]/30" />
-            <span className="text-xs uppercase tracking-wider text-[var(--text-muted)]">
-              {RANKS[currentRankIndex]}
-            </span>
-          </div>
-        </div>
-      </header>
-
-      <main className="mx-auto max-w-6xl px-6 py-12">
+      <main className="mx-auto max-w-6xl px-6 py-10">
         {/* Level map / XP meter */}
         <motion.section
           className="mb-12"
@@ -84,9 +43,19 @@ export default function DashboardPage() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
         >
-          <h2 className="mb-4 font-display text-2xl uppercase tracking-widest text-[var(--text-primary)]" style={{ fontFamily: "var(--font-display)" }}>
-            Rank Progress
-          </h2>
+          <div className="mb-4 flex flex-wrap items-center justify-between gap-4">
+            <h2 className="font-display text-2xl uppercase tracking-widest text-[var(--text-primary)]" style={{ fontFamily: "var(--font-display)" }}>
+              Rank Progress
+            </h2>
+            <div className="flex items-center gap-4 rounded-xl border border-[var(--border-gold)]/35 bg-black/35 px-4 py-2">
+              <div className="flex items-center gap-2">
+                <span className="text-xs uppercase tracking-wider text-[var(--text-muted)]">XP</span>
+                <span className="font-mono text-sm font-semibold text-[var(--gold-accent)]">{currentXP}</span>
+              </div>
+              <div className="h-4 w-px bg-[var(--border-gold)]/30" />
+              <span className="text-xs uppercase tracking-wider text-[var(--text-muted)]">{RANKS[currentRankIndex]}</span>
+            </div>
+          </div>
           <div className="flex items-center gap-4">
             {/* Rank ladder preview */}
             <div className="flex flex-col gap-1">
