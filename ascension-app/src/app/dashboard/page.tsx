@@ -38,9 +38,9 @@ export default function DashboardPage() {
       {/* Level 1 HUD-style header */}
       <header className="border-b border-[var(--border-gold)]/20 bg-[var(--bg-matte-elevated)] px-6 py-4">
         <div className="mx-auto flex max-w-6xl items-center justify-between">
-          <Link href="/" className="font-display text-xl uppercase tracking-widest text-[var(--gold-accent)]" style={{ fontFamily: "var(--font-display)" }}>
+          <span className="font-display text-xl uppercase tracking-widest text-[var(--gold-accent)]" style={{ fontFamily: "var(--font-display)" }}>
             SV Institute
-          </Link>
+          </span>
           <div className="flex items-center gap-6">
             {/* XP counter in corner */}
             <div className="flex items-center gap-2 rounded border border-[var(--border-gold)]/30 bg-black/30 px-3 py-1.5">

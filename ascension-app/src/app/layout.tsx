@@ -35,13 +35,13 @@ export default function RootLayout({
           <div className="mx-auto flex max-w-6xl items-center justify-between gap-4">
             <Link
               href="/"
-              className="font-display text-base uppercase tracking-[0.15em] text-[var(--gold-accent)] hover:opacity-90 transition-opacity"
+              className="font-display text-xs uppercase tracking-[0.2em] text-[var(--text-muted)] hover:text-[var(--gold-accent)] transition-colors"
             >
-              SV Medicare Institute
+              ← Home
             </Link>
             <nav
               aria-label="Primary navigation"
-              className="flex flex-wrap items-center gap-x-5 gap-y-1 text-[11px] uppercase tracking-[0.18em] text-[var(--text-muted)]"
+              className="flex flex-wrap items-center gap-x-6 gap-y-1 text-sm font-semibold uppercase tracking-[0.12em] text-[var(--text-secondary)]"
             >
               <Link href="/dashboard" className="transition-colors hover:text-[var(--gold-accent)]">
                 Dashboard
