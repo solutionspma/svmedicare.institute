@@ -39,17 +39,17 @@ export default function RootLayout({
               className="flex flex-col items-center justify-center leading-none"
               aria-label="Go to home"
             >
-              <span className="relative block h-28 w-56">
+              <span className="relative block h-32 w-64">
                 <Image
                   src="/SVC-logo.png"
                   alt="SV Custom Quality Insurance Consulting"
                   fill
-                  className="object-contain drop-shadow-[0_0_1px_rgba(255,255,255,1)] drop-shadow-[0_0_8px_rgba(255,255,255,0.95)] drop-shadow-[0_0_16px_rgba(255,255,255,0.7)]"
-                  sizes="224px"
+                  className="object-contain drop-shadow-[0_0_1px_rgba(255,255,255,0.9)] drop-shadow-[0_0_6px_rgba(255,255,255,0.55)] drop-shadow-[0_0_11px_rgba(255,255,255,0.34)]"
+                  sizes="256px"
                   priority
                 />
               </span>
-              <span className="-mt-1 block text-center font-display text-lg uppercase tracking-[0.12em] text-white drop-shadow-[0_1px_3px_rgba(0,0,0,0.75)]">
+              <span className="-mt-1 block text-center font-display text-xl uppercase tracking-[0.12em] text-white drop-shadow-[0_1px_3px_rgba(0,0,0,0.75)]">
                 SV Medicare Institute
               </span>
             </Link>
