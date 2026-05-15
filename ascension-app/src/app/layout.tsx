@@ -43,8 +43,11 @@ export default function RootLayout({
             <Link href="/dashboard" className="transition-colors hover:text-[var(--gold-accent)]">
               Command deck
             </Link>
-            <Link href="/training/comply-track" className="text-[var(--gold-accent)]/90 transition-colors hover:text-[var(--gold-accent)]">
+            <Link href="/training/comply-track" className="transition-colors hover:text-[var(--gold-accent)]">
               ComplyTrack
+            </Link>
+            <Link href="/training/lis" className="transition-colors hover:text-[var(--gold-accent)]">
+              LIS / Extra Help
             </Link>
             <Link href="/events-training" className="transition-colors hover:text-[var(--gold-accent)]">
               Events &amp; field
